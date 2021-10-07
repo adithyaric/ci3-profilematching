@@ -57,12 +57,10 @@ class M_data extends CI_Model{
         return $this->db->get()->result();
     }
 
-    function join2table($id, $where){
-        $this->db->select('*');
-        $this->db->from('nilai_alternatif');
-        $this->db->join('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria');      
-        $this->db->where($where, $id);
-        $query = $this->db->get();
-        return $query;
+     function hitungid(){
+         $this->db->select('id_alternatif, GROUP_CONCAT(DISTINCT  id_subkriteria) as id_subkriteria');
+         $this->db->group_by('id_alternatif');
+        //  $this->db->order_by('total', 'asc');
+         return $this->db->get('nilai_alternatif')->result();
      }
 }

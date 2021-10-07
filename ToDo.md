@@ -6,8 +6,7 @@
 - [x] Kriteria
 - [x] Sub Kriteria
 - [x] Nilai Profil Alternatif - Kurang Tampil edit
-- [ ] Nilai Target
+- [x] Nilai Target
 
 ### Perhitungan Profile Matching
 - [ ] Perhitungan
-- [ ] Cetak

@@ -17,7 +17,7 @@
 					<select name="sub_kriteria[]" id="" required>
 					<option value=""> --- Pilih --- </option>	
 					<?php foreach ($sub_kriteria as $s) : ?>			
-							<option value="<?= $s->id_subkriteria ?>">
+							<option value="<?= $s->nilai ?>">
 								<?= $s->nama_subkriteria; ?>
 								<?= ' - Nilai : '.$s->nilai; ?>
 							</option>

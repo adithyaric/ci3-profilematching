@@ -41,6 +41,8 @@ class Nilai extends CI_Controller{
             $this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
 		);
 		$getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
+        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
         $getdata['aksi'] = $this->home;
 		$this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);

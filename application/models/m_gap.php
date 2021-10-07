@@ -5,42 +5,36 @@ class M_Gap extends CI_Model {
 
 	public function hitung($data)
 	{
+		echo '<pre>' . var_export($data, true) . '</pre>';
+		/** */
 		$users =  $data;
-		
-		$raw_asam = [];
-		$raw_non_asam = [];
+		$raw_aspek = [];
 		foreach ($users as $key => $user) {
-			$data = array($user->batas_tanam, $user->kadar_air, $user->tinggi_tanaman, $user->kerontokan, $user->harga_bibit);
-	  		array_push($raw_asam, $data);
+			$holds = $user->id_subkriteria;
+			$holds = explode(',', $holds);
+			//echo '<pre>' . var_export($holds, true) . '</pre>';
+
+	  		array_push($raw_aspek, $holds);
 		}
-		$hasil = $this->gap($raw_asam);
-		return $hasil;
+		echo '<pre>' . var_export($raw_aspek, true) . '</pre>';
+		// $hasil = $this->gap($raw_aspek);
+		// return $hasil;
 	}
 
-	function gap($arr_asam)
+	function gap($arr_aspek)
 	{
-		$asam = (Object)[
+		$aspek = (Object)[
 			'cf' => 0.6,
 			'sf' => 0.4,
-			'sub_kriteria' => 
-			[
-				'Batas tanam',
-				'Kadar air',
-				'Tinggi tanaman',
-				'Kerontokan',
-				'Harga bibit'
-			]
 		];
-		$asam_nilai = [3,2,1,3,2]; //Nilai Target
-		// $asam_tipe = [
-		// 	'core',
-		// 	'second',
-		// 	'second',
-		// 	'core'
-		// ];
+		//Nilai Target $aspek_nilai = [3,2,1,3,2];
+		$aspek_nilai = $this->input->post('sub_kriteria');
+		echo '<pre>' . var_export($aspek_nilai, true) . '</pre>';
+		 
+		$aspek_tipe = ['core','second','second','core'];
 
-		$raw_asam = $arr_asam;
-		$alt_asam = [];
+		$raw_aspek = $arr_aspek;
+		$alt_aspek = [];
 		function hitung_bobot($val)
 		{
 			$selisih = [0,1,-1,2,-2,3,-3,4,-4];
@@ -51,49 +45,49 @@ class M_Gap extends CI_Model {
 			}
 		}
 
-		$gap_asam = [];
-		$bobot_asam = [];
-		$cf_asam = [];
-		$sf_asam = [];
+		$gap_aspek = [];
+		$bobot_aspek = [];
+		$cf_aspek = [];
+		$sf_aspek = [];
 
-		// Menghitung Nilai CF/SF Asam
-		foreach ($alt_asam as $key => $value) {
-			$cf_asam[$key] = [];
-			$sf_asam[$key] = [];
+		// Menghitung Nilai CF/SF aspek
+		foreach ($alt_aspek as $key => $value) {
+			$cf_aspek[$key] = [];
+			$sf_aspek[$key] = [];
 			foreach ($value as $key2 => $value2) {
-				$gap_asam[$key][$key2] = $alt_asam[$key][$key2] - $asam_nilai[$key2];
-				$bobot_asam[$key][$key2] = hitung_bobot($gap_asam[$key][$key2]);
+				$gap_aspek[$key][$key2] = $alt_aspek[$key][$key2] - $aspek_nilai[$key2];
+				$bobot_aspek[$key][$key2] = hitung_bobot($gap_aspek[$key][$key2]);
 				
-				if($asam_tipe[$key2] == 'core')
-					array_push($cf_asam[$key], $bobot_asam[$key][$key2]);
+				if($aspek_tipe[$key2] == 'core')
+					array_push($cf_aspek[$key], $bobot_aspek[$key][$key2]);
 				else
-					array_push($sf_asam[$key], $bobot_asam[$key][$key2]);
+					array_push($sf_aspek[$key], $bobot_aspek[$key][$key2]);
 				
 			}
 		}
 		
-		// Menghitung Nilai Total Asam
-		foreach ($alt_asam as $key => $value) {
-			$ncf_asam[$key] = array_sum($cf_asam[$key]) / count($cf_asam[$key]);
-			$nsf_asam[$key] = array_sum($sf_asam[$key]) / count($sf_asam[$key]);
-			$total_asam[$key] = $asam->cf * $ncf_asam[$key] + $asam->sf * $nsf_asam[$key];
+		// Menghitung Nilai Total aspek
+		foreach ($alt_aspek as $key => $value) {
+			$ncf_aspek[$key] = array_sum($cf_aspek[$key]) / count($cf_aspek[$key]);
+			$nsf_aspek[$key] = array_sum($sf_aspek[$key]) / count($sf_aspek[$key]);
+			$total_aspek[$key] = $aspek->cf * $ncf_aspek[$key] + $aspek->sf * $nsf_aspek[$key];
 		}
 		
 		// Menghitung Nilai Total & Ranking
-		foreach ($alt_asam as $key => $value) {
-			// $rank[$key] = $asam->bobot * $total_asam[$key] + $non_asam->bobot * $total_non_asam[$key];
-			$rank[$key] = $asam->cf * $total_asam[$key] + $asam->sf * $total_non_asam[$key];
-		}
+		// foreach ($alt_aspek as $key => $value) {
+		// $rank[$key] = $aspek->bobot * $total_aspek[$key] + $non_aspek->bobot * $total_non_aspek[$key];
+		// }
 		
 		$hasil = (Object)[
-			'gap_asam' 			=> $gap_asam,
-			'bobot_asam' 		=> $bobot_asam,
-			'ncf_asam' 			=> $ncf_asam,
-			'nsf_asam' 			=> $nsf_asam,
-			'total_asam' 		=> $total_asam,
-			'rank' 				=> $rank,
-			'alt_asam' 			=> $alt_asam
+			'gap_aspek' 			=> $gap_aspek,
+			'bobot_aspek' 			=> $bobot_aspek,
+			'ncf_aspek' 			=> $ncf_aspek,
+			'nsf_aspek' 			=> $nsf_aspek,
+			'total_aspek' 			=> $total_aspek,
+			// 'rank' 				=> $rank,
+			'alt_aspek' 			=> $alt_aspek
 		];
 		return $hasil;
 	}
+
 }
