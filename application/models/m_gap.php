@@ -3,38 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Gap extends CI_Model {
 
-	public function hitung($data)
+	public function hitung($data, $sub_kriteria_list, $jenis_list)
 	{
-		echo '<pre>' . var_export($data, true) . '</pre>';
-		/** */
+		//echo ' <pre> hitung($data) :' . var_export($data, true) . '</pre>';
 		$users =  $data;
 		$raw_aspek = [];
 		foreach ($users as $key => $user) {
-			$holds = $user->id_subkriteria;
+			$holds = $user->nilai;
 			$holds = explode(',', $holds);
 			//echo '<pre>' . var_export($holds, true) . '</pre>';
-
 	  		array_push($raw_aspek, $holds);
 		}
-		echo '<pre>' . var_export($raw_aspek, true) . '</pre>';
-		// $hasil = $this->gap($raw_aspek);
-		// return $hasil;
+		//echo '<pre> $raw_aspek :' . var_export($raw_aspek, true) . '</pre>';
+		$hasil = $this->gap($raw_aspek, $sub_kriteria_list, $jenis_list);
+		return $hasil;
 	}
 
-	function gap($arr_aspek)
+	function gap($arr_aspek, $sub_kriteria_list, $jenis_list)
 	{
 		$aspek = (Object)[
 			'cf' => 0.6,
 			'sf' => 0.4,
 		];
-		//Nilai Target $aspek_nilai = [3,2,1,3,2];
-		$aspek_nilai = $this->input->post('sub_kriteria');
-		echo '<pre>' . var_export($aspek_nilai, true) . '</pre>';
-		 
-		$aspek_tipe = ['core','second','second','core'];
-
-		$raw_aspek = $arr_aspek;
-		$alt_aspek = [];
+		//Nilai Target 
+		$aspek_nilai = $sub_kriteria_list;
+		//$aspek_nilai = $this->input->post('sub_kriteria');
+		echo '<pre> aspek_nilai = ' . var_export($aspek_nilai, true) . '</pre>';
+		
+		//Jenis Kriteria 
+		$aspek_tipe = $jenis_list;
+		//$aspek_tipe = $this->input->post('jenis_kriteria');
+		echo '<pre> aspek_tipe =' . var_export($aspek_tipe, true) . '</pre>';
+		
+		$alt_aspek = $arr_aspek;
 		function hitung_bobot($val)
 		{
 			$selisih = [0,1,-1,2,-2,3,-3,4,-4];
@@ -69,24 +70,23 @@ class M_Gap extends CI_Model {
 		// Menghitung Nilai Total aspek
 		foreach ($alt_aspek as $key => $value) {
 			$ncf_aspek[$key] = array_sum($cf_aspek[$key]) / count($cf_aspek[$key]);
+			//echo '$cf_aspek[$key]: <pre>' . var_export($cf_aspek[$key], true) . '</pre>';
 			$nsf_aspek[$key] = array_sum($sf_aspek[$key]) / count($sf_aspek[$key]);
+			//echo '$sf_aspek[$key]: <pre>' . var_export($sf_aspek[$key], true) . '</pre>';
 			$total_aspek[$key] = $aspek->cf * $ncf_aspek[$key] + $aspek->sf * $nsf_aspek[$key];
+			//echo '$ncf_aspek[$key]: <pre>' . var_export($ncf_aspek[$key], true) . '</pre>';
+			//echo '$nsf_aspek[$key]: <pre>' . var_export($nsf_aspek[$key], true) . '</pre>';
 		}
-		
-		// Menghitung Nilai Total & Ranking
-		// foreach ($alt_aspek as $key => $value) {
-		// $rank[$key] = $aspek->bobot * $total_aspek[$key] + $non_aspek->bobot * $total_non_aspek[$key];
-		// }
-		
+				
 		$hasil = (Object)[
-			'gap_aspek' 			=> $gap_aspek,
-			'bobot_aspek' 			=> $bobot_aspek,
-			'ncf_aspek' 			=> $ncf_aspek,
-			'nsf_aspek' 			=> $nsf_aspek,
-			'total_aspek' 			=> $total_aspek,
-			// 'rank' 				=> $rank,
-			'alt_aspek' 			=> $alt_aspek
+			'gap_aspek' 			=> $gap_aspek,		//Selisih (Gap)
+			'bobot_aspek' 			=> $bobot_aspek, 	//Nilai Gap (Bobot Gap)
+			'ncf_aspek' 			=> $ncf_aspek,		//Nilai Rata-rata Core Factor
+			'nsf_aspek' 			=> $nsf_aspek,		//Nilai Rata-rata Secondary Factor
+			'total_aspek' 			=> $total_aspek, 	//Nilai Total
+			'alt_aspek' 			=> $alt_aspek		//Nilai Profil Alternatif
 		];
+		echo '<hr> Hasil : <pre>' . var_export($hasil, true) . '</pre>';
 		return $hasil;
 	}
 

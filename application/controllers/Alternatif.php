@@ -43,12 +43,12 @@ class Alternatif extends CI_Controller{
 	}
 
     //Input Data
-	function tambah(){
-        $getdata['aksi'] = $this->home;
-        $this->load->view('template/header');
-		$this->load->view($this->view . 'v_input', $getdata);
-        $this->load->view('template/footer');
-	}
+	// function tambah(){
+    //     $getdata['aksi'] = $this->home;
+    //     $this->load->view('template/header');
+	// 	$this->load->view($this->view . 'v_input', $getdata);
+    //     $this->load->view('template/footer');
+	// }
 
 	function tambah_aksi(){
         $data = $this->data;

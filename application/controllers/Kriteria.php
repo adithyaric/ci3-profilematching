@@ -8,7 +8,7 @@ class Kriteria extends CI_Controller{
     protected $table = 'kriteria'; //Nama Table
     protected $pk = 'id_kriteria'; //Primary Key Table
     protected $home = 'kriteria'; //Redirect
-    protected $orderby = 'nama_kriteria';
+    protected $orderby = 'id_kriteria';
 	protected $sort = 'asc';
 
     function __construct(){
@@ -43,12 +43,12 @@ class Kriteria extends CI_Controller{
 	}
 
     //Input Data
-	function tambah(){
-        $getdata['aksi'] = $this->home;
-        $this->load->view('template/header');
-		$this->load->view($this->view . 'v_input', $getdata);
-        $this->load->view('template/footer');
-	}
+	// function tambah(){
+    //     $getdata['aksi'] = $this->home;
+    //     $this->load->view('template/header');
+	// 	$this->load->view($this->view . 'v_input', $getdata);
+    //     $this->load->view('template/footer');
+	// }
 
 	function tambah_aksi(){
         $data = $this->data;

@@ -37,7 +37,7 @@ class M_data extends CI_Model{
     //Menampilkan Seluruh Table where
     public function ambil_id($where, $table, $data)
     {
-        echo '<pre>' . var_export($where, true) . '</pre>';
+        echo '<pre>' . 'ambil_id $where' . var_export($where, true) . '</pre>';
         $this->db->from($table);
         $this->setjoin($data);
         $this->db->where($where);
@@ -58,9 +58,9 @@ class M_data extends CI_Model{
     }
 
      function hitungid(){
-         $this->db->select('id_alternatif, GROUP_CONCAT(DISTINCT  id_subkriteria) as id_subkriteria');
-         $this->db->group_by('id_alternatif');
-        //  $this->db->order_by('total', 'asc');
+         $this->db->select('nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai', );
+         $this->db->join('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria');
+         $this->db->group_by('nilai_alternatif.id_alternatif');
          return $this->db->get('nilai_alternatif')->result();
      }
 }

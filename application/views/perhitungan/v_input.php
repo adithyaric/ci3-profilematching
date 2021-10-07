@@ -8,7 +8,7 @@
 					$where = 'id_kriteria';
 					$sub_kriteria = $this->m_data->data_sub_($key->id_kriteria, $table, $where);
 					if($sub_kriteria != NULL): ?>
-			<input type="text" name="id_kriteria[]" value="<?= $key->id_kriteria ?>" hidden>
+			<input type="text" name="jenis_kriteria[]" value="<?= $key->jenis_kriteria ?>" hidden>
 			<tr>
 				<td>
 					<label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
