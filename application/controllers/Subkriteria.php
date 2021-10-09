@@ -8,7 +8,7 @@ class Subkriteria extends CI_Controller{
     protected $table = 'sub_kriteria'; //Nama Table
     protected $pk = 'id_subkriteria'; //Primary Key Table
     protected $home = 'subkriteria'; //Redirect
-    protected $orderby = 'sub_kriteria.id_kriteria';
+    protected $orderby = 'sub_kriteria.id_kriteria, sub_kriteria.nilai';
 	protected $sort = 'asc';
 
     function __construct(){
@@ -41,11 +41,13 @@ class Subkriteria extends CI_Controller{
 			$this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
 		);
 		$getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
-
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['aksi'] = $this->home;
-		$this->load->view('template/header');
+		
+        $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
     //Hapus Data
@@ -56,14 +58,6 @@ class Subkriteria extends CI_Controller{
 	}
 
     //Input Data
-	function tambah(){
-        $getdata['aksi'] = $this->home;
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
-        $this->load->view('template/header');
-		$this->load->view($this->view . 'v_input', $getdata);
-        $this->load->view('template/footer');
-	}
-
 	function tambah_aksi(){
         $data = $this->data;
 		$this->m_data->input_data($data, $this->table);
@@ -79,12 +73,12 @@ class Subkriteria extends CI_Controller{
 		$getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
         $getdata['ambil_id']    = $this->m_data->ambil_id($this->where, $this->table, $data);
-
-        echo '<pre>' . var_export($getdata['ambil_id'], true) . '</pre>';
         $getdata['aksi'] = $this->home;
+        
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
     function update(){

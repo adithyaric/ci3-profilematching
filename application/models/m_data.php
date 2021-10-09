@@ -6,17 +6,11 @@ class M_data extends CI_Model{
         $this->db->order_by($order, $sort);
         return $this->db->get()->result();
 	}
-	function hapus_data($where,$table){ return $this->db->delete($table, $where); }
-	function input_data($data,$table){ return $this->db->insert($table,$data); }   
-	function edit_data($where,$table){ return $this->db->get_where($table,$where); } //Tampil data sebelum di-edit
+	function input_data($data,$table){ return $this->db->insert($table,$data); } //Aksi input data  
+    function hapus_data($where,$table){ return $this->db->delete($table, $where); } //Aksi hapus data
+    function edit_data($where,$table){ return $this->db->get_where($table,$where); } //Tampil data sebelum di-edit
 	function update_data($where,$data,$table){ return $this->db->update($table,$data,$where); } //Aksi edit data
 	
-	// public function tampil_data_join()
-    // {
-    //     $this->db->from('sub_kriteria');
-    //     $this->db->join('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria');
-    //     return $this->db->get();
-    // }
     /*** Dinamis ***/
     function setjoin($data){
 		foreach($data as $row){
@@ -37,7 +31,7 @@ class M_data extends CI_Model{
     //Menampilkan Seluruh Table where
     public function ambil_id($where, $table, $data)
     {
-        echo '<pre>' . 'ambil_id $where' . var_export($where, true) . '</pre>';
+        //echo '<pre>' . 'ambil_id $where' . print_r($where, true) . '</pre>';
         $this->db->from($table);
         $this->setjoin($data);
         $this->db->where($where);
@@ -50,17 +44,21 @@ class M_data extends CI_Model{
             return false;
         }
     }
-    
-    function data_sub_($id, $table, $where){
-        $this->db->from($table);
-        $this->db->where($where, $id);
-        return $this->db->get()->result();
-    }
 
      function hitungid(){
-         $this->db->select('nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai', );
+         $this->db->select('nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai');
+         $this->db->from('nilai_alternatif');
          $this->db->join('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria');
          $this->db->group_by('nilai_alternatif.id_alternatif');
-         return $this->db->get('nilai_alternatif')->result();
+         $this->db->order_by('id_alternatif');
+         return $this->db->get()->result();
+     }
+     function nama(){
+         $this->db->select('nilai_alternatif.id_alternatif, nama_alternatif');
+         $this->db->from('nilai_alternatif');
+         $this->db->join('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif');
+         $this->db->group_by('nilai_alternatif.id_alternatif');
+         $this->db->order_by('id_alternatif');
+         return $this->db->get()->result();
      }
 }

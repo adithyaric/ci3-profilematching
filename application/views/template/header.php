@@ -7,13 +7,18 @@
     <title>SPK Profile Matching</title>
     <style>
         table{
-            margin:20px auto;
+            margin:5px auto;
             border-collapse: collapse;
         }
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 7px;
+        }
+        h3{
+            color: grey;
+            margin:7px auto;
+            text-align: center;
         }
     </style>
 </head>

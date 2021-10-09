@@ -2,11 +2,14 @@
 		<h3>Tambah data baru</h3>
 	</center>
 	<form action="<?php echo base_url(). $aksi .'/hasil'; ?>" method="post">		
-		<table>		
+		<table>
+			<tr>
+				<th>Kriteria</th>
+				<th>Sub kriteria</th>
+			</tr>		
 			<?php foreach ($kriteria as $key) : 
-					$table = 'sub_kriteria';
-					$where = 'id_kriteria';
-					$sub_kriteria = $this->m_data->data_sub_($key->id_kriteria, $table, $where);
+					$where = array('id_kriteria' => $key->id_kriteria);
+					$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
 					if($sub_kriteria != NULL): ?>
 			<input type="text" name="jenis_kriteria[]" value="<?= $key->jenis_kriteria ?>" hidden>
 			<tr>

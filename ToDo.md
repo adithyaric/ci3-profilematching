@@ -2,6 +2,7 @@
 - [ ] Login Sebagai Admin
 ### Halaman C.R.U.D 
 - [ ] Rules wajib di-isi
+- [ ] Nilai, input batch
 - [x] Alternatif
 - [x] Kriteria
 - [x] Sub Kriteria
@@ -9,4 +10,6 @@
 - [x] Nilai Target
 
 ### Perhitungan Profile Matching
-- [ ] Perhitungan
+- [x] Perhitungan
+
+- [ ] Style

@@ -44,9 +44,11 @@ class Nilai extends CI_Controller{
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
         $getdata['aksi'] = $this->home;
-		$this->load->view('template/header');
+		
+        $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
 	}
 
     //Hapus Data
@@ -56,26 +58,16 @@ class Nilai extends CI_Controller{
 		redirect($this->home);
 	}
 
-    //Input Data
-	function tambah(){
-        $getdata['aksi'] = $this->home;
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
-        
-        $this->load->view('template/header');
-		$this->load->view($this->view . 'v_input', $getdata);
-        $this->load->view('template/footer');
-	}
-    
+    //Input Data  
 	function tambah_aksi(){
         $sub_kriteria_list = $this->input->post('sub_kriteria');
-        echo 'sub_kriteria_list : <pre>' . var_export($sub_kriteria_list, true) . '</pre>';
+        echo 'sub_kriteria_list : <pre>' . print_r($sub_kriteria_list, true) . '</pre>';
         foreach($sub_kriteria_list as $id_subkriteria) {
             $data= array(
                 'id_alternatif' => $this->input->post('id_alternatif'),
                 'id_subkriteria' => $id_subkriteria
             );
-            echo '$data : <pre>' . var_export($data, true) . '</pre>';
+            echo '<pre>' . print_r($data, true) . '</pre>';
             $this->m_data->input_data($data, $this->table);
         }
 		redirect($this->home);
@@ -85,14 +77,14 @@ class Nilai extends CI_Controller{
     function edit($id){
         $this->setWhere($id);
         $getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
-
         $getdata['alternatif'] = $this->m_data->edit_data($this->where, 'alternatif')->result();
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-
         $getdata['aksi'] = $this->home;
+
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
 	}
 
     function update(){

@@ -30,9 +30,11 @@ class Alternatif extends CI_Controller{
 	function index(){
 		$getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
         $getdata['aksi'] = $this->home;
-		$this->load->view('template/header');
+		
+        $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
     //Hapus Data
@@ -43,13 +45,6 @@ class Alternatif extends CI_Controller{
 	}
 
     //Input Data
-	// function tambah(){
-    //     $getdata['aksi'] = $this->home;
-    //     $this->load->view('template/header');
-	// 	$this->load->view($this->view . 'v_input', $getdata);
-    //     $this->load->view('template/footer');
-	// }
-
 	function tambah_aksi(){
         $data = $this->data;
 		$this->m_data->input_data($data, $this->table);
@@ -61,9 +56,11 @@ class Alternatif extends CI_Controller{
         $this->setWhere($id);
 		$getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
         $getdata['aksi'] = $this->home;
+        
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
     function update(){

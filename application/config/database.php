@@ -10,6 +10,7 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'ci_profilematching',
+	// 'database' => 'ci_bibitpadi',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

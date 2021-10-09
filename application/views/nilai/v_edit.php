@@ -15,9 +15,8 @@
 				</td>
 			</tr>						
 			<?php foreach ($kriteria as $key) :
-					$table = 'sub_kriteria';
-					$where = 'id_kriteria';
-					$sub_kriteria = $this->m_data->data_sub_($key->id_kriteria, $table, $where);
+					$where = array('id_kriteria' => $key->id_kriteria);
+					$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
 					if($sub_kriteria != NULL): ?>							
 			<tr>
 				<td>
