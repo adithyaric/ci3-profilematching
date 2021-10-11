@@ -2,7 +2,7 @@
 		<h3>Edit Data</h3>
 	</center>
 	<?php foreach($alternatif as $a){ ?>
-	<form action="<?php echo base_url(). $aksi .'/update'; ?>" method="post">
+	<form action="<?php echo base_url(). $aksi .'/edit_aksi'; ?>" method="post">
 		<table>
 			<tr>
 				<td>Nama</td>
@@ -13,7 +13,7 @@
 			</tr>
 			<tr>
 				<td>Detail</td>
-				<td><input type="text" name="detail" value="<?php echo $a->detail ?>"></td>
+				<td><textarea name="detail" id="" cols="25" rows="5" required><?php echo $a->detail ?></textarea></td>
 			</tr>
 			<tr>
 				<td></td>

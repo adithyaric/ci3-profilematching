@@ -31,11 +31,26 @@ class M_data extends CI_Model{
     //Menampilkan Seluruh Table where
     public function ambil_id($where, $table, $data)
     {
-        //echo '<pre>' . 'ambil_id $where' . print_r($where, true) . '</pre>';
+        // echo '<pre>' . 'where = ' . print_r($where, true) . '</pre>';
+        // echo '<pre>' . 'table = ' . print_r($table, true) . '</pre>';
+        // echo '<pre>' . 'data = ' . print_r($data, true) . '</pre>';
         $this->db->from($table);
         $this->setjoin($data);
         $this->db->where($where);
         
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return false;
+        }
+    }
+    public function join($where, $table)
+    {
+        $this->db->from($table);
+        $this->db->join('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria');
+        $this->db->where($where);
         $query = $this->db->get();
         
         if ($query->num_rows() > 0) {

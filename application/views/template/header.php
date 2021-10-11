@@ -9,16 +9,15 @@
         table{
             margin:5px auto;
             border-collapse: collapse;
+            border: 10px solid red;
+        }
+        form{
+            border: 5px solid green;
         }
         td, th {
-            border: 1px solid #dddddd;
+            border: 5px solid blue;
             text-align: left;
-            padding: 7px;
-        }
-        h3{
-            color: grey;
-            margin:7px auto;
-            text-align: center;
+            padding: 5px;
         }
     </style>
 </head>
@@ -30,7 +29,6 @@
             <td><a href="<?php echo base_url(). 'kriteria'; ?>">Kriteria</a></td>
             <td><a href="<?php echo base_url(). 'subkriteria'; ?>">Sub Kriteria</a></td>
             <td><a href="<?php echo base_url(). 'nilai'; ?>">Nilai Profil Alternatif</a></td>
-            <!-- <td><a href="<?php echo base_url(). 'target'; ?>">Nilai Target</a></td> -->
             <td><a href="<?php echo base_url(). 'perhitungan'; ?>">Perhitungan</a></td>
         </tr>
     </table>

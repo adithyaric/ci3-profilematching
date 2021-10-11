@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 07, 2021 at 07:50 PM
+-- Generation Time: Oct 10, 2021 at 07:01 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -41,7 +41,7 @@ INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `detail`) VALUES
 (6, 'Andi', 'siswa'),
 (7, 'Budi', 'siswa'),
 (8, 'Citra', 'siswa'),
-(9, 'Dita', 'siswa');
+(10, 'Dita', 'siswa');
 
 -- --------------------------------------------------------
 
@@ -60,10 +60,10 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `jenis_kriteria`) VALUES
-(8, 'IPK', 'core'),
+(8, 'IPK ', 'core'),
 (9, 'Penghasilan Orang Tua', 'core'),
-(10, 'Jumlah Tanggungan', 'secondary'),
-(11, 'Semester', 'core');
+(10, 'Jumlah Tanggunan', 'secondary'),
+(11, 'Semester', 'secondary');
 
 -- --------------------------------------------------------
 
@@ -82,22 +82,22 @@ CREATE TABLE `nilai_alternatif` (
 --
 
 INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_subkriteria`) VALUES
-(90, 6, 16),
-(91, 6, 21),
-(92, 6, 25),
-(93, 6, 28),
-(98, 7, 17),
-(99, 7, 20),
-(100, 7, 24),
-(101, 7, 28),
-(103, 8, 17),
-(104, 8, 21),
-(105, 8, 25),
-(106, 8, 29),
-(107, 9, 15),
-(108, 9, 19),
-(109, 9, 23),
-(110, 9, 29);
+(135, 7, 17),
+(136, 7, 20),
+(137, 7, 24),
+(138, 7, 28),
+(139, 10, 15),
+(140, 10, 19),
+(141, 10, 23),
+(142, 10, 29),
+(143, 6, 16),
+(144, 6, 21),
+(145, 6, 25),
+(146, 6, 28),
+(147, 8, 17),
+(148, 8, 21),
+(149, 8, 25),
+(150, 8, 29);
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,7 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
@@ -186,7 +186,7 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`

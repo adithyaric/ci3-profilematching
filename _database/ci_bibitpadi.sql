@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 07, 2021 at 08:01 PM
+-- Generation Time: Oct 10, 2021 at 10:25 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -30,8 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `alternatif` (
   `id_alternatif` int(11) NOT NULL,
   `nama_alternatif` varchar(50) NOT NULL,
-  `detail` varchar(50) NOT NULL
+  `detail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `alternatif`
+--
+
+INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `detail`) VALUES
+(1, 'Inpasari 42 GSR', 'Varietas inbrida keluaran tahun 2016, rasanya enak dan pulen luar biasa, kerontokannya\r\npun mudah sekali. Potensi hasilnya mencapai 7,11 ton '),
+(2, 'Sertani 13 ', 'Sertani 13 merupakan jenis padi dari MSP. Popularitasnya begitu meluas dari Sabang\r\nsampai Merauke. Sertani 13 adalah jenis terbaik yaitu 13A, 13B, dan 13C.\r\n'),
+(3, 'Mapan P-05', 'Padi hibrida merupakan unggulan berkualitas,Keunggulan utamanya adalah bobot tiap\r\ngabah yang tinggi dengan hasil > 8 ton / ha.');
 
 -- --------------------------------------------------------
 
@@ -45,6 +54,17 @@ CREATE TABLE `kriteria` (
   `jenis_kriteria` enum('core','secondary') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `jenis_kriteria`) VALUES
+(1, 'Batas tanam', 'core'),
+(2, 'Kadar air', 'core'),
+(3, 'Tinggi tanaman', 'secondary'),
+(4, 'Kerontokan', 'secondary'),
+(5, 'Harga bibit', 'secondary');
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +77,27 @@ CREATE TABLE `nilai_alternatif` (
   `id_subkriteria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `nilai_alternatif`
+--
+
+INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_subkriteria`) VALUES
+(1, 1, 3),
+(2, 1, 4),
+(3, 1, 7),
+(4, 1, 11),
+(5, 1, 15),
+(6, 2, 2),
+(7, 2, 5),
+(8, 2, 7),
+(9, 2, 11),
+(10, 2, 13),
+(11, 3, 1),
+(12, 3, 5),
+(13, 3, 8),
+(14, 3, 12),
+(15, 3, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -65,10 +106,31 @@ CREATE TABLE `nilai_alternatif` (
 
 CREATE TABLE `sub_kriteria` (
   `id_subkriteria` int(11) NOT NULL,
-  `nama_subkriteria` varchar(50) NOT NULL,
+  `nama_subkriteria` text NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sub_kriteria`
+--
+
+INSERT INTO `sub_kriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `nilai`) VALUES
+(1, 'Kualitas sangat buruk jika ditanam lebih dari 1 kali', 1, 1),
+(2, '\"Kualitas kurang jika ditanam\r\nlebih dari 1 kali\"\r\n', 1, 2),
+(3, 'Kualitas tetap jika ditanam lebih dari 1 kali\r\n', 1, 3),
+(4, '<20%\r\n', 2, 1),
+(5, '21% - 45%\r\n', 2, 2),
+(6, '>45%\r\n', 2, 3),
+(7, '90 - 110 cm\r\n', 3, 1),
+(8, '110 - 120 cm\r\n', 3, 2),
+(9, '>121cm\r\n', 3, 3),
+(10, 'Sulit (<6%)\r\n', 4, 1),
+(11, 'Sedang (6%-50%)\r\n', 4, 2),
+(12, 'Mudah (51% - 100%)\r\n', 4, 3),
+(13, '>=60 rb/kg\r\n', 5, 1),
+(14, '<60rb/kg dan >=30 rb/kg\r\n', 5, 2),
+(15, '<30 rb/kg\r\n', 5, 3);
 
 --
 -- Indexes for dumped tables
@@ -109,25 +171,25 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

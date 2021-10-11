@@ -1,6 +1,3 @@
-	<center>
-		<h3>Tambah data baru</h3>
-	</center>
 	<form action="<?php echo base_url(). $aksi .'/hasil'; ?>" method="post">		
 		<table>
 			<tr>
@@ -21,8 +18,8 @@
 					<option value=""> --- Pilih --- </option>	
 					<?php foreach ($sub_kriteria as $s) : ?>			
 							<option value="<?= $s->nilai ?>">
+								<?= ' | Nilai : '.$s->nilai.' | '; ?>
 								<?= $s->nama_subkriteria; ?>
-								<?= ' - Nilai : '.$s->nilai; ?>
 							</option>
 						<?php endforeach; ?>
 					</select>
@@ -30,6 +27,14 @@
 			</tr> 
 			<?php endif; ?><br>
 			<?php endforeach; ?>
+			<tr>
+				<th colspan="2">
+					<label for="">Core Factor : </label>
+						<input type="number" name="cf" required="" min="1" max="100" value="60">%
+					<label for="">Secondary Factor : </label>
+						<input type="number" name="sf" required="" min="1" max="100" value="40">%
+				</th>
+				</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Tambah"></td>
 			</tr>

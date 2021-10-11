@@ -8,13 +8,14 @@
 				<td>Nama</td>
 				<td>
 					<input type="hidden" name="id" value="<?= $s->id_subkriteria; ?>">
-					<input type="text" name="nama" value="<?= $s->nama_subkriteria; ?>">
+					<!-- <input type="text" name="nama" value="<?= $s->nama_subkriteria; ?>"> -->
+					<textarea name="nama" id="" cols="20" rows="5"><?= $s->nama_subkriteria; ?></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Jenis</td>
 				<td>	
-					<select name="id_kriteria" id="" class="form-control">
+					<select name="id_kriteria" id="">
                     <option value="<?= $ambil_id->id_kriteria; ?>">--<?= $ambil_id->nama_kriteria ?>--</option>
                     <?php foreach ($kriteria as $k) : ?>
                         <option value="<?= $k->id_kriteria; ?>"><?= $k->nama_kriteria; ?></option>
@@ -24,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>Nilai</td>
-				<td><input type="text" name="nilai" value="<?= $s->nilai; ?>"></td>
+				<td><input type="number" name="nilai" min="1" max="5" value="<?= $s->nilai; ?>"></td>
 			</tr>			
 			<tr>
 				<td></td>

@@ -7,7 +7,7 @@ class Perhitungan extends CI_Controller{
     protected $view = 'perhitungan/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_nilai'; //Primary Key Table
-    protected $home = 'perhitungan'; //Redirect
+    protected $home = 'admin/perhitungan'; //Redirect
     protected $orderby = 'nilai_alternatif.id_alternatif, kriteria.id_kriteria';
 	protected $sort = 'asc';
 
@@ -47,16 +47,24 @@ class Perhitungan extends CI_Controller{
 	}
 
     function hasil(){
-        $sub_kriteria_list = $this->input->post('sub_kriteria');
-        $jenis_list = $this->input->post('jenis_kriteria');
+        $data['sub_kriteria_list'] = $this->input->post('sub_kriteria');
+        $data['jenis_list'] = $this->input->post('jenis_kriteria');
+        $data['cf'] = $this->input->post('cf');
+        $data['sf'] = $this->input->post('sf');
+        //echo ' <pre> getdata = ' . print_r($data, true) . '</pre>';
 
-        if($sub_kriteria_list && $jenis_list != NULL):
+        // $sub_kriteria_list = $this->input->post('sub_kriteria');
+        // $jenis_list = $this->input->post('jenis_kriteria');
+        // $cf = $this->input->post('cf');
+        // $sf = $this->input->post('sf');
+
+        if($data != NULL):
             $hitungid = $this->m_data->hitungid();
             //echo ' <pre> hitungid = ' . print_r($hitungid, true) . '</pre>';
-            $getdata['pm'] = $this->m_gap->hitung($hitungid, $sub_kriteria_list, $jenis_list);
+            $getdata['pm'] = $this->m_gap->hitung($hitungid, $data);
         endif;
-
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'nama_kriteria', 'asc');
+        
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
         $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif','id_nilai','asc');
         $getdata['nama'] = $this->m_data->nama();
@@ -65,7 +73,6 @@ class Perhitungan extends CI_Controller{
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
-
     }
 
 }

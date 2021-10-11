@@ -7,7 +7,7 @@ class Alternatif extends CI_Controller{
     protected $view = 'alternatif/'; //Nama Folder view
     protected $table = 'alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
-    protected $home = 'alternatif'; //Redirect
+    protected $home = 'admin/alternatif'; //Redirect
     protected $orderby = 'nama_alternatif';
 	protected $sort = 'asc';
 
@@ -15,7 +15,7 @@ class Alternatif extends CI_Controller{
         parent::__construct();
         $nama = $this->input->post('nama');
 		$detail = $this->input->post('detail');
-		
+
         $this->data = array(
             'nama_alternatif' => $nama,
             'detail' => $detail
@@ -41,14 +41,27 @@ class Alternatif extends CI_Controller{
 	function hapus($id){
         $this->setWhere($id);
 		$this->m_data->hapus_data($this->where, $this->table);
+        $this->session->set_flashdata(
+            'pesan',
+            'Data berhasil dihapus'
+        );
 		redirect($this->home);
 	}
 
     //Input Data
 	function tambah_aksi(){
-        $data = $this->data;
-		$this->m_data->input_data($data, $this->table);
-		redirect($this->home);
+        $this->_rules();
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+        } else {
+            $data = $this->data;
+            $this->m_data->input_data($data, $this->table);
+            $this->session->set_flashdata(
+                'pesan',
+                'Data berhasil ditambahkan'
+            );
+            redirect($this->home);    
+        }
 	}
 
     //Edit Data
@@ -63,7 +76,7 @@ class Alternatif extends CI_Controller{
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
-    function update(){
+    function edit_aksi(){
         $id = $this->input->post('id');
         $this->setWhere($id);
         $data = $this->data;
@@ -71,4 +84,9 @@ class Alternatif extends CI_Controller{
         redirect($this->home);
     }
 
+    public function _rules()
+    {
+        $this->form_validation->set_rules('nama', 'nama', 'required', ['required' => 'nama wajib diisi!']);
+        $this->form_validation->set_rules('detail', 'detail', 'required', ['required' => 'detail wajib diisi!']);
+    }
 }

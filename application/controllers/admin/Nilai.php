@@ -7,7 +7,7 @@ class Nilai extends CI_Controller{
     protected $view = 'nilai/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
-    protected $home = 'nilai'; //Redirect
+    protected $home = 'admin/nilai'; //Redirect
     protected $orderby = 'alternatif.nama_alternatif, kriteria.id_kriteria';
 	protected $sort = 'asc';
 
@@ -43,12 +43,14 @@ class Nilai extends CI_Controller{
 		$getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
+        $getdata['nama'] = $this->m_data->nama();
         $getdata['aksi'] = $this->home;
+        
 		
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
+        //echo ' <pre> getdata = ' . print_r($getdata['nama'], true) . '</pre>';        
 	}
 
     //Hapus Data
@@ -67,7 +69,7 @@ class Nilai extends CI_Controller{
                 'id_alternatif' => $this->input->post('id_alternatif'),
                 'id_subkriteria' => $id_subkriteria
             );
-            echo '<pre>' . print_r($data, true) . '</pre>';
+            //echo '<pre>' . print_r($data, true) . '</pre>';
             $this->m_data->input_data($data, $this->table);
         }
 		redirect($this->home);
