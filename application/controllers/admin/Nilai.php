@@ -8,7 +8,7 @@ class Nilai extends CI_Controller{
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
     protected $home = 'admin/nilai'; //Redirect
-    protected $orderby = 'alternatif.nama_alternatif, kriteria.id_kriteria';
+    protected $orderby = 'id_nilai';
 	protected $sort = 'asc';
 
     function __construct(){
@@ -35,22 +35,24 @@ class Nilai extends CI_Controller{
 
     //Tampil Data
 	function index(){
-        $data = array(
-			$this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif'),            
-			$this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria'),
-            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
+        $getdata['setJoinKriteria'] = array(
+			$this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
 		);
-		$getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
+        $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
-        $getdata['nama'] = $this->m_data->nama();
         $getdata['aksi'] = $this->home;
+
+        $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
+        $joinAlternatif = array(
+			$this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif')
+		);
+        $getdata['nama'] = $this->m_data->joinGroup($selectAlternatif, $this->table, $joinAlternatif);    
         
-		
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata['nama'], true) . '</pre>';        
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
 	}
 
     //Hapus Data

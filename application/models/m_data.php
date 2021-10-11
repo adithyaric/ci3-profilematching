@@ -31,9 +31,6 @@ class M_data extends CI_Model{
     //Menampilkan Seluruh Table where
     public function ambil_id($where, $table, $data)
     {
-        // echo '<pre>' . 'where = ' . print_r($where, true) . '</pre>';
-        // echo '<pre>' . 'table = ' . print_r($table, true) . '</pre>';
-        // echo '<pre>' . 'data = ' . print_r($data, true) . '</pre>';
         $this->db->from($table);
         $this->setjoin($data);
         $this->db->where($where);
@@ -46,32 +43,11 @@ class M_data extends CI_Model{
             return false;
         }
     }
-    public function join($where, $table)
-    {
-        $this->db->from($table);
-        $this->db->join('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria');
-        $this->db->where($where);
-        $query = $this->db->get();
-        
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return false;
-        }
-    }
-
-     function hitungid(){
-         $this->db->select('nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai');
-         $this->db->from('nilai_alternatif');
-         $this->db->join('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria');
-         $this->db->group_by('nilai_alternatif.id_alternatif');
-         $this->db->order_by('id_alternatif');
-         return $this->db->get()->result();
-     }
-     function nama(){
-         $this->db->select('nilai_alternatif.id_alternatif, nama_alternatif');
-         $this->db->from('nilai_alternatif');
-         $this->db->join('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif');
+    //Menampilkan Table join Group
+     function joinGroup($select, $table, $data){
+         $this->db->select($select);
+         $this->db->from($table);
+         $this->setjoin($data);
          $this->db->group_by('nilai_alternatif.id_alternatif');
          $this->db->order_by('id_alternatif');
          return $this->db->get()->result();

@@ -38,10 +38,8 @@ class M_Gap extends CI_Model {
 	public function gap($arr_aspek, $data)
 	{
 		$aspek = (Object)[
-			// 'cf' => 0.6,
-			// 'sf' => 0.4,
-			'cf' => $data['cf']/100,
-			'sf' => $data['sf']/100,
+			'cf' => $data['cf']/100, //60%
+			'sf' => $data['sf']/100, //40%
 		];
 		//echo '<pre> aspek_nilai = ' . print_r($aspek, true) . '</pre>';
 		$aspek_nilai = $data['sub_kriteria_list']; //Nilai Target 
@@ -92,15 +90,15 @@ class M_Gap extends CI_Model {
 			'cf'					=> $aspek->cf,
 			'sf'					=> $aspek->sf,
 		];
-        // echo '<hr> Hasil alt_aspek : <pre>' . print_r($hasil->alt_aspek, true) . '</pre>';
+        // echo '<hr> Hasil alt_aspek 	: <pre>' . print_r($hasil->alt_aspek, true) . '</pre>';
         // echo '<hr> Hasil aspek_nilai : <pre>' . print_r($hasil->aspek_nilai, true) . '</pre>';
-		// echo '<hr> Hasil gap_aspek : <pre>' . print_r($hasil->gap_aspek, true) . '</pre>';
+		// echo '<hr> Hasil gap_aspek 	: <pre>' . print_r($hasil->gap_aspek, true) . '</pre>';
 		// echo '<hr> Hasil bobot_aspek : <pre>' . print_r($hasil->bobot_aspek, true) . '</pre>';
-		// echo '<hr> Hasil ncf_aspek : <pre>' . print_r($hasil->ncf_aspek, true) . '</pre>';
-		// echo '<hr> Hasil nsf_aspek : <pre>' . print_r($hasil->nsf_aspek, true) . '</pre>';
-		// echo '<hr> Hasil total_aspek : <pre>' . print_r($hasil->total_aspek, true) . '</pre>';
-		// echo '<hr> CF : <pre>' . print_r($hasil->cf, true) . '</pre>';
-		// echo '<hr> SF : <pre>' . print_r($hasil->sf, true) . '</pre>';
+		// echo '<hr> Hasil ncf_aspek 	: <pre>' . print_r($hasil->ncf_aspek, true) . '</pre>';
+		// echo '<hr> Hasil nsf_aspek 	: <pre>' . print_r($hasil->nsf_aspek, true) . '</pre>';
+		//echo '<hr> Hasil total_aspek 	: <pre>' . print_r($hasil->total_aspek, true) . '</pre>';
+		// echo '<hr> CF 				: <pre>' . print_r($hasil->cf, true) . '</pre>';
+		// echo '<hr> SF 				: <pre>' . print_r($hasil->sf, true) . '</pre>';
 		
 		return $hasil;
 	}

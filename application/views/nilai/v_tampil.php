@@ -62,8 +62,7 @@
 						}else{
 							$bg = 'white';
 						}				
-			?>
-												
+			?>									
 			<tr bgcolor="<?php print_r($bg); ?>">
 				<td>
 					<label for="<?= $key->id_alternatif ?>"><?= $key->nama_alternatif ?></label>
@@ -73,7 +72,7 @@
 						<?php 
 						foreach ($nilai_alternatif as $index => $value) :
 							$where = array('id_subkriteria ' => $value->id_subkriteria);
-							$subkriteria  = $this->m_data->join($where, 'sub_kriteria');
+							$subkriteria  = $this->m_data->ambil_id($where, 'sub_kriteria', $setJoinKriteria);
 						?>
 						<tr>
 							<th><?php echo $subkriteria->nama_kriteria; ?></th>

@@ -10,5 +10,5 @@
 
 ### Perhitungan Profile Matching
 - [x] Perhitungan
-- [ ] Perankingan
+- [x] Perankingan
 - [ ] Style

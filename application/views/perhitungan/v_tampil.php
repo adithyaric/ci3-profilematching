@@ -1,4 +1,4 @@
-<?php if(isset($pm)): ?>
+<?php if(isset($hasil)): ?>
 <!--  -->
 <table>
 	<thead>
@@ -13,7 +13,7 @@
 	<tbody>
 	<!-- Nilai Profil -->
     <?php $count = 1;
-		foreach ($pm->alt_aspek as $key => $value) :
+		foreach ($hasil->alt_aspek as $key => $value) :
             echo '
                 <tr>
                     <td>'.$count.'</td>
@@ -27,13 +27,13 @@
 	<!-- Target -->
 			<tr bgcolor="grey">
 				<th colspan="2">Target</th>
-				<?php foreach($pm->aspek_nilai as $key => $value): ?>
+				<?php foreach($hasil->aspek_nilai as $key => $value): ?>
             		<?= '<th>'.$value.'</th>'; ?>
 				<?php endforeach; ?>  
 			</tr>
 	<!-- Selisih -->
     <?php $count = 1;
-		foreach ($pm->gap_aspek as $key => $value) :
+		foreach ($hasil->gap_aspek as $key => $value) :
             echo '
                 <tr>
                     <td>'.$count.'</td>
@@ -51,13 +51,13 @@
 		<tr>
 			<td rowspan="2">Pembobotan</td>
 			<th>Selisih</th>
-		<?php foreach($pm->selisih as $key => $value): ?>
+		<?php foreach($hasil->selisih as $key => $value): ?>
             <?= '<th>'.$value.'</th>'; ?>
 		<?php endforeach; ?>    
 		</tr>
 		<tr>
 			<th>Bobot</th>
-		<?php foreach($pm->bobot_nilai as $key => $value): ?>
+		<?php foreach($hasil->bobot_nilai as $key => $value): ?>
             <?= '<th>'.$value.'</th>'; ?>
 		<?php endforeach; ?>  
 		</tr>
@@ -71,14 +71,14 @@
                 <?php foreach($kriteria as $h): ?>
             <?= '<td>'.$h->nama_kriteria.'</td>'; ?>
                 <?php endforeach; ?>
-			<th>CF <?php echo $pm->cf*100; ?>%</th>
-			<th>SF <?php echo $pm->sf*100; ?>%</th>
+			<th>CF <?php echo $hasil->cf*100; ?>%</th>
+			<th>SF <?php echo $hasil->sf*100; ?>%</th>
 			<th>Hasil Akhir</th>     
 		</tr>
 	</thead>
 	<tbody>
     <?php $count = 1;
-		foreach ($pm->bobot_aspek as $key => $value) :
+		foreach ($hasil->bobot_aspek as $key => $value) :
             echo '
                 <tr>
                     <td>'.$count.'</td>
@@ -87,9 +87,9 @@
                         echo '<td>'.$value[$i].'</td>';
                     }
             echo '
-					<td>'.$pm->ncf_aspek[$key].'</td>
-					<td>'.$pm->nsf_aspek[$key].'</td>
-					<td>'.$pm->total_aspek[$key].'</td>	
+					<td>'.number_format($hasil->ncf_aspek[$key],2).'</td>
+					<td>'.number_format($hasil->nsf_aspek[$key],2).'</td>
+					<td>'.number_format($hasil->total_aspek[$key],2).'</td>	
 				</tr>';
             $count++;
             endforeach; ?>
@@ -101,9 +101,10 @@
 		<tr><th>Rangking</th><th>Nama</th><th>Nilai Profile Matching</th></tr>
 		<?php 
 		$count = 1;
-		$max = max($pm->total_aspek);
-		foreach ($pm->total_aspek as $key => $value) {
-			if($pm->total_aspek[$key] == $max)
+		$max = max($hasil->total_aspek);
+		arsort($hasil->total_aspek);
+		foreach ($hasil->total_aspek as $key => $value) {
+			if($hasil->total_aspek[$key] == $max)
 				$bg = 'yellow';
 			else
 				$bg = 'white';
@@ -111,31 +112,24 @@
 				<tr bgcolor='.$bg.'>
 					<td>'.$count.'</td>
 					<td>'.$nama[$key]->nama_alternatif.'</td>
-					<td>'.$pm->total_aspek[$key].'</td>
+					<td>'.number_format($hasil->total_aspek[$key],2).'</td>
 				</tr>
 		';$count++;
 		} ?>
 </table>
 <center>
 <?php 
-		$max = max($pm->total_aspek);
-		foreach ($pm->total_aspek as $key => $value) {
-			if($pm->total_aspek[$key] == $max)
+		$max = max($hasil->total_aspek);
+		foreach ($hasil->total_aspek as $key => $value) {
+			if($hasil->total_aspek[$key] == $max)
 				echo 'Hasil Kecocokan Terbesar Didapatkan oleh Alternatif dengan Nama = '
 				.'<strong>'
 				. $nama[$key]->nama_alternatif
 				.'</strong>'
 				. ' dengan Nilai Profile Matching Terbesar = '
 				.'<strong>'
-				. $pm->total_aspek[$key]
+				. number_format($hasil->total_aspek[$key],2)
 				.'</strong>';
 		} ?>
 </center>		
-<?php endif; ?>     
-<?php if(!isset($pm)): ?>
-<center>
-	<a href="<?php echo base_url(). 'perhitungan'; ?>">
-		<?php echo 'Input data terlebih dahulu!!!';?>
-	</a>
-</center>
-<?php endif; ?> 
+<?php endif; ?>    

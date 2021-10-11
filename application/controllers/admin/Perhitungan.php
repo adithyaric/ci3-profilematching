@@ -8,7 +8,7 @@ class Perhitungan extends CI_Controller{
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_nilai'; //Primary Key Table
     protected $home = 'admin/perhitungan'; //Redirect
-    protected $orderby = 'nilai_alternatif.id_alternatif, kriteria.id_kriteria';
+    protected $orderby = 'id_nilai';
 	protected $sort = 'asc';
 
     function __construct(){
@@ -51,23 +51,26 @@ class Perhitungan extends CI_Controller{
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
         $data['cf'] = $this->input->post('cf');
         $data['sf'] = $this->input->post('sf');
-        //echo ' <pre> getdata = ' . print_r($data, true) . '</pre>';
+        //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
 
-        // $sub_kriteria_list = $this->input->post('sub_kriteria');
-        // $jenis_list = $this->input->post('jenis_kriteria');
-        // $cf = $this->input->post('cf');
-        // $sf = $this->input->post('sf');
-
-        if($data != NULL):
-            $hitungid = $this->m_data->hitungid();
+        if($data['cf'] && $data['sf'] != NULL){
+            $selectSub_kriteria = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
+            $joinSub_kriteria = array(
+                $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
+            );              
+            $hitungid = $this->m_data->joinGroup($selectSub_kriteria, $this->table, $joinSub_kriteria); 
             //echo ' <pre> hitungid = ' . print_r($hitungid, true) . '</pre>';
-            $getdata['pm'] = $this->m_gap->hitung($hitungid, $data);
-        endif;
-        
+            $getdata['hasil'] = $this->m_gap->hitung($hitungid, $data);
+        }else{ echo 'Kosong...';}
+                
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
-        $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif','id_nilai','asc');
-        $getdata['nama'] = $this->m_data->nama();
+        
+        $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
+        $joinAlternatif = array(
+			$this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif')
+		);
+        $getdata['nama'] = $this->m_data->joinGroup($selectAlternatif, $this->table, $joinAlternatif); 
 
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
