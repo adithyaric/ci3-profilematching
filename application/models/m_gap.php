@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Gap extends CI_Model {
 
-	// protected $selisih = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
-	// protected $bobot_nilai = [1, 2, 3, 4, 5, 4.5, 3.5, 2.5, 1.5];
-	protected $selisih = [-2, -1, 0, 1, 2];
-	protected $bobot_nilai = [1, 2, 3, 2.5, 1.5];
+	protected $selisih = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+	protected $bobot_nilai = [1, 2, 3, 4, 5, 4.5, 3.5, 2.5, 1.5];
+	// protected $selisih = [-2, -1, 0, 1, 2];
+	// protected $bobot_nilai = [1, 2, 3, 2.5, 1.5];
 
 	public function hitung($hitungid, $data)
 	{

@@ -2,7 +2,7 @@
 		<h3>Edit Data</h3>
 	</center>
 	<?php foreach($sub_kriteria as $s){ ?>
-	<form action="<?php echo base_url(). $aksi .'/update'; ?>" method="post">
+	<form action="<?php echo base_url(). $aksi .'/edit_aksi'; ?>" method="post">
 		<table>
 			<tr>
 				<td>Nama</td>

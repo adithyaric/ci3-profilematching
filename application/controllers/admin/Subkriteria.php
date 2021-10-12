@@ -4,7 +4,7 @@ class Subkriteria extends CI_Controller{
 
     // "global" items
     var $data;
-    protected $view = 'subkriteria/'; //Nama Folder view
+    protected $view = 'v_subkriteria/'; //Nama Folder view
     protected $table = 'sub_kriteria'; //Nama Table
     protected $pk = 'id_subkriteria'; //Primary Key Table
     protected $home = 'admin/subkriteria'; //Redirect
@@ -81,7 +81,7 @@ class Subkriteria extends CI_Controller{
         //echo ' <pre> getdata = ' . print_r($getdata['ambil_id'], true) . '</pre>';
 	}
 
-    function update(){
+    function edit_aksi(){
         $id = $this->input->post('id');
         $this->setWhere($id);
         $data = $this->data;

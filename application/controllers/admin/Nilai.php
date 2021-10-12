@@ -4,7 +4,7 @@ class Nilai extends CI_Controller{
 
     // "global" items
     var $data;
-    protected $view = 'nilai/'; //Nama Folder view
+    protected $view = 'v_nilai/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
     protected $home = 'admin/nilai'; //Redirect
@@ -91,7 +91,7 @@ class Nilai extends CI_Controller{
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
 	}
 
-    function update(){
+    function edit_aksi(){
         //Update data attribut
         $id_nilai = $this->input->post('id_nilai');
 
@@ -106,5 +106,4 @@ class Nilai extends CI_Controller{
         $this->db->update_batch('nilai_alternatif', $result, 'id_nilai');
         redirect($this->home);      
 	}
-
 }

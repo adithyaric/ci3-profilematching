@@ -15,6 +15,10 @@
             text-align: left;
             padding: 5px;
         }
+        tbody tr:nth-child(even)
+        {
+            background: orange;
+        }
     </style>
 </head>
 <body>

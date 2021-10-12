@@ -48,19 +48,19 @@
     </table> 
 <!--  -->
 <table>
-		<tr>
-			<td rowspan="2">Pembobotan</td>
-			<th>Selisih</th>
-		<?php foreach($hasil->selisih as $key => $value): ?>
-            <?= '<th>'.$value.'</th>'; ?>
-		<?php endforeach; ?>    
-		</tr>
-		<tr>
-			<th>Bobot</th>
-		<?php foreach($hasil->bobot_nilai as $key => $value): ?>
-            <?= '<th>'.$value.'</th>'; ?>
-		<?php endforeach; ?>  
-		</tr>
+	<tr>
+		<td rowspan="2">Pembobotan</td>
+		<th>Selisih</th>
+	<?php foreach($hasil->selisih as $key => $value): ?>
+		<?= '<th>'.$value.'</th>'; ?>
+	<?php endforeach; ?>    
+	</tr>
+	<tr>
+		<th>Bobot</th>
+	<?php foreach($hasil->bobot_nilai as $key => $value): ?>
+		<?= '<th>'.$value.'</th>'; ?>
+	<?php endforeach; ?>  
+	</tr>
 </table> 	
 <!--  -->
 <table>
@@ -69,7 +69,15 @@
             <td>No</td>
             <td>Nama</td>
                 <?php foreach($kriteria as $h): ?>
-            <?= '<td>'.$h->nama_kriteria.'</td>'; ?>
+			<td>
+				<?= $h->nama_kriteria.'<br>'; 
+					if($h->jenis_kriteria == 'core'){
+						echo '<b>(Core factor)</b>';
+					}else{
+						echo '<b>(Secondary factor)</b>';
+					}
+				?>
+			</td>
                 <?php endforeach; ?>
 			<th>CF <?php echo $hasil->cf*100; ?>%</th>
 			<th>SF <?php echo $hasil->sf*100; ?>%</th>
@@ -93,43 +101,39 @@
 				</tr>';
             $count++;
             endforeach; ?>
-        </tbody>
-    </table> 
+    </tbody>
+</table> 
 <!--  -->
 <center>Hasil Analisa Menggunakan Sistem Pendukung Keputusan (SPK) Metode Profile Matching</center>
 <table>
-		<tr><th>Rangking</th><th>Nama</th><th>Nilai Profile Matching</th></tr>
-		<?php 
-		$count = 1;
-		$max = max($hasil->total_aspek);
-		arsort($hasil->total_aspek);
-		foreach ($hasil->total_aspek as $key => $value) {
-			if($hasil->total_aspek[$key] == $max)
-				$bg = 'yellow';
-			else
-				$bg = 'white';
-			echo '
-				<tr bgcolor='.$bg.'>
-					<td>'.$count.'</td>
-					<td>'.$nama[$key]->nama_alternatif.'</td>
-					<td>'.number_format($hasil->total_aspek[$key],2).'</td>
-				</tr>
-		';$count++;
-		} ?>
+	<tr><th>Rangking</th><th>Nama</th><th>Nilai Profile Matching</th></tr>
+	<?php 
+	$count = 1;
+	$max = max($hasil->total_aspek);
+	arsort($hasil->total_aspek);
+	foreach ($hasil->total_aspek as $key => $value) {
+		echo '
+			<tr>
+				<td>'.$count.'</td>
+				<td>'.$nama[$key]->nama_alternatif.'</td>
+				<td>'.number_format($hasil->total_aspek[$key],2).'</td>
+			</tr>
+	';$count++;
+	} ?>
 </table>
 <center>
 <?php 
-		$max = max($hasil->total_aspek);
-		foreach ($hasil->total_aspek as $key => $value) {
-			if($hasil->total_aspek[$key] == $max)
-				echo 'Hasil Kecocokan Terbesar Didapatkan oleh Alternatif dengan Nama = '
-				.'<strong>'
-				. $nama[$key]->nama_alternatif
-				.'</strong>'
-				. ' dengan Nilai Profile Matching Terbesar = '
-				.'<strong>'
-				. number_format($hasil->total_aspek[$key],2)
-				.'</strong>';
-		} ?>
+$max = max($hasil->total_aspek);
+foreach ($hasil->total_aspek as $key => $value) {
+	if($hasil->total_aspek[$key] == $max)
+		echo 'Hasil Kecocokan Terbesar Didapatkan oleh Alternatif dengan Nama = '
+		.'<strong>'
+		. $nama[$key]->nama_alternatif
+		.'</strong>'
+		. ' dengan Nilai Profile Matching Terbesar = '
+		.'<strong>'
+		. number_format($hasil->total_aspek[$key],2)
+		.'</strong>';
+} ?>
 </center>		
 <?php endif; ?>    

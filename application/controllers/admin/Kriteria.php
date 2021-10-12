@@ -4,7 +4,7 @@ class Kriteria extends CI_Controller{
 
     // "global" items
     var $data;
-    protected $view = 'kriteria/'; //Nama Folder view
+    protected $view = 'v_kriteria/'; //Nama Folder view
     protected $table = 'kriteria'; //Nama Table
     protected $pk = 'id_kriteria'; //Primary Key Table
     protected $home = 'admin/kriteria'; //Redirect
@@ -63,12 +63,11 @@ class Kriteria extends CI_Controller{
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
-    function update(){
+    function edit_aksi(){
         $id = $this->input->post('id');
         $this->setWhere($id);
         $data = $this->data;
         $this->m_data->update_data($this->where, $data, $this->table);
         redirect($this->home);
     }
-
 }

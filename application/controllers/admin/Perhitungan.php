@@ -4,7 +4,7 @@ class Perhitungan extends CI_Controller{
 
     // "global" items
     var $data;
-    protected $view = 'perhitungan/'; //Nama Folder view
+    protected $view = 'v_perhitungan/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
     protected $pk = 'id_nilai'; //Primary Key Table
     protected $home = 'admin/perhitungan'; //Redirect
@@ -77,5 +77,4 @@ class Perhitungan extends CI_Controller{
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
     }
-
 }

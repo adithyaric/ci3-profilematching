@@ -4,7 +4,7 @@ class Alternatif extends CI_Controller{
 
     // "global" items
     var $data;
-    protected $view = 'alternatif/'; //Nama Folder view
+    protected $view = 'v_alternatif/'; //Nama Folder view
     protected $table = 'alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
     protected $home = 'admin/alternatif'; //Redirect
@@ -86,7 +86,24 @@ class Alternatif extends CI_Controller{
 
     public function _rules()
     {
-        $this->form_validation->set_rules('nama', 'nama', 'required', ['required' => 'nama wajib diisi!']);
-        $this->form_validation->set_rules('detail', 'detail', 'required', ['required' => 'detail wajib diisi!']);
+        $validations = array(
+            array(
+                'field' => 'nama',
+                'label' => 'nama',
+                'rules' => 'required',
+                'errors' => array(
+                    'required' => 'Nama wajib diisi!',
+                ),
+            ),
+            array(
+                'field' => 'detail',
+                'label' => 'detail',
+                'rules' => 'required',
+                'errors' => array(
+                    'required' => 'Detail wajib diisi!',
+                ),
+            ),
+        );
+        $this->form_validation->set_rules($validations);
     }
 }
