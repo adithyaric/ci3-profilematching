@@ -103,6 +103,7 @@ class Nilai extends CI_Controller{
             "id_subkriteria"  => $_POST['sub_kriteria'][$key]
             );
         }
+        //echo ' <pre> getdata = ' . print_r($result, true) . '</pre>';        
         $this->db->update_batch('nilai_alternatif', $result, 'id_nilai');
         redirect($this->home);      
 	}

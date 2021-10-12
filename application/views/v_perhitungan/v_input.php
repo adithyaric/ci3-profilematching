@@ -25,7 +25,7 @@
 				</select>
 			</td>
 		</tr> 
-		<?php endif; ?><br>
+		<?php endif; ?>
 		<?php endforeach; ?>
 		<tr>
 			<th colspan="2">

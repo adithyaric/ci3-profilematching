@@ -13,11 +13,11 @@
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 5px;
+            padding: 2px;
         }
         tbody tr:nth-child(even)
         {
-            background: orange;
+            background: #E7E7EB;
         }
     </style>
 </head>

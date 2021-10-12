@@ -10,43 +10,43 @@
 <?php } ?>
 	<table>
 		<tr>
-			<td>Alternatif</td>
-			<td>	
+			<th>Alternatif</th>
+			<td colspan="2">	
 				<?= $x->nama_alternatif; ?>
 			</td>
 		</tr>						
-		<?php foreach ($kriteria as $k => $key) :
-				$where = array('id_kriteria' => $key->id_kriteria);
-				$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
-				if($sub_kriteria != NULL): ?>							
-		<tr>
-			<td>
-				<label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
-			</td>
-			<td>		
-				<select name="sub_kriteria[]" id="" required>											
-					<!-- <option value=""> --- Pilih --- </option>	 -->
-				<option value=""> --- Pilih --- </option>	
-				<?php foreach ($sub_kriteria as $s) : ?>
-						<option value="<?= $s->id_subkriteria ?>">
-							<?= ' | Nilai : '.$s->nilai.' | '; ?>
-							<?= $s->nama_subkriteria; ?>
-						</option>
-				<?php endforeach; ?>
-				</select>
-			</td>
-		</tr> 
-					<?php
-					foreach ($nilai_alternatif as $index => $value) :
-						$where = array('id_subkriteria ' => $value->id_subkriteria);
-						$subkriteria  = $this->m_data->edit_data($where, 'sub_kriteria')->result();
-						//echo ' <pre> subkriteria = ' . print_r($subkriteria, true) . '</pre>';        
-					?>
+		<tr><th>Kriteria</th><th>Nama Subkriteria</th></tr>
+		<?php
+		foreach ($nilai_alternatif as $index => $value) :
+			$where1 = array('id_subkriteria ' => $value->id_subkriteria);
+			$sub_kriteria1  = $this->m_data->edit_data($where1, 'sub_kriteria')->result();
+
+			$where2 = array('id_kriteria' => $kriteria[$index]->id_kriteria);
+			$sub_kriteria2 = $this->m_data->edit_data($where2, 'sub_kriteria')->result();
+			foreach($sub_kriteria1 as $s1):
+					
+		?>
+			<tr>
+				<td><?php echo $kriteria[$index]->nama_kriteria; ?></td>
+				<td>
+					<select name="sub_kriteria[]" id="" required>											
+					<option value="<?php echo $s1->id_subkriteria; ?>">
+						<?= ' > Nilai : '.$s1->nilai.' | '; ?>
+						<?php echo $s1->nama_subkriteria; ?>
+					</option>	
+					<?php foreach ($sub_kriteria2 as $s2) : ?>
+							<option value="<?= $s2->id_subkriteria ?>">
+								<?= ' | Nilai : '.$s2->nilai.' | '; ?>
+								<?= $s2->nama_subkriteria.' | '; ?>
+							</option>
 					<?php endforeach; ?>
-		<?php endif; ?><br>
-		<?php endforeach; ?>
+					</select>				
+				</td>
+			</tr>
+		<?php endforeach; endforeach; ?>	
 		<tr>
 			<td colspan="2"><input type="submit" value="Simpan"></td>
 		</tr>
 	</table>	
 </form>
+

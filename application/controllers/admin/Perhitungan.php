@@ -54,22 +54,20 @@ class Perhitungan extends CI_Controller{
         //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
 
         if($data['cf'] && $data['sf'] != NULL){
-            $selectSub_kriteria = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
-            $joinSub_kriteria = array(
+        $selectSub_kriteria = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
+        $joinSub_kriteria = array(
                 $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
             );              
             $hitungid = $this->m_data->joinGroup($selectSub_kriteria, $this->table, $joinSub_kriteria); 
             //echo ' <pre> hitungid = ' . print_r($hitungid, true) . '</pre>';
             $getdata['hasil'] = $this->m_gap->hitung($hitungid, $data);
         }else{ echo 'Kosong...';}
-                
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
         
         $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
         $joinAlternatif = array(
 			$this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif')
 		);
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['nama'] = $this->m_data->joinGroup($selectAlternatif, $this->table, $joinAlternatif); 
 
         $this->load->view('template/header');

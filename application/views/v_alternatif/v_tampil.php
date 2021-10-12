@@ -16,8 +16,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td><input type="submit" value="Tambah"></td>
+			<td colspan="2"><input type="submit" value="Tambah"></td>
 		</tr>
 	</table>
 </form>	

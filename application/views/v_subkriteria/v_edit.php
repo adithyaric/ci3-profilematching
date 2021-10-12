@@ -28,8 +28,7 @@
 				<td><input type="number" name="nilai" min="1" max="5" value="<?= $s->nilai; ?>"></td>
 			</tr>			
 			<tr>
-				<td></td>
-				<td><input type="submit" value="Simpan"></td>
+				<td colspan="2"><input type="submit" value="Simpan"></td>
 			</tr>
 		</table>
 	</form>	

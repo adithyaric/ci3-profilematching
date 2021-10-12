@@ -1,7 +1,7 @@
 <form action="<?php echo base_url(). $aksi .'/tambah_aksi'; ?>" method="post">		
 <table>
 	<tr>
-		<td>Alternatif</td>
+		<th>Alternatif</th>
 		<td>	
 			<select name="id_alternatif" id="" required>
 				<option value="">--Pilih Alternatif--</option>
@@ -11,6 +11,7 @@
 				</select>					
 		</td>
 	</tr>			
+	<tr><th>Kriteria</th><th>Nama Subkriteria</th></tr>
 	<?php foreach ($kriteria as $key) : 
 			$where = array('id_kriteria' => $key->id_kriteria);
 			$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
@@ -32,7 +33,7 @@
 			</select>
 		</td>
 	</tr> 
-	<?php endif; ?><br>
+	<?php endif; ?>
 	<?php endforeach; ?>
 	<tr>
 		<td colspan="2"><input type="submit" value="Tambah"></td>
@@ -82,7 +83,7 @@
 			<?= anchor($aksi.'/hapus/'.$key->id_alternatif,'Hapus'); ?>
 		</td>
 	</tr> 
-		<?php endif; ?><br>
+		<?php endif; ?>
 	<?php endforeach; ?>
 </table>
 <!--  -->

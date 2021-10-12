@@ -16,8 +16,7 @@
 				<td><textarea name="detail" id="" cols="25" rows="5" required><?php echo $a->detail ?></textarea></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><input type="submit" value="Simpan"></td>
+				<td colspan="2"><input type="submit" value="Simpan"></td>
 			</tr>
 		</table>
 	</form>	
