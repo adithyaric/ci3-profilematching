@@ -1,7 +1,7 @@
-<form action="<?php echo base_url(). $aksi .'/tambah_aksi'; ?>" method="post">		
+<form action="<?= base_url(). $aksi .'/tambah_aksi'; ?>" method="post">		
 <table>
 	<tr>
-		<th>Alternatif</th>
+		<th>Nama Alternatif</th>
 		<td>	
 			<select name="id_alternatif" id="" required>
 				<option value="">--Pilih Alternatif--</option>
@@ -43,48 +43,40 @@
 <table>
 	<tr>
 		<th>Nama Alternatif</th>
-		<th>
-			<table>
-				<tr>
-					<th>Nama Kriteria</th>
-					<th>Nama subkriteria</th>
-					<th>Nilai</th>
-				</tr>
-			</table>
-		</th>
-		<th>Action</th>
-	</tr>							
-	<?php foreach ($nama as $key) :
+		<td colspan="3"></td>
+		<th>Action</th>	
+	</tr>	
+	<?php foreach ($alternatif as $key) :
 			$where = array('id_alternatif' => $key->id_alternatif);
 			$nilai_alternatif = $this->m_data->edit_data($where, 'nilai_alternatif')->result();
 			if($nilai_alternatif != NULL):	
-	?>									
+	?>		
 	<tr>
-		<td>
-			<label for="<?= $key->id_alternatif ?>"><?= $key->nama_alternatif ?></label>
-		</td>
-		<td>
-			<table>
-				<?php 
-				foreach ($nilai_alternatif as $index => $value) :
-					$where = array('id_subkriteria ' => $value->id_subkriteria);
-					$subkriteria  = $this->m_data->ambil_id($where, 'sub_kriteria', $setJoinKriteria);
-				?>
-				<tr>
-					<th><?php echo $subkriteria->nama_kriteria; ?></th>
-					<td><?php echo $subkriteria->nama_subkriteria; ?></td>
-					<td><?php echo $subkriteria->nilai; ?></td>
-				</tr>
-				<?php endforeach; ?>						
-			</table>
-		</td>
-		<td>
+		<td rowspan="<?php echo count($nilai_alternatif)+1 ?>"><label for="<?= $key->id_alternatif ?>"><?= $key->nama_alternatif ?></label></td>
+		<th>Kriteria</th>
+		<th>Nama Subkriteria</th>
+		<th>Nilai</th>
+		<td rowspan="<?php echo count($nilai_alternatif)+1 ?>">
+			<center>
+			<?= anchor($aksi.'/detail/'.$key->id_alternatif,'Detail'); ?><br>
 			<?= anchor($aksi.'/edit/'.$key->id_alternatif,'Edit'); ?>
 			<?= anchor($aksi.'/hapus/'.$key->id_alternatif,'Hapus'); ?>
-		</td>
+			</center>
+		</td>	
+	</tr>														
+	<?php 
+	foreach ($nilai_alternatif as $index => $value) :
+		$where = array('id_subkriteria ' => $value->id_subkriteria);
+		$subkriteria  = $this->m_data->ambil_id($where, 'sub_kriteria', $setJoinKriteria);
+	?>	
+	<tr>
+		<td><?= $subkriteria->nama_kriteria; ?></td>
+		<td><?= $subkriteria->nama_subkriteria; ?></td>
+		<td><?= $subkriteria->nilai; ?></td>
 	</tr> 
+	<?php endforeach; ?>	
 		<?php endif; ?>
 	<?php endforeach; ?>
 </table>
-<!--  -->
+
 

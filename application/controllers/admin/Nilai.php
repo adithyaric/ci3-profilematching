@@ -41,13 +41,7 @@ class Nilai extends CI_Controller{
         $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif','nama_alternatif','asc');
-        $getdata['aksi'] = $this->home;
-
-        $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
-        $joinAlternatif = array(
-			$this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif')
-		);
-        $getdata['nama'] = $this->m_data->joinGroup($selectAlternatif, $this->table, $joinAlternatif);    
+        $getdata['aksi'] = $this->home; 
         
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_tampil', $getdata);
@@ -77,6 +71,19 @@ class Nilai extends CI_Controller{
 		redirect($this->home);
 	}
 
+    //Detail Data
+    function detail($id){
+        $this->setWhere($id);
+        $getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
+        $getdata['alternatif'] = $this->m_data->edit_data($this->where, 'alternatif')->result();
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
+        $getdata['aksi'] = $this->home;
+
+        $this->load->view('template/header');
+		$this->load->view($this->view . 'v_detail', $getdata);
+        $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
+	}
     //Edit Data
     function edit($id){
         $this->setWhere($id);
@@ -88,7 +95,7 @@ class Nilai extends CI_Controller{
         $this->load->view('template/header');
 		$this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
 
     function edit_aksi(){

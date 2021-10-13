@@ -13,6 +13,39 @@
 	<tbody>
 	<!-- Nilai Profil -->
     <?php $count = 1;
+		foreach ($nama as $key => $value) :
+			$where = array('id_alternatif ' => $value->id_alternatif);
+			$nilai_alternatif  = $this->m_data->edit_data($where, 'nilai_alternatif')->result();
+            echo '
+                <tr>
+                    <td>'.$count.'</td>
+                    <td>'.$value->nama_alternatif.'</td>';
+                    foreach($nilai_alternatif as $key => $value){
+					$where2 = array('id_subkriteria ' => $value->id_subkriteria);
+					$sub_kriteria  = $this->m_data->edit_data($where2, 'sub_kriteria')->result();
+						foreach($sub_kriteria as $s):
+                        echo '<td>'.$s->nama_subkriteria.'</td>';
+						endforeach;
+                    }
+            echo '</tr>';
+            $count++;
+            endforeach; ?>
+        </tbody>
+    </table> 
+<!--  -->
+<table>
+	<thead>
+		<tr>
+            <th>No</th>
+            <th>Nama</th>
+                <?php foreach($kriteria as $h): ?>
+            <?= '<th>'.$h->nama_kriteria.'</th>'; ?>
+                <?php endforeach; ?>     
+		</tr>
+	</thead>
+	<tbody>
+	<!-- Nilai Profil -->
+    <?php $count = 1;
 		foreach ($hasil->alt_aspek as $key => $value) :
             echo '
                 <tr>
@@ -25,7 +58,7 @@
             $count++;
             endforeach; ?>
 	<!-- Target -->
-			<tr bgcolor="grey">
+			<tr>
 				<th colspan="2">Target</th>
 				<?php foreach($hasil->aspek_nilai as $key => $value): ?>
             		<?= '<th>'.$value.'</th>'; ?>
@@ -49,19 +82,19 @@
 <!--  -->
 <table>
 	<tr>
-		<td rowspan="2">Pembobotan</td>
-		<th>Selisih</th>
-	<?php foreach($hasil->selisih as $key => $value): ?>
-		<?= '<th>'.$value.'</th>'; ?>
-	<?php endforeach; ?>    
+		<td colspan="3"><center>Pembobotan</center></td>
 	</tr>
 	<tr>
-		<th>Bobot</th>
-	<?php foreach($hasil->bobot_nilai as $key => $value): ?>
-		<?= '<th>'.$value.'</th>'; ?>
-	<?php endforeach; ?>  
+		<th>Selisih</th>
+		<th>Bobot</th> 
+		<th>Keterangan</th>
 	</tr>
-</table> 	
+	<?php 
+	foreach($hasil->selisih as $key => $value): 
+	?>
+		<?= '<tr><td>'.$value.'</td><td>'.$hasil->bobot_nilai[$key].'</td><td>'.$hasil->keterangan[$key].'</td></tr>'; ?>
+	<?php endforeach;?>
+</table> 		
 <!--  -->
 <table>
 	<thead>

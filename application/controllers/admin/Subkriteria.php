@@ -49,19 +49,34 @@ class Subkriteria extends CI_Controller{
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
 	}
+    //Tampil Data
+	function detail($id){
+        $getdata['where'] = array('id_kriteria' => $id);
+		$getdata[$this->table]  = $this->m_data->edit_data($getdata['where'], $this->table)->result(); 
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
+        $getdata['aksi'] = $this->home;
+		
+        $this->load->view('template/header');
+		$this->load->view($this->view . 'v_detail', $getdata);
+        $this->load->view('template/footer');
+        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
+	}
 
     //Hapus Data
 	function hapus($id){
         $this->setWhere($id);
 		$this->m_data->hapus_data($this->where, $this->table);
-		redirect($this->home);
+		//redirect($this->home);
+		redirect('kriteria');
 	}
 
     //Input Data
 	function tambah_aksi(){
+        $id = $this->input->post('id');
         $data = $this->data;
 		$this->m_data->input_data($data, $this->table);
-		redirect($this->home);
+        $this->detail($id);
+		//redirect($this->home);
 	}
 
     //Edit Data
@@ -70,9 +85,9 @@ class Subkriteria extends CI_Controller{
         $data = array(
 			$this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
 		);
+        $getdata['ambil_id']    = $this->m_data->ambil_id($this->where, $this->table, $data);
 		$getdata[$this->table]  = $this->m_data->edit_data($this->where, $this->table)->result();
         $getdata['kriteria']    = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
-        $getdata['ambil_id']    = $this->m_data->ambil_id($this->where, $this->table, $data);
         $getdata['aksi'] = $this->home;
         
         $this->load->view('template/header');
@@ -86,7 +101,8 @@ class Subkriteria extends CI_Controller{
         $this->setWhere($id);
         $data = $this->data;
         $this->m_data->update_data($this->where, $data, $this->table);
-        redirect($this->home);
+        redirect('kriteria');
+        // redirect($this->home);
     }
 
 }

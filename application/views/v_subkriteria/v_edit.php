@@ -8,7 +8,6 @@
 				<td>Nama</td>
 				<td>
 					<input type="hidden" name="id" value="<?= $s->id_subkriteria; ?>">
-					<!-- <input type="text" name="nama" value="<?= $s->nama_subkriteria; ?>"> -->
 					<textarea name="nama" id="" cols="20" rows="5"><?= $s->nama_subkriteria; ?></textarea>
 				</td>
 			</tr>
@@ -16,16 +15,19 @@
 				<td>Jenis</td>
 				<td>	
 					<select name="id_kriteria" id="">
-                    <option value="<?= $ambil_id->id_kriteria; ?>">--<?= $ambil_id->nama_kriteria ?>--</option>
+                    <option value="<?= $ambil_id->id_kriteria; ?>" selected>--<?= $ambil_id->nama_kriteria ?>--</option>
                     <?php foreach ($kriteria as $k) : ?>
                         <option value="<?= $k->id_kriteria; ?>"><?= $k->nama_kriteria; ?></option>
                     <?php endforeach; ?>
-                </select>					
+                	</select>					
 				</td>
 			</tr>
 			<tr>
 				<td>Nilai</td>
-				<td><input type="number" name="nilai" min="1" max="5" value="<?= $s->nilai; ?>"></td>
+				<td>
+					<input type="range" name="nilai" value="<?= $s->nilai; ?>" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+					<output><?= $s->nilai; ?></output>
+				</td>
 			</tr>			
 			<tr>
 				<td colspan="2"><input type="submit" value="Simpan"></td>

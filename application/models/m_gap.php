@@ -2,11 +2,30 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Gap extends CI_Model {
+	
+	// protected $selisih = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+	// protected $bobot_nilai = [1, 2, 3, 4, 5, 4.5, 3.5, 2.5, 1.5];
+	// protected $keterangan = [
+	// 	'Kompetensi individu kekurangan 4 tingkat/level',
+	// 	'Kompetensi individu kekurangan 3 tingkat/level',
+	// 	'Kompetensi individu kekurangan 2 tingkat/level',
+	// 	'Kompetensi individu kekurangan 1 tingkat/level ',
+	// 	'Tidak ada selisih (Kompetensi sesuai yang dibutuhkan)',
+	// 	'Kompetensi individu kelebihan 1 tingkat/level',
+	// 	'Kompetensi individu kelebihan 2 tingkat/level',
+	// 	'Kompetensi individu kelebihan 3 tingkat/level',
+	// 	'Kompetensi individu kelebihan 4 tingkat/level',
+	// ];
 
-	protected $selisih = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
-	protected $bobot_nilai = [1, 2, 3, 4, 5, 4.5, 3.5, 2.5, 1.5];
-	// protected $selisih = [-2, -1, 0, 1, 2];
-	// protected $bobot_nilai = [1, 2, 3, 2.5, 1.5];
+	protected $selisih = [-2, -1, 0, 1, 2];
+	protected $bobot_nilai = [1, 2, 3, 2.5, 1.5];
+	protected $keterangan = [
+		'Kompetensi individu kekurangan 2 tingkat/level',
+		'Kompetensi individu kekurangan 1 tingkat/level ',
+		'Tidak ada selisih (Kompetensi sesuai yang dibutuhkan)',
+		'Kompetensi individu kelebihan 1 tingkat/level',
+		'Kompetensi individu kelebihan 2 tingkat/level',
+	];
 
 	public function hitung($hitungid, $data)
 	{
@@ -87,6 +106,7 @@ class M_Gap extends CI_Model {
             'aspek_nilai'           => $aspek_nilai,
 			'selisih'				=> $this->selisih,
 			'bobot_nilai'			=> $this->bobot_nilai,
+			'keterangan'			=> $this->keterangan,
 			'cf'					=> $aspek->cf,
 			'sf'					=> $aspek->sf,
 		];

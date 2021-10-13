@@ -14,6 +14,6 @@
 
 ### Perhitungan Profile Matching
 
-- [ ] Input persen harus sama dengan 100%
+- [x] Input persen harus sama dengan 100%
 - [x] Perhitungan
 - [x] Perankingan

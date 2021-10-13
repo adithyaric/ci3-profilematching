@@ -30,10 +30,11 @@
 	foreach($kriteria as $k){ 
 	?>
 	<tr>
-		<td><?php echo $no++ ?></td>
+		<td><?php echo $no++ ?><input type="text" name="id" value="<?= $k->id_kriteria ?>" hidden></td>
 		<td><?php echo $k->nama_kriteria ?></td>
 		<td><?php echo $k->jenis_kriteria ?></td>
 		<td>
+			<?php echo anchor('admin/subkriteria/detail/'.$k->id_kriteria,'Sub Kriteria'); ?>
 			<?php echo anchor($aksi.'/edit/'.$k->id_kriteria,'Edit'); ?>
 			<?php echo anchor($aksi.'/hapus/'.$k->id_kriteria,'Hapus'); ?>
 		</td>

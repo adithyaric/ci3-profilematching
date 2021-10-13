@@ -15,26 +15,30 @@
 			</td>
 			<td>
 				<select name="sub_kriteria[]" id="" required>
-				<option value=""> --- Pilih --- </option>	
 				<?php foreach ($sub_kriteria as $s) : ?>			
 						<option value="<?= $s->nilai ?>">
 							<?= ' | Nilai : '.$s->nilai.' | '; ?>
 							<?= $s->nama_subkriteria; ?>
 						</option>
+						
 					<?php endforeach; ?>
 				</select>
 			</td>
 		</tr> 
 		<?php endif; ?>
 		<?php endforeach; ?>
-		<tr>
-			<th colspan="2">
-				<label for="">Core Factor : </label>
-					<input type="number" name="cf" required="" min="1" max="100" value="60">%
-				<label for="">Secondary Factor : </label>
-					<input type="number" name="sf" required="" min="1" max="100" value="40">%
-			</th>
-			</tr>
+		<tr><th><label for="">Core Factor : </label></th>
+			<td>
+				<input type="range" name="cf" value="60" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+				<output>60</output>%
+			</td>
+		</tr>
+		<tr><th><label for="">Secondary Factor : </label></th>
+		<td>
+			<input type="range" name="sf" value="40" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+			<output>40</output>%
+		</td>
+		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Tambah"></td>
 		</tr>
