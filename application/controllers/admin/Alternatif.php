@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class Alternatif extends CI_Controller{
+class Alternatif extends CI_Controller
+{
 
     // "global" items
     var $data;
@@ -9,12 +10,16 @@ class Alternatif extends CI_Controller{
     protected $pk = 'id_alternatif'; //Primary Key Table
     protected $home = 'admin/alternatif'; //Redirect
     protected $orderby = 'nama_alternatif';
-	protected $sort = 'asc';
+    protected $sort = 'asc';
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
+        if ($this->session->userdata('status') != "login") {
+            redirect(base_url());
+        }
         $nama = $this->input->post('nama');
-		$detail = $this->input->post('detail');
+        $detail = $this->input->post('detail');
 
         $this->data = array(
             'nama_alternatif' => $nama,
@@ -22,34 +27,38 @@ class Alternatif extends CI_Controller{
         );
     }
 
-    function setWhere($id){
-		return $this->where = array($this->pk => $id);
-	}
+    function setWhere($id)
+    {
+        return $this->where = array($this->pk => $id);
+    }
 
     //Tampil Data
-	function index(){
-		$getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
+    function index()
+    {
+        $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
         $getdata['aksi'] = $this->home;
-		
+
         $this->load->view('template/header');
-		$this->load->view($this->view . 'v_tampil', $getdata);
+        $this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
-	}
+    }
 
     //Hapus Data
-	function hapus($id){
+    function hapus($id)
+    {
         $this->setWhere($id);
-		$this->m_data->hapus_data($this->where, $this->table);
+        $this->m_data->hapus_data($this->where, $this->table);
         $this->session->set_flashdata(
             'pesan',
             'Data berhasil dihapus'
         );
-		redirect($this->home);
-	}
+        redirect($this->home);
+    }
 
     //Input Data
-	function tambah_aksi(){
+    function tambah_aksi()
+    {
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->index();
@@ -60,23 +69,25 @@ class Alternatif extends CI_Controller{
                 'pesan',
                 'Data berhasil ditambahkan'
             );
-            redirect($this->home);    
+            redirect($this->home);
         }
-	}
+    }
 
     //Edit Data
-	function edit($id){
+    function edit($id)
+    {
         $this->setWhere($id);
-		$getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
+        $getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
         $getdata['aksi'] = $this->home;
-        
+
         $this->load->view('template/header');
-		$this->load->view($this->view . 'v_edit', $getdata);
+        $this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
-	}
+    }
 
-    function edit_aksi(){
+    function edit_aksi()
+    {
         $id = $this->input->post('id');
         $this->setWhere($id);
         $data = $this->data;

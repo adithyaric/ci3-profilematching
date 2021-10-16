@@ -1,23 +1,23 @@
-<form action="<?php echo base_url(). $aksi .'/tambah_aksi'; ?>" method="post">
-<table>
-	<tr>
-		<td>Nama</td>
-		<td><input type="text" name="nama" required></td>
-	</tr>
-	<tr>
-		<td>Jenis</td>
-		<td>
-			  <input type="radio" id="core" name="jenis" value="core" checked>
-			  <label for="core">Core Factor</label><br>
-			  <input type="radio" id="secondary" name="jenis" value="secondary">
-			  <label for="secondary">Secondary Factor</label><br>					
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="submit" value="Tambah"></td>
-	</tr>
-</table>
-</form>	
+<form action="<?php echo base_url() . $aksi . '/tambah_aksi'; ?>" method="post">
+	<table>
+		<tr>
+			<td>Nama</td>
+			<td><input type="text" name="nama" required></td>
+		</tr>
+		<tr>
+			<td>Jenis</td>
+			<td>
+				  <input type="radio" id="core" name="jenis" value="core" checked>
+				  <label for="core">Core Factor</label><br>
+				  <input type="radio" id="secondary" name="jenis" value="secondary">
+				  <label for="secondary">Secondary Factor</label><br>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Tambah"></td>
+		</tr>
+	</table>
+</form>
 <table>
 	<tr>
 		<th>No</th>
@@ -25,19 +25,19 @@
 		<th>Jenis</th>
 		<th>Action</th>
 	</tr>
-	<?php 
+	<?php
 	$no = 1;
-	foreach($kriteria as $k){ 
+	foreach ($kriteria as $k) {
 	?>
-	<tr>
-		<td><?php echo $no++ ?><input type="text" name="id" value="<?= $k->id_kriteria ?>" hidden></td>
-		<td><?php echo $k->nama_kriteria ?></td>
-		<td><?php echo $k->jenis_kriteria ?></td>
-		<td>
-			<?php echo anchor('admin/subkriteria/detail/'.$k->id_kriteria,'Sub Kriteria'); ?>
-			<?php echo anchor($aksi.'/edit/'.$k->id_kriteria,'Edit'); ?>
-			<?php echo anchor($aksi.'/hapus/'.$k->id_kriteria,'Hapus'); ?>
-		</td>
-	</tr>
+		<tr>
+			<td><?php echo $no++ ?><input type="text" name="id" value="<?= $k->id_kriteria ?>" hidden></td>
+			<td><?php echo $k->nama_kriteria ?></td>
+			<td><?php echo $k->jenis_kriteria ?></td>
+			<td>
+				<?php echo anchor('admin/subkriteria/detail/' . $k->id_kriteria, 'Sub Kriteria'); ?>
+				<?php echo anchor($aksi . '/edit/' . $k->id_kriteria, 'Edit'); ?>
+				<?php echo anchor($aksi . '/hapus/' . $k->id_kriteria, 'Hapus'); ?>
+			</td>
+		</tr>
 	<?php } ?>
 </table>
