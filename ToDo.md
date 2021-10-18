@@ -1,6 +1,6 @@
 ### Halaman Admin
 
-- [ ] Login Sebagai Admin
+- [x] Login Sebagai Admin
 
 ### Halaman C.R.U.D
 

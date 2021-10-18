@@ -1,6 +1,5 @@
 <div class="">
-	<h1>Login berhasil !</h1>
-	<h2>Hai, <?php echo $this->session->userdata("nama"); ?></h2>
+	Hai, <b><?php echo $this->session->userdata("nama"); ?></b>
 	<a href="<?php echo base_url('auth/logout'); ?>">Logout</a>
 	<h1 align="center">Judul</h1>
 	<div>

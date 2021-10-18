@@ -2,16 +2,17 @@
 
 <head>
     <style>
-        table {
-            margin: 20em auto;
+        .login {
+            margin: 15em auto;
             border-collapse: collapse;
         }
     </style>
 </head>
 
 <body>
+    <?= $this->session->flashdata('pesan'); ?>
     <form action="<?php echo base_url('auth/aksi_login'); ?>" method="post">
-        <table>
+        <table class="login">
             <tr>
                 <td>Username</td>
                 <td><input type="text" name="username"></td>

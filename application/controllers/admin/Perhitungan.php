@@ -16,7 +16,11 @@ class Perhitungan extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('status') != "login") {
-            redirect(base_url());
+            $this->session->set_flashdata(
+                'pesan',
+                'Anda harus login terlebih dahulu'
+            );
+            redirect(base_url('auth'));
         }
         $this->load->model('m_gap');
         $id_alternatif = $this->input->post('id_alternatif');

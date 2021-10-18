@@ -45,8 +45,7 @@
 </form>
 <table>
 	<tr>
-		<th>Nama Alternatif</th>
-		<td colspan="3"></td>
+		<th colspan="4">Alternatif</th>
 		<th>Action</th>
 	</tr>
 	<?php foreach ($alternatif as $key) :
