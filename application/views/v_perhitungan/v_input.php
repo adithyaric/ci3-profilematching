@@ -1,3 +1,4 @@
+<?= $this->session->flashdata('pesan'); ?>
 <form action="<?php echo base_url() . $aksi . '/hasil'; ?>" method="post">
 	<table>
 		<tr>

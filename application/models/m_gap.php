@@ -69,6 +69,7 @@ class M_Gap extends CI_Model
 		$aspek_tipe = $data['jenis_list']; //Jenis Kriteria 
 		//echo '<pre> aspek_tipe =' . print_r($aspek_tipe, true) . '</pre>';		
 		$alt_aspek = $arr_aspek; //Nilai Profil Alternatif
+		// echo '<pre> alt_aspek =' . print_r($alt_aspek, true) . '</pre>';
 		$gap_aspek = [];
 		$bobot_aspek = [];
 

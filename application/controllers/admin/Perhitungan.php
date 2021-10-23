@@ -64,31 +64,38 @@ class Perhitungan extends CI_Controller
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
         $data['cf'] = $this->input->post('cf');
         $data['sf'] = $this->input->post('sf');
-
         $maxPercentage = 100;
         $totalPercentage = $data['cf'] + $data['sf'];
+        //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
+
+        if ($totalPercentage == NULL) {
+            $this->session->set_flashdata(
+                'pesan',
+                'Anda harus mengisi nilai terlebih dahulu'
+            );
+            redirect(base_url('admin/perhitungan'));
+        }
         if ($totalPercentage < $maxPercentage) {
-            //echo "<script>alert('Error: less than {$maxPercentage}%');window.location.href='".base_url('admin/perhitungan')."';</script>";
-            redirect($this->home);
+            $this->session->set_flashdata(
+                'pesan',
+                'Total Core factor & secondary Kurang dari 100%'
+            );
+            redirect(base_url('admin/perhitungan'));
         } elseif ($totalPercentage > $maxPercentage) {
-            //echo "<script>alert('Error: more than {$maxPercentage}%');window.location.href='".base_url('admin/perhitungan')."';</script>";
-            redirect($this->home);
+            $this->session->set_flashdata(
+                'pesan',
+                'Total Core factor & secondary Lebih dari 100%'
+            );
+            redirect(base_url('admin/perhitungan'));
         } else {
+            $selectSub_kriteriaNilai = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
+            $joinSub_kriteria = array(
+                $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
+            );
+            $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
 
-            //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
-
-            if ($data['cf'] && $data['sf'] != NULL) {
-                $selectSub_kriteriaNilai = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
-                $joinSub_kriteria = array(
-                    $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
-                );
-                $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
-
-                $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
-                //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
-            } else {
-                echo 'Kosong...';
-            }
+            $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
+            //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
 
             $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
             $joinAlternatif = array(

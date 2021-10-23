@@ -80,18 +80,32 @@ class Subkriteria extends CI_Controller
     {
         $this->setWhere($id);
         $this->m_data->hapus_data($this->where, $this->table);
-        //redirect($this->home);
-        redirect('kriteria');
+        redirect($this->home);
     }
 
     //Input Data
+    // function tambah_aksi()
+    // {
+    //     // $id = $this->input->post('id');
+    //     $data = $this->data;
+    //     $this->m_data->input_data($data, $this->table);
+    //     // $this->detail($id);
+    //     redirect($this->home);
+    // }
+    //Input Data
     function tambah_aksi()
     {
-        $id = $this->input->post('id');
-        $data = $this->data;
-        $this->m_data->input_data($data, $this->table);
-        $this->detail($id);
-        //redirect($this->home);
+        $nama = $this->input->post('nama');
+        foreach ($nama as $key => $id_kriteriax) {
+            $data = array(
+                'id_kriteria' => $this->input->post('id_kriteria'),
+                'nama_subkriteria' => $id_kriteriax,
+                'nilai' => $this->input->post('nilai')[$key],
+            );
+            echo '<pre>' . print_r($data, true) . '</pre>';
+            $this->m_data->input_data($data, $this->table);
+        }
+        redirect($this->home);
     }
 
     //Edit Data
@@ -118,7 +132,6 @@ class Subkriteria extends CI_Controller
         $this->setWhere($id);
         $data = $this->data;
         $this->m_data->update_data($this->where, $data, $this->table);
-        redirect('kriteria');
-        // redirect($this->home);
+        redirect($this->home);
     }
 }

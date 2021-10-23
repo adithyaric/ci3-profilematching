@@ -12,12 +12,12 @@
 		<p><b>Penulis : </b></p>
 		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, aliquid. Eveniet placeat cumque, consequuntur ex dicta nam quod dolorem culpa omnis at, alias quo nemo distinctio magnam, ullam incidunt. Vel.</p>
 	</div>
-	<div>
+	<!-- <div>
 		<h1 align="center">Kesimpulan</h1>
 		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis libero iste voluptatem quam ex accusantium at assumenda porro, maxime, perspiciatis, obcaecati sed cumque. Eum, blanditiis animi nostrum nemo modi tempore.</p>
 		<p>Praesentium molestiae placeat ullam amet rerum distinctio vero in quae neque magni molestias, cumque aspernatur doloribus voluptatem vel consequuntur, fugiat aliquam veritatis repellat. Tempora eum nihil iste. Nisi, exercitationem in?</p>
 		<p>Reiciendis eos rerum eius veritatis perferendis? Quos atque voluptas velit reiciendis mollitia odit voluptatibus veniam. Aspernatur soluta totam eius, quod vero officia, incidunt cumque excepturi quis neque tempore ut quae.</p>
 		<p>Labore nesciunt cupiditate vitae, aut exercitationem error quia est reiciendis officiis, eaque, provident eius molestias debitis voluptate nulla? Suscipit voluptate eos a ipsum explicabo repudiandae doloribus sit maiores error consequatur.</p>
-	</div>
+	</div> -->
 	<p> Program ini dibuat untuk memenuhi <em>UAS</em> mata kuliah <strong>Sistem Pendukung Keputusan</strong>.</p>
 </div>

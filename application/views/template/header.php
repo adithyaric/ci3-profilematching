@@ -6,28 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPK Profile Matching</title>
-    <style>
-        table {
-            margin: 10px auto;
-            border-collapse: collapse;
-        }
-
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px;
-        }
-
-        th {
-            background: #E7E7EB;
-        }
-
-        /* tbody tr:nth-child(even)
-        {
-            background: #E7E7EB;
-        } */
-    </style>
+    <!-- Custom styles for this template-->
+    <link href="<?= base_url() ?>assets/style.css" rel="stylesheet">
 </head>
 
 <body>
