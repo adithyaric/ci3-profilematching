@@ -43,6 +43,8 @@ class Alternatif extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -78,18 +80,6 @@ class Alternatif extends CI_Controller
     }
 
     //Edit Data
-    function edit($id)
-    {
-        $this->setWhere($id);
-        $getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
-        $getdata['aksi'] = $this->home;
-
-        $this->load->view('template/header');
-        $this->load->view($this->view . 'v_edit', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
-    }
-
     function edit_aksi()
     {
         $id = $this->input->post('id');

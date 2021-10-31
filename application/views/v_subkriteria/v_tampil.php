@@ -5,6 +5,7 @@
 			<th>Nama Sub kriteria</th>
 			<th>Nilai</th>
 		</tr>
+		<span id="alert"></span>
 		<tr>
 			<td id="col0">
 				<select name="id_kriteria" id="" required>
@@ -13,10 +14,8 @@
 						<option value="<?= $k->id_kriteria; ?>"><?= $k->nama_kriteria; ?></option>
 					<?php endforeach; ?>
 				</select>
-
 			</td>
 			<td id="col1">
-				<!-- <input type="text" name="nama[]" value="" /> -->
 				<textarea name="nama[]" id="" cols=20" rows="5" required></textarea>
 			</td>
 			<td id="col2">
@@ -54,7 +53,7 @@
 			var row = table.deleteRow(rowCount - 1);
 			rowCount--;
 		} else {
-			alert('Setidaknya harus ada satu Row/Baris');
+			document.getElementById("alert").innerHTML = "<mark>Setidaknya harus ada satu Row/Baris!</mark>";
 		}
 	}
 </script>

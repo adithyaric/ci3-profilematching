@@ -3,23 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPK Profile Matching</title>
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url() ?>assets/style.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>SPK &mdash; Profile Matching</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS Libraries -->
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/components.css">
 </head>
 
 <body>
-    <header>
-        <table>
-            <tr>
-                <td><a href="<?php echo base_url() . 'home'; ?>">Home</a></td>
-                <td><a href="<?php echo base_url() . 'alternatif'; ?>">Alternatif</a></td>
-                <td><a href="<?php echo base_url() . 'kriteria'; ?>">Kriteria</a></td>
-                <td><a href="<?php echo base_url() . 'subkriteria'; ?>">Sub Kriteria</a></td>
-                <td><a href="<?php echo base_url() . 'nilai'; ?>">Nilai Profil Alternatif</a></td>
-                <td><a href="<?php echo base_url() . 'perhitungan'; ?>">Perhitungan</a></td>
-            </tr>
-        </table>
-    </header>
+<div id="app">
+    <div class="main-wrapper">
+        <!-- Background Top -->
+        <div class="navbar-bg"></div> 
