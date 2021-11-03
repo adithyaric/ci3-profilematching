@@ -18,7 +18,14 @@ class Perhitungan extends CI_Controller
         if ($this->session->userdata('status') != "login") {
             $this->session->set_flashdata(
                 'pesan',
-                'Anda harus login terlebih dahulu'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
             );
             redirect(base_url('auth'));
         }
@@ -53,6 +60,8 @@ class Perhitungan extends CI_Controller
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'nama_alternatif', 'asc');
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_input', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -71,20 +80,42 @@ class Perhitungan extends CI_Controller
         if ($totalPercentage == NULL) {
             $this->session->set_flashdata(
                 'pesan',
-                'Anda harus mengisi nilai terlebih dahulu'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus mengisi nilai terlebih dahulu!!
+                    </div>
+                </div>'
             );
             redirect(base_url('admin/perhitungan'));
         }
         if ($totalPercentage < $maxPercentage) {
             $this->session->set_flashdata(
                 'pesan',
-                'Total Core factor & secondary Kurang dari 100%'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Total Core factor & secondary Kurang dari 100%
+                    </div>
+                </div>'
             );
             redirect(base_url('admin/perhitungan'));
         } elseif ($totalPercentage > $maxPercentage) {
             $this->session->set_flashdata(
                 'pesan',
-                'Total Core factor & secondary Lebih dari 100%'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Total Core factor & secondary Lebih dari 100%
+                    </div>
+                </div>'
+
             );
             redirect(base_url('admin/perhitungan'));
         } else {
@@ -106,6 +137,8 @@ class Perhitungan extends CI_Controller
             $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif', 'id_alternatif', 'asc');
 
             $this->load->view('template/header');
+            $this->load->view('template/navbar');
+            $this->load->view('template/sidebar');
             $this->load->view($this->view . 'v_tampil', $getdata);
             $this->load->view('template/footer');
             //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';

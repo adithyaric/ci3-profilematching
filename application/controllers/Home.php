@@ -9,7 +9,14 @@ class Home extends CI_Controller
 		if ($this->session->userdata('status') != "login") {
 			$this->session->set_flashdata(
 				'pesan',
-				'Anda harus login terlebih dahulu'
+				'<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
 			);
 			redirect(base_url('auth'));
 		}
@@ -20,14 +27,6 @@ class Home extends CI_Controller
 		$this->load->view('template/navbar');
 		$this->load->view('template/sidebar');
 		$this->load->view('v_home.php');
-		$this->load->view('template/footer');
-	}
-	public function blank()
-	{
-		$this->load->view('template/header');
-		$this->load->view('template/navbar');
-		$this->load->view('template/sidebar');
-		$this->load->view('blank.html');
 		$this->load->view('template/footer');
 	}
 }

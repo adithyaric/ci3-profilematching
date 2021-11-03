@@ -15,10 +15,10 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/components.css">
+    <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
 </head>
 
 <body>
-<div id="app">
-    <div class="main-wrapper">
-        <!-- Background Top -->
-        <div class="navbar-bg"></div> 
+    <div id="app">
+        <div class="main-wrapper">
+            <!-- Background Top -->

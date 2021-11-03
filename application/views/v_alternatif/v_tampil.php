@@ -1,3 +1,4 @@
+<div class="navbar-bg"></div>
 <div class="main-content">
 	<section class="section">
 		<!-- Header -->
@@ -7,30 +8,39 @@
 		<!-- End Header -->
 		<!-- Body -->
 		<div class="section-body">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
-			<?= $this->session->flashdata('pesan'); ?>
-			<table>
-				<tr>
-					<th>No</th>
-					<th>Nama</th>
-					<th>Detail</th>
-					<th>Action</th>
-				</tr>
-				<?php
-				$no = 1;
-				foreach ($alternatif as $a) {
-				?>
-					<tr>
-						<td><?php echo $no++ ?></td>
-						<td><?php echo $a->nama_alternatif ?></td>
-						<td><textarea name="detail" id="" cols="30" rows="7" disabled><?php echo $a->detail ?></textarea></td>
-						<td>
-							<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $a->id_alternatif; ?>" data-name="<?= $a->nama_alternatif; ?>" data-detail="<?= $a->detail; ?>">Edit</a>
-							<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $a->id_alternatif) ?>')" href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-						</td>
-					</tr>
-				<?php } ?>
-			</table>
+			<div class="card">
+				<div class="card-header">
+					<?= $this->session->flashdata('pesan'); ?>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-hover table-striped table-bordered">
+							<tr>
+								<th>No</th>
+								<th>Nama</th>
+								<th>Detail</th>
+								<th>Action</th>
+							</tr>
+							<?php
+							$no = 1;
+							foreach ($alternatif as $a) {
+							?>
+								<tr>
+									<td><?php echo $no++ ?></td>
+									<td><?php echo $a->nama_alternatif ?></td>
+									<td><textarea name="detail" id="" class="form-control" disabled><?php echo $a->detail ?></textarea>
+									</td>
+									<td>
+										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $a->id_alternatif; ?>" data-name="<?= $a->nama_alternatif; ?>" data-detail="<?= $a->detail; ?>">Edit <i class="fa fa-edit"></i></a>
+										<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $a->id_alternatif) ?>')" href="#" class="btn btn-sm btn-danger">Hapus <i class="fa fa-trash"></i></a>
+									</td>
+								</tr>
+							<?php } ?>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- End Body -->
 	</section>
@@ -85,7 +95,7 @@
 						</div>
 						<div class="form-group">
 							<label>Detail</label>
-							<textarea class="detail" name="detail" id="" cols="25" rows="5" required></textarea>
+							<textarea class="detail form-control" name="detail" id="" cols="25" rows="5" required></textarea>
 							<?= form_error('detail', '<div class="text-danger small">', '</div>'); ?>
 						</div>
 					</div>
@@ -99,13 +109,9 @@
 		</div>
 	</form>
 	<!-- End Modal Edit Product-->
-
 </div>
-<script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
-<script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(document).ready(function() {
-
 		// get Edit Product
 		$('.btn-edit').on('click', function() {
 			// get data from button edit

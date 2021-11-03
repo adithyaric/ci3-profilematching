@@ -33,7 +33,14 @@ class Auth extends CI_Controller
         } else {
             $this->session->set_flashdata(
                 'pesan',
-                'Username dan password salah !'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Username atau Password Salah!!!
+                    </div>
+                </div>'
             );
             redirect(base_url('auth'));
         }

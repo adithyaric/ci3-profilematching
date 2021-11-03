@@ -1,38 +1,54 @@
-<html>
+<div id="app">
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <?= $this->session->flashdata('pesan'); ?>
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="<?php echo base_url('auth/aksi_login'); ?>" class="needs-validation" novalidate="">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input id="username" type="username" class="form-control" name="username" tabindex="1" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in your Username
+                                    </div>
+                                </div>
 
-<head>
-    <style>
-        .login {
-            margin: 15em auto;
-            border-collapse: collapse;
-        }
-    </style>
-</head>
+                                <div class="form-group">
+                                    <div class="d-block">
+                                        <label for="password" class="control-label">Password</label>
+                                    </div>
+                                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                    <div class="invalid-feedback">
+                                        please fill in your password
+                                    </div>
+                                </div>
 
-<body>
-    <?= $this->session->flashdata('pesan'); ?>
-    <form action="<?php echo base_url('auth/aksi_login'); ?>" method="post">
-        <table class="login">
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="username"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password"></td>
-            </tr>
-            <tr>
-                <td>Level</td>
-                <td>
-                    <select name="level">
-                        <option value="user">Users</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+                                <div class="form-group">
+                                    <label for="level">Level</label>
+                                    <select name="level" id="" class="form-control" tabindex="3">
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="simple-footer">
+                        Copyright &copy; Stisla 2018
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -18,7 +18,14 @@ class Alternatif extends CI_Controller
         if ($this->session->userdata('status') != "login") {
             $this->session->set_flashdata(
                 'pesan',
-                'Anda harus login terlebih dahulu'
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
             );
             redirect(base_url('auth'));
         }
