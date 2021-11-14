@@ -16,6 +16,22 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/components.css">
     <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
+    <style>
+        .textarea {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            resize: both;
+            min-height: 40px;
+            line-height: 20px;
+        }
+
+        .textarea[contenteditable]:empty::before {
+            content: "Tulis keterangan";
+            color: gray;
+        }
+
+    </style>
 </head>
 
 <body>

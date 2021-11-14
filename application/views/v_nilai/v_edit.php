@@ -38,12 +38,8 @@
 									<td><?php echo $kriteria[$index]->nama_kriteria; ?></td>
 									<td>
 										<select name="sub_kriteria[]" class="form-control" id="" required>
-											<option value="<?php echo $s1->id_subkriteria; ?>">
-												<?= ' > Nilai : ' . $s1->nilai . ' | '; ?>
-												<?php echo $s1->nama_subkriteria; ?>
-											</option>
 											<?php foreach ($sub_kriteria2 as $s2) : ?>
-												<option value="<?= $s2->id_subkriteria ?>">
+												<option <?php if ($s1->id_subkriteria == $s2->id_subkriteria) echo "selected"; ?> value="<?php echo $s2->id_subkriteria; ?>">
 													<?= ' | Nilai : ' . $s2->nilai . ' | '; ?>
 													<?= $s2->nama_subkriteria . ' | '; ?>
 												</option>

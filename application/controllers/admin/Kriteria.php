@@ -68,6 +68,21 @@ class Kriteria extends CI_Controller
     //Input Data
     function tambah_aksi()
     {
+        $cek = $this->db->get_where('kriteria', array('nama_kriteria' => $this->input->post('nama')));
+        if ($cek->num_rows() != 0) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Maaf Data sudah ada!
+                    </div>
+                </div>'
+            );
+            redirect($this->home);
+        }        
         $data = $this->data;
         $this->m_data->input_data($data, $this->table);
         redirect($this->home);

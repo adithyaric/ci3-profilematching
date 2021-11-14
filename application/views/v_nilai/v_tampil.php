@@ -55,6 +55,7 @@
 				</div>
 			</form>
 			<div class="card">
+				<?= $this->session->flashdata('pesan'); ?>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-hover table-striped table-bordered">

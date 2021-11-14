@@ -8,6 +8,7 @@
 		<!-- End Header -->
 		<div class="section-body">
 			<div class="card">
+				<?= $this->session->flashdata('pesan'); ?>
 				<div class="card-header"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button></div>
 				<div class="card-body">
 					<div class="table-responsive">

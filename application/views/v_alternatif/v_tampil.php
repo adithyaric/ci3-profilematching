@@ -9,8 +9,8 @@
 		<!-- Body -->
 		<div class="section-body">
 			<div class="card">
+				<?= $this->session->flashdata('pesan'); ?>
 				<div class="card-header">
-					<?= $this->session->flashdata('pesan'); ?>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
 				</div>
 				<div class="card-body">
@@ -29,7 +29,8 @@
 								<tr>
 									<td><?php echo $no++ ?></td>
 									<td><?php echo $a->nama_alternatif ?></td>
-									<td><textarea name="detail" id="" class="form-control" disabled><?php echo $a->detail ?></textarea>
+									<td>
+										<span name="detail" class="textarea" role="textbox"><?php echo $a->detail ?></span>
 									</td>
 									<td>
 										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $a->id_alternatif; ?>" data-name="<?= $a->nama_alternatif; ?>" data-detail="<?= $a->detail; ?>">Edit <i class="fa fa-edit"></i></a>
@@ -63,7 +64,7 @@
 						</div>
 						<div class="form-group">
 							<label>Detail</label>
-							<textarea name="detail" id="" cols="25" rows="5"><?= set_value('detail'); ?></textarea>
+							<textarea name="detail" class="form-control" ><?= set_value('detail'); ?></textarea>
 							<?= form_error('detail', '<div class="text-danger small">', '</div>'); ?>
 						</div>
 					</div>

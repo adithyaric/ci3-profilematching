@@ -81,6 +81,21 @@ class Nilai extends CI_Controller
     //Input Data  
     function tambah_aksi()
     {
+        $cek = $this->db->get_where('nilai_alternatif', array('id_alternatif' => $this->input->post('id_alternatif')));
+        if ($cek->num_rows() != 0) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Maaf Data sudah ada!
+                    </div>
+                </div>'
+            );
+            redirect($this->home);
+        }             
         $sub_kriteria_list = $this->input->post('sub_kriteria');
         echo 'sub_kriteria_list : <pre>' . print_r($sub_kriteria_list, true) . '</pre>';
         foreach ($sub_kriteria_list as $id_subkriteria) {

@@ -15,7 +15,6 @@
 							<th>Nama Sub kriteria</th>
 							<th>Nilai</th>
 						</tr>
-						<span id="alert"></span>
 						<tr>
 							<td id="col0">
 								<select name="id_kriteria" id="" class=" form-control" required>
@@ -45,7 +44,9 @@
 					</table>
 				</div>
 			</form>
+			<span id="alert"></span>
 			<div class="card">
+				<?= $this->session->flashdata('pesan'); ?>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-hover table-striped table-bordered">
@@ -163,7 +164,8 @@
 			var row = table.deleteRow(rowCount - 1);
 			rowCount--;
 		} else {
-			document.getElementById("alert").innerHTML = "<mark>Setidaknya harus ada satu Row/Baris!</mark>";
+			document.getElementById("alert").innerHTML =
+				"<div class='alert alert-danger alert-dismissible show fade'><div class='alert-body'><button class = 'close' data-dismiss = 'alert'><span>&times;</span></button>Tidak boleh kosong!</div></div>";
 		}
 	}
 </script>

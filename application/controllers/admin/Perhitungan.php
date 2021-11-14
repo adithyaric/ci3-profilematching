@@ -125,6 +125,21 @@ class Perhitungan extends CI_Controller
             );
             $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
 
+            if($hitungnilai == NULL){
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data Nilai Profil Alternatif belum di isi
+                    </div>
+                </div>'
+
+                );
+                redirect(base_url('admin/perhitungan'));
+            }
             $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
             //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
 
