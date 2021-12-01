@@ -4,9 +4,10 @@
 
 ### Halaman C.R.U.D
 
+- [x] Rules wajib di-isi
+- [x] Rules Data duplikasi
+- [ ] Data Tables
 - [ ] Tampilan textarea
-- [ ] Rules wajib di-isi
-- [ ] Rules Data duplikasi
 - [ ] Subkriteria belum ada di Nilai profil alternatif
 - [x] Alternatif
 - [x] Kriteria

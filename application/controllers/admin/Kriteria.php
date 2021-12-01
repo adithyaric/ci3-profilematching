@@ -62,6 +62,17 @@ class Kriteria extends CI_Controller
     {
         $this->setWhere($id);
         $this->m_data->hapus_data($this->where, $this->table);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di Hapus!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 
@@ -85,6 +96,17 @@ class Kriteria extends CI_Controller
         }        
         $data = $this->data;
         $this->m_data->input_data($data, $this->table);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di tambahkan!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 
@@ -95,6 +117,17 @@ class Kriteria extends CI_Controller
         $this->setWhere($id);
         $data = $this->data;
         $this->m_data->update_data($this->where, $data, $this->table);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di ubah!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 }

@@ -96,7 +96,7 @@
 						</div>
 						<div class="form-group">
 							<label>Detail</label>
-							<textarea class="detail form-control" name="detail" id="" cols="25" rows="5" required></textarea>
+							<textarea class="detail" name="detail" id="" cols="50" rows="10" required></textarea>
 							<?= form_error('detail', '<div class="text-danger small">', '</div>'); ?>
 						</div>
 					</div>
