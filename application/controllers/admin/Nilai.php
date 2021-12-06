@@ -16,7 +16,18 @@ class Nilai extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('status') != "login") {
-            redirect(base_url());
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
+            );
+            redirect(base_url('auth'));
         }
         $id_alternatif = $this->input->post('id_alternatif');
         $id_subkriteria = $this->input->post('id_subkriteria');
@@ -52,6 +63,8 @@ class Nilai extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
@@ -62,12 +75,38 @@ class Nilai extends CI_Controller
     {
         $this->setWhere($id);
         $this->m_data->hapus_data($this->where, $this->table);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di Hapus!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 
     //Input Data  
     function tambah_aksi()
     {
+        $cek = $this->db->get_where('nilai_alternatif', array('id_alternatif' => $this->input->post('id_alternatif')));
+        if ($cek->num_rows() != 0) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Maaf Data sudah ada!
+                    </div>
+                </div>'
+            );
+            redirect($this->home);
+        }             
         $sub_kriteria_list = $this->input->post('sub_kriteria');
         echo 'sub_kriteria_list : <pre>' . print_r($sub_kriteria_list, true) . '</pre>';
         foreach ($sub_kriteria_list as $id_subkriteria) {
@@ -78,6 +117,17 @@ class Nilai extends CI_Controller
             //echo '<pre>' . print_r($data, true) . '</pre>';
             $this->m_data->input_data($data, $this->table);
         }
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di tambahkan!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 
@@ -91,6 +141,8 @@ class Nilai extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_detail', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -105,6 +157,8 @@ class Nilai extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -125,6 +179,17 @@ class Nilai extends CI_Controller
         }
         //echo ' <pre> getdata = ' . print_r($result, true) . '</pre>';        
         $this->db->update_batch('nilai_alternatif', $result, 'id_nilai');
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di ubah!
+                    </div>
+                </div>'
+        );
         redirect($this->home);
     }
 }

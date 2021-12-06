@@ -16,7 +16,18 @@ class Perhitungan extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('status') != "login") {
-            redirect(base_url());
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
+            );
+            redirect(base_url('auth'));
         }
         $this->load->model('m_gap');
         $id_alternatif = $this->input->post('id_alternatif');
@@ -49,6 +60,8 @@ class Perhitungan extends CI_Controller
         $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'nama_alternatif', 'asc');
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_input', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -60,31 +73,75 @@ class Perhitungan extends CI_Controller
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
         $data['cf'] = $this->input->post('cf');
         $data['sf'] = $this->input->post('sf');
-
         $maxPercentage = 100;
         $totalPercentage = $data['cf'] + $data['sf'];
+        //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
+
+        if ($totalPercentage == NULL) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus mengisi nilai terlebih dahulu!!
+                    </div>
+                </div>'
+            );
+            redirect(base_url('admin/perhitungan'));
+        }
         if ($totalPercentage < $maxPercentage) {
-            //echo "<script>alert('Error: less than {$maxPercentage}%');window.location.href='".base_url('admin/perhitungan')."';</script>";
-            redirect($this->home);
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Total Core factor & secondary Kurang dari 100%
+                    </div>
+                </div>'
+            );
+            redirect(base_url('admin/perhitungan'));
         } elseif ($totalPercentage > $maxPercentage) {
-            //echo "<script>alert('Error: more than {$maxPercentage}%');window.location.href='".base_url('admin/perhitungan')."';</script>";
-            redirect($this->home);
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Total Core factor & secondary Lebih dari 100%
+                    </div>
+                </div>'
+
+            );
+            redirect(base_url('admin/perhitungan'));
         } else {
+            $selectSub_kriteriaNilai = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
+            $joinSub_kriteria = array(
+                $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
+            );
+            $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
 
-            //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
+            if($hitungnilai == NULL){
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data Nilai Profil Alternatif belum di isi
+                    </div>
+                </div>'
 
-            if ($data['cf'] && $data['sf'] != NULL) {
-                $selectSub_kriteriaNilai = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
-                $joinSub_kriteria = array(
-                    $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
                 );
-                $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
-
-                $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
-                //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
-            } else {
-                echo 'Kosong...';
+                redirect(base_url('admin/perhitungan'));
             }
+            $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
+            //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
 
             $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
             $joinAlternatif = array(
@@ -95,6 +152,8 @@ class Perhitungan extends CI_Controller
             $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif', 'id_alternatif', 'asc');
 
             $this->load->view('template/header');
+            $this->load->view('template/navbar');
+            $this->load->view('template/sidebar');
             $this->load->view($this->view . 'v_tampil', $getdata);
             $this->load->view('template/footer');
             //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';

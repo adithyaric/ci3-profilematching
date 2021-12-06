@@ -1,11 +1,14 @@
 ### Halaman Admin
 
-- [ ] Login Sebagai Admin
+- [x] Login Sebagai Admin
 
 ### Halaman C.R.U.D
 
-- [ ] Rules wajib di-isi
-- [ ] Rules Data duplikasi
+- [x] Rules wajib di-isi
+- [x] Rules Data duplikasi
+- [ ] Data Tables
+- [ ] Tampilan textarea
+- [ ] Subkriteria belum ada di Nilai profil alternatif
 - [x] Alternatif
 - [x] Kriteria
 - [x] Sub Kriteria

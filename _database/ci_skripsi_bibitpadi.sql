@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 16, 2021 at 07:10 PM
+-- Generation Time: Nov 23, 2021 at 03:08 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ci_profilematching`
+-- Database: `ci_skripsi_bibitpadi`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `alternatif` (
   `id_alternatif` int(11) NOT NULL,
   `nama_alternatif` varchar(50) NOT NULL,
-  `detail` varchar(50) NOT NULL
+  `detail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -38,10 +38,9 @@ CREATE TABLE `alternatif` (
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `detail`) VALUES
-(6, 'Andi', 'siswa'),
-(7, 'Budi', 'siswa'),
-(8, 'Citra', 'siswa'),
-(10, 'Dita', 'siswa');
+(6, 'Inpasari 42 GSR', 'Varietas inbrida keluaran tahun 2016, rasanya enak dan pulen luar biasa, kerontokannya pun mudah sekali. Potensi hasilnya mencapai 7,11 ton'),
+(7, 'Sertani 13', 'Sertani 13 merupakan jenis padi dari MSP. Popularitasnya begitu meluas dari Sabang sampai Merauke. Sertani 13 adalah jenis terbaik yaitu 13A, 13B, dan 13C'),
+(8, 'Mapan P-05', 'Padi hibrida merupakan unggulan berkualitas, Keunggulan utamanya adalah bobot tiap gabah yang tinggi dengan hasil > 8 ton / ha.');
 
 -- --------------------------------------------------------
 
@@ -60,10 +59,11 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `jenis_kriteria`) VALUES
-(8, 'IPK ', 'core'),
-(9, 'Penghasilan Orang Tua', 'core'),
-(10, 'Jumlah Tanggunan', 'secondary'),
-(11, 'Semester', 'secondary');
+(1, 'Batas tanam', 'core'),
+(2, 'Kadar air', 'core'),
+(3, 'Tinggi tanaman', 'secondary'),
+(4, 'Kerontokan', 'secondary'),
+(5, 'Harga bibit', 'secondary');
 
 -- --------------------------------------------------------
 
@@ -82,22 +82,21 @@ CREATE TABLE `nilai_alternatif` (
 --
 
 INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_subkriteria`) VALUES
-(135, 7, 17),
-(136, 7, 20),
-(137, 7, 24),
-(138, 7, 28),
-(139, 10, 15),
-(140, 10, 19),
-(141, 10, 23),
-(142, 10, 29),
-(143, 6, 16),
-(144, 6, 21),
-(145, 6, 25),
-(146, 6, 28),
-(147, 8, 17),
-(148, 8, 21),
-(149, 8, 25),
-(150, 8, 29);
+(6, 8, 3),
+(7, 8, 5),
+(8, 8, 7),
+(9, 8, 10),
+(10, 8, 14),
+(16, 7, 1),
+(17, 7, 5),
+(18, 7, 7),
+(19, 7, 12),
+(20, 7, 13),
+(21, 6, 1),
+(22, 6, 5),
+(23, 6, 9),
+(24, 6, 11),
+(25, 6, 13);
 
 -- --------------------------------------------------------
 
@@ -107,7 +106,7 @@ INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_subkriteria`) V
 
 CREATE TABLE `sub_kriteria` (
   `id_subkriteria` int(11) NOT NULL,
-  `nama_subkriteria` varchar(50) NOT NULL,
+  `nama_subkriteria` text NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -117,23 +116,21 @@ CREATE TABLE `sub_kriteria` (
 --
 
 INSERT INTO `sub_kriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `nilai`) VALUES
-(14, '< 2.5', 8, 1),
-(15, '>= 2.5 dan < 3', 8, 2),
-(16, '>= 3 dan < 3.5', 8, 3),
-(17, '>= 3.5', 8, 4),
-(18, '< 1,500,000', 9, 1),
-(19, '	>= 1,500,000 dan < 3,000,000', 9, 2),
-(20, '	>= 3,000,000 dan < 5,000,000', 9, 3),
-(21, '>= 5,000,000', 9, 4),
-(22, 'Jumlah 1', 10, 1),
-(23, 'Jumlah 2', 10, 2),
-(24, 'Jumlah 3', 10, 3),
-(25, 'Jumlah > 3', 10, 4),
-(26, 'Semeter <= 2 atau > 8', 11, 0),
-(27, 'Semeter 3', 11, 1),
-(28, '	Semeter 4', 11, 2),
-(29, 'Semester 5 dan 6', 11, 3),
-(30, 'Semester 7 dan 8', 11, 4);
+(1, 'Kualitas sangat buruk jika ditanam lebih dari 1 kali', 1, 1),
+(2, 'Kualitas kurang jika ditanam\r\nlebih dari 1 kali\r\n', 1, 2),
+(3, 'Kualitas tetap jika ditanam lebih dari 1 kali\r\n', 1, 3),
+(4, '<20%\r\n', 2, 1),
+(5, '21% - 45%\r\n', 2, 2),
+(6, '>45%\r\n', 2, 3),
+(7, '90 - 110 cm\r\n', 3, 1),
+(8, '110 - 120 cm\r\n', 3, 2),
+(9, '>121cm\r\n', 3, 3),
+(10, 'Sulit (<6%)\r\n', 4, 1),
+(11, 'Sedang (6%-50%)\r\n', 4, 2),
+(12, 'Mudah (51% - 100%)\r\n', 4, 3),
+(13, '>=60 rb/kg\r\n', 5, 1),
+(14, '<60rb/kg dan >=30 rb/kg\r\n', 5, 2),
+(15, '<30 rb/kg\r\n', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -153,7 +150,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'admin', 'admin123', 'admin');
+(1, 'user', '6ad14ba9986e3615423dfca256d04e3f', 'user'),
+(2, 'admin', '0192023a7bbd73250516f069df18b500', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -200,31 +198,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

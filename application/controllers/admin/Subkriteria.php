@@ -16,7 +16,18 @@ class Subkriteria extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('status') != "login") {
-            redirect(base_url());
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Anda harus Login terlebih dahulu!!!
+                    </div>
+                </div>'
+            );
+            redirect(base_url('auth'));
         }
         $nama = $this->input->post('nama');
         $id_kriteria = $this->input->post('id_kriteria');
@@ -53,6 +64,8 @@ class Subkriteria extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -66,6 +79,8 @@ class Subkriteria extends CI_Controller
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_detail', $getdata);
         $this->load->view('template/footer');
         //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
@@ -76,45 +91,86 @@ class Subkriteria extends CI_Controller
     {
         $this->setWhere($id);
         $this->m_data->hapus_data($this->where, $this->table);
-        //redirect($this->home);
-        redirect('kriteria');
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-danger alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di Hapus!
+                    </div>
+                </div>'
+        );
+        redirect($this->home);
     }
 
     //Input Data
     function tambah_aksi()
     {
-        $id = $this->input->post('id');
-        $data = $this->data;
-        $this->m_data->input_data($data, $this->table);
-        $this->detail($id);
-        //redirect($this->home);
+        $nama = $this->input->post('nama');
+        foreach ($nama as $key => $namaSub) {
+            $data = array(
+                'nama_subkriteria' => $namaSub,                
+            );
+            echo '<pre>' . print_r($data, true) . '</pre>';            
+            $cek = $this->db->get_where('sub_kriteria', array('nama_subkriteria' => $namaSub));
+            if ($cek->num_rows() != 0) {
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-danger alert-dismissible show fade">
+                    <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    Maaf Data sudah ada!
+                    </div>
+                    </div>'
+                );
+                redirect($this->home);
+            }          
+        }        
+        foreach ($nama as $key => $id_kriteriax) {
+            $data = array(
+                'id_kriteria' => $this->input->post('id_kriteria'),
+                'nama_subkriteria' => $id_kriteriax,
+                'nilai' => $this->input->post('nilai')[$key],
+            );
+            echo '<pre>' . print_r($data, true) . '</pre>';
+            $this->m_data->input_data($data, $this->table);
+        }
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di tambahkan!
+                    </div>
+                </div>'
+        );
+        redirect($this->home);
     }
 
     //Edit Data
-    function edit($id)
-    {
-        $this->setWhere($id);
-        $data = array(
-            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
-        );
-        $getdata['ambil_id']    = $this->m_data->ambil_id($this->where, $this->table, $data);
-        $getdata[$this->table]  = $this->m_data->edit_data($this->where, $this->table)->result();
-        $getdata['kriteria']    = $this->m_data->tampil_data('kriteria', 'jenis_kriteria', 'asc');
-        $getdata['aksi'] = $this->home;
-
-        $this->load->view('template/header');
-        $this->load->view($this->view . 'v_edit', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata['ambil_id'], true) . '</pre>';
-    }
-
     function edit_aksi()
     {
         $id = $this->input->post('id');
         $this->setWhere($id);
         $data = $this->data;
         $this->m_data->update_data($this->where, $data, $this->table);
-        redirect('kriteria');
-        // redirect($this->home);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Data berhasil di ubah!
+                    </div>
+                </div>'
+        );
+        redirect($this->home);
     }
 }

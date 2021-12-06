@@ -6,7 +6,8 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $this->load->view('v_login.php');
+        $this->load->view('template/header');
+        $this->load->view('v_users/v_login.php');
         $this->load->view('template/footer');
     }
     function aksi_login()
@@ -16,7 +17,7 @@ class Auth extends CI_Controller
         $level = $this->input->post('level');
         $where = array(
             'username' => $username,
-            'password' => $password,
+            'password' => md5($password),
             'level' => $level,
         );
         $cek = $this->m_data->edit_data($where, "users")->num_rows();
@@ -30,7 +31,17 @@ class Auth extends CI_Controller
 
             redirect(base_url("home"));
         } else {
-            echo "Username dan password salah !";
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Username atau Password Salah!!!
+                    </div>
+                </div>'
+            );
             redirect(base_url('auth'));
         }
     }
