@@ -17,7 +17,7 @@
 									<th>Kriteria</th>
 									<th>Sub kriteria</th>
 								</tr>
-								<?php foreach ($kriteria as $key) :
+								<?php foreach ($kriteria as $index => $key) :
 									$where = array('id_kriteria' => $key->id_kriteria);
 									$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
 									if ($sub_kriteria != NULL) : ?>
@@ -28,8 +28,10 @@
 											</td>
 											<td>
 												<select name="sub_kriteria[]" id="" class=" form-control" required>
-													<?php foreach ($sub_kriteria as $s) : ?>
-														<option value="<?= $s->nilai ?>">
+													<?php
+													$input = array(1, 2, 2, 1, 3, 2, 3, 3);
+													foreach ($sub_kriteria as $s) : ?>
+														<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
 															<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
 															<?= $s->nama_subkriteria; ?>
 														</option>

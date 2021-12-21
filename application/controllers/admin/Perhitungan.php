@@ -57,7 +57,7 @@ class Perhitungan extends CI_Controller
     {
         $getdata['aksi'] = $this->home;
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'nama_alternatif', 'asc');
+        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'id_alternatif', 'asc');
 
         $this->load->view('template/header');
         $this->load->view('template/navbar');
@@ -119,12 +119,7 @@ class Perhitungan extends CI_Controller
             );
             redirect(base_url('admin/perhitungan'));
         } else {
-            $selectSub_kriteriaNilai = 'nilai_alternatif.id_alternatif, GROUP_CONCAT(nilai) as nilai';
-            $joinSub_kriteria = array(
-                $this->setDataJoin('sub_kriteria', 'sub_kriteria.id_subkriteria = nilai_alternatif.id_subkriteria')
-            );
-            $hitungnilai = $this->m_data->joinGroup($selectSub_kriteriaNilai, $this->table, $joinSub_kriteria);
-
+            $hitungnilai = $this->m_data->hitungid();
             if($hitungnilai == NULL){
                 $this->session->set_flashdata(
                     'pesan',
@@ -143,11 +138,7 @@ class Perhitungan extends CI_Controller
             $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
             //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
 
-            $selectAlternatif = 'nilai_alternatif.id_alternatif, nama_alternatif';
-            $joinAlternatif = array(
-                $this->setDataJoin('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif')
-            );
-            $getdata['nama'] = $this->m_data->joinGroup($selectAlternatif, $this->table, $joinAlternatif);
+            $getdata['nama'] = $this->m_data->joinGroupNamaNilai();
             $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
             $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif', 'id_alternatif', 'asc');
 

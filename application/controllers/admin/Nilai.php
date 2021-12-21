@@ -59,7 +59,7 @@ class Nilai extends CI_Controller
         );
         $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'nama_alternatif', 'asc');
+        $getdata['alternatif'] = $this->m_data->tampil_data('alternatif', 'id_alternatif', 'asc');
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');

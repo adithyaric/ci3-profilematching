@@ -9,7 +9,7 @@ class Alternatif extends CI_Controller
     protected $table = 'alternatif'; //Nama Table
     protected $pk = 'id_alternatif'; //Primary Key Table
     protected $home = 'admin/alternatif'; //Redirect
-    protected $orderby = 'nama_alternatif';
+    protected $orderby = 'id_alternatif';
     protected $sort = 'asc';
 
     function __construct()

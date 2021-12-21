@@ -3,21 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_Gap extends CI_Model
 {
-
-	// protected $selisih = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
-	// protected $bobot_nilai = [1, 2, 3, 4, 5, 4.5, 3.5, 2.5, 1.5];
-	// protected $keterangan = [
-	// 	'Kompetensi individu kekurangan 4 tingkat/level',
-	// 	'Kompetensi individu kekurangan 3 tingkat/level',
-	// 	'Kompetensi individu kekurangan 2 tingkat/level',
-	// 	'Kompetensi individu kekurangan 1 tingkat/level ',
-	// 	'Tidak ada selisih (Kompetensi sesuai yang dibutuhkan)',
-	// 	'Kompetensi individu kelebihan 1 tingkat/level',
-	// 	'Kompetensi individu kelebihan 2 tingkat/level',
-	// 	'Kompetensi individu kelebihan 3 tingkat/level',
-	// 	'Kompetensi individu kelebihan 4 tingkat/level',
-	// ];
-
 	protected $selisih = [-2, -1, 0, 1, 2];
 	protected $bobot_nilai = [1, 2, 3, 2.5, 1.5];
 	protected $keterangan = [
@@ -30,21 +15,20 @@ class M_Gap extends CI_Model
 
 	public function hitung($hitungid, $data)
 	{
-		// echo ' <pre> hitung($data) :' . print_r($hitungid, true) . '</pre>';
+		// echo ' <pre> hitung($data) :' . print_r($hitungid, true) . '</pre>';		
 		// echo ' <pre> sub_kriteria_list :' . print_r($data['sub_kriteria_list'], true) . '</pre>';
 		// echo ' <pre> jenis_list :' . print_r($data['jenis_list'], true) . '</pre>';
 		// echo ' <pre> cf :' . print_r($data['cf'], true) . '</pre>';
 		// echo ' <pre> sf :' . print_r($data['sf'], true) . '</pre>';
-		$users =  $hitungid;
-		$raw_aspek = [];
-		foreach ($users as $key => $user) {
-			$holds = $user->nilai;
-			$holds = explode(',', $holds);
-			//echo '<pre>' . print_r($holds, true) . '</pre>';
-			array_push($raw_aspek, $holds);
+		// $users =  $hitungid;
+		$alt_aspek = [];
+		foreach ($hitungid as $user) {
+			$nilai = $user->nilai;
+			$nilai = explode(',', $nilai);
+			array_push($alt_aspek, $nilai);
 		}
-		//echo '<pre> $raw_aspek :' . print_r($raw_aspek, true) . '</pre>';
-		$hasil = $this->gap($raw_aspek, $data);
+		// echo '<pre> $alt_aspek :' . print_r($alt_aspek, true) . '</pre>';
+		$hasil = $this->gap($alt_aspek, $data);
 		return $hasil;
 	}
 
@@ -57,7 +41,7 @@ class M_Gap extends CI_Model
 		}
 	}
 
-	public function gap($arr_aspek, $data)
+	public function gap($alt_aspek, $data)
 	{
 		$aspek = (object)[
 			'cf' => $data['cf'] / 100, //60%
@@ -67,9 +51,8 @@ class M_Gap extends CI_Model
 		$aspek_nilai = $data['sub_kriteria_list']; //Nilai Target 
 		//echo '<pre> aspek_nilai = ' . print_r($aspek_nilai, true) . '</pre>';
 		$aspek_tipe = $data['jenis_list']; //Jenis Kriteria 
-		//echo '<pre> aspek_tipe =' . print_r($aspek_tipe, true) . '</pre>';		
-		$alt_aspek = $arr_aspek; //Nilai Profil Alternatif
-		// echo '<pre> alt_aspek =' . print_r($alt_aspek, true) . '</pre>';
+		//echo '<pre> aspek_tipe =' . print_r($aspek_tipe, true) . '</pre>';				
+		// echo '<pre> alt_aspek =' . print_r($alt_aspek, true) . '</pre>';		
 		$gap_aspek = [];
 		$bobot_aspek = [];
 
@@ -87,7 +70,8 @@ class M_Gap extends CI_Model
 					array_push($sf_aspek[$key], $bobot_aspek[$key][$key2]);
 			}
 		}
-
+		// arsort($cf_aspek);
+		// echo '<pre> cf_aspek =' . print_r($cf_aspek, true) . '</pre>';	
 		// Menghitung Nilai Total aspek
 		foreach ($alt_aspek as $key => $value) {
 			// echo '$cf_aspek[$key]: <pre>' . print_r($cf_aspek[$key], true) . '</pre>';
@@ -99,10 +83,11 @@ class M_Gap extends CI_Model
 			$total_aspek[$key] = $aspek->cf * $ncf_aspek[$key] + $aspek->sf * $nsf_aspek[$key];
 			//echo '$total_aspek[$key]: <pre>' . print_r($total_aspek[$key], true) . '</pre>';
 		}
-
+						
 		$hasil = (object)[
 			'gap_aspek' 			=> $gap_aspek,		//Selisih (Gap)
 			'bobot_aspek' 			=> $bobot_aspek, 	//Nilai Gap (Bobot Gap)
+			'cf_aspek' 				=> $cf_aspek,		//Nilai Core Factor
 			'ncf_aspek' 			=> $ncf_aspek,		//Nilai Rata-rata Core Factor
 			'nsf_aspek' 			=> $nsf_aspek,		//Nilai Rata-rata Secondary Factor
 			'total_aspek' 			=> $total_aspek, 	//Nilai Total
@@ -112,7 +97,7 @@ class M_Gap extends CI_Model
 			'bobot_nilai'			=> $this->bobot_nilai,
 			'keterangan'			=> $this->keterangan,
 			'cf'					=> $aspek->cf,
-			'sf'					=> $aspek->sf,
+			'sf'					=> $aspek->sf,			
 		];
 		// echo '<hr> Hasil alt_aspek 	: <pre>' . print_r($hasil->alt_aspek, true) . '</pre>';
 		// echo '<hr> Hasil aspek_nilai : <pre>' . print_r($hasil->aspek_nilai, true) . '</pre>';

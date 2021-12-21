@@ -60,13 +60,24 @@ class M_data extends CI_Model
         }
     }
     //Menampilkan Table join Group
-    function joinGroup($select, $table, $data)
+    function joinGroupNamaNilai()
     {
-        $this->db->select($select);
-        $this->db->from($table);
-        $this->setjoin($data);
+        $this->db->select('nilai_alternatif.id_alternatif, nama_alternatif');
+        $this->db->from('nilai_alternatif');
+        $this->db->join('alternatif', 'alternatif.id_alternatif = nilai_alternatif.id_alternatif');
         $this->db->group_by('nilai_alternatif.id_alternatif');
         $this->db->order_by('id_alternatif');
+        return $this->db->get()->result();
+    }
+
+    function hitungid()
+    {
+        $this->db->select("nilai_alternatif.id_alternatif, 
+        GROUP_CONCAT(sub_kriteria.nilai) as nilai 
+        FROM nilai_alternatif 
+        LEFT JOIN sub_kriteria 
+        ON nilai_alternatif.id_subkriteria = sub_kriteria.id_subkriteria 
+        GROUP BY nilai_alternatif.id_alternatif");
         return $this->db->get()->result();
     }
 }
