@@ -3,10 +3,17 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman Penilaian</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
+			<div class="alert alert-light alert-has-icon">
+				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+				<div class="alert-body">
+					<div class="alert-title">Penjelasan : </div>
+					adalah ...
+				</div>
+			</div>
 			<form action="<?= base_url() . $aksi . '/tambah_aksi'; ?>" method="post">
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">

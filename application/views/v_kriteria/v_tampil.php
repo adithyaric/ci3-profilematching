@@ -3,14 +3,23 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman kriteria</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
 			<div class="card">
-				<?= $this->session->flashdata('pesan'); ?>
-				<div class="card-header"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button></div>
 				<div class="card-body">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
+				</div>
+				<div class="card-body">
+					<?= $this->session->flashdata('pesan'); ?>
+					<div class="alert alert-light alert-has-icon">
+						<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+						<div class="alert-body">
+							<div class="alert-title">Penjelasan : </div>
+							kriteria adalah ...
+						</div>
+					</div>
 					<div class="table-responsive">
 						<table class="table table-hover table-striped table-bordered">
 							<tr>

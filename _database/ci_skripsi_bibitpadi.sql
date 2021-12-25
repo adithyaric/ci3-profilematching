@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 23, 2021 at 03:08 PM
+-- Generation Time: Dec 22, 2021 at 03:39 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -38,9 +38,25 @@ CREATE TABLE `alternatif` (
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `detail`) VALUES
-(6, 'Inpasari 42 GSR', 'Varietas inbrida keluaran tahun 2016, rasanya enak dan pulen luar biasa, kerontokannya pun mudah sekali. Potensi hasilnya mencapai 7,11 ton'),
-(7, 'Sertani 13', 'Sertani 13 merupakan jenis padi dari MSP. Popularitasnya begitu meluas dari Sabang sampai Merauke. Sertani 13 adalah jenis terbaik yaitu 13A, 13B, dan 13C'),
-(8, 'Mapan P-05', 'Padi hibrida merupakan unggulan berkualitas, Keunggulan utamanya adalah bobot tiap gabah yang tinggi dengan hasil > 8 ton / ha.');
+(9, 'Raja Lele', 'padi'),
+(10, 'Mapan P-05', 'padi'),
+(11, 'Ciherang', 'padi'),
+(12, 'Ciherang Janger', 'padi'),
+(13, 'Inpari 42', 'padi'),
+(14, 'Inpari 43', 'padi'),
+(15, 'Inpari 45 Dirgahayu', 'padi'),
+(16, 'Inpari 32', 'padi'),
+(17, 'IR.64', 'padi'),
+(18, 'Mekonga', 'padi'),
+(19, 'Sidenuk', 'padi'),
+(20, 'Sintanur', 'padi'),
+(21, 'M70D', 'padi'),
+(22, 'Inpari 24', 'padi'),
+(23, 'Cimelati', 'padi'),
+(24, 'Pepe', 'padi'),
+(25, 'Padjadjaran Agritan', 'padi'),
+(26, 'Kabir 05', 'padi'),
+(27, 'Sunggal', 'padi');
 
 -- --------------------------------------------------------
 
@@ -59,11 +75,14 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `jenis_kriteria`) VALUES
-(1, 'Batas tanam', 'core'),
-(2, 'Kadar air', 'core'),
-(3, 'Tinggi tanaman', 'secondary'),
-(4, 'Kerontokan', 'secondary'),
-(5, 'Harga bibit', 'secondary');
+(6, 'Tinggi tanaman', 'core'),
+(7, 'Kerontokan', 'secondary'),
+(8, 'Harga bibit', 'core'),
+(9, 'Umur tanaman', 'secondary'),
+(10, 'bentuk tanaman', 'secondary'),
+(11, 'bentuk gabah', 'secondary'),
+(12, 'kadar amilosa', 'core'),
+(13, 'Kerebahan', 'secondary');
 
 -- --------------------------------------------------------
 
@@ -82,21 +101,158 @@ CREATE TABLE `nilai_alternatif` (
 --
 
 INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_subkriteria`) VALUES
-(6, 8, 3),
-(7, 8, 5),
-(8, 8, 7),
-(9, 8, 10),
-(10, 8, 14),
-(16, 7, 1),
-(17, 7, 5),
-(18, 7, 7),
-(19, 7, 12),
-(20, 7, 13),
-(21, 6, 1),
-(22, 6, 5),
-(23, 6, 9),
-(24, 6, 11),
-(25, 6, 13);
+(143, 9, 18),
+(144, 9, 19),
+(145, 9, 23),
+(146, 9, 26),
+(147, 9, 30),
+(148, 9, 32),
+(149, 9, 35),
+(150, 9, 38),
+(151, 10, 16),
+(152, 10, 21),
+(153, 10, 22),
+(154, 10, 26),
+(155, 10, 30),
+(156, 10, 31),
+(157, 10, 35),
+(158, 10, 39),
+(159, 11, 18),
+(160, 11, 20),
+(161, 11, 22),
+(162, 11, 25),
+(163, 11, 30),
+(164, 11, 33),
+(165, 11, 35),
+(166, 11, 38),
+(167, 12, 18),
+(168, 12, 20),
+(169, 12, 23),
+(170, 12, 26),
+(171, 12, 30),
+(172, 12, 33),
+(173, 12, 35),
+(174, 12, 38),
+(175, 13, 16),
+(176, 13, 21),
+(177, 13, 23),
+(178, 13, 26),
+(179, 13, 30),
+(180, 13, 31),
+(181, 13, 34),
+(182, 13, 39),
+(183, 14, 16),
+(184, 14, 20),
+(185, 14, 23),
+(186, 14, 26),
+(187, 14, 30),
+(188, 14, 31),
+(189, 14, 34),
+(190, 14, 39),
+(191, 15, 17),
+(192, 15, 20),
+(193, 15, 22),
+(194, 15, 25),
+(195, 15, 30),
+(196, 15, 31),
+(197, 15, 34),
+(198, 15, 38),
+(199, 16, 16),
+(200, 16, 21),
+(201, 16, 23),
+(202, 16, 25),
+(203, 16, 30),
+(204, 16, 32),
+(205, 16, 35),
+(206, 16, 38),
+(207, 17, 16),
+(208, 17, 19),
+(209, 17, 24),
+(210, 17, 26),
+(211, 17, 30),
+(212, 17, 33),
+(213, 17, 36),
+(214, 17, 39),
+(215, 18, 17),
+(216, 18, 20),
+(217, 18, 23),
+(218, 18, 25),
+(219, 18, 29),
+(220, 18, 33),
+(221, 18, 35),
+(222, 18, 38),
+(223, 19, 16),
+(224, 19, 20),
+(225, 19, 23),
+(226, 19, 27),
+(227, 19, 30),
+(228, 19, 31),
+(229, 19, 35),
+(230, 19, 39),
+(231, 20, 18),
+(232, 20, 20),
+(233, 20, 23),
+(234, 20, 25),
+(235, 20, 30),
+(236, 20, 32),
+(237, 20, 34),
+(238, 20, 38),
+(239, 21, 16),
+(240, 21, 21),
+(241, 21, 22),
+(242, 21, 27),
+(243, 21, 30),
+(244, 21, 31),
+(245, 21, 35),
+(246, 21, 39),
+(247, 22, 16),
+(248, 22, 20),
+(249, 22, 23),
+(250, 22, 26),
+(251, 22, 30),
+(252, 22, 31),
+(253, 22, 34),
+(254, 22, 39),
+(255, 23, 17),
+(256, 23, 20),
+(257, 23, 23),
+(258, 23, 25),
+(259, 23, 30),
+(260, 23, 31),
+(261, 23, 34),
+(262, 23, 38),
+(263, 24, 17),
+(264, 24, 21),
+(265, 24, 23),
+(266, 24, 25),
+(267, 24, 30),
+(268, 24, 31),
+(269, 24, 35),
+(270, 24, 39),
+(271, 25, 16),
+(272, 25, 20),
+(273, 25, 22),
+(274, 25, 27),
+(275, 25, 29),
+(276, 25, 31),
+(277, 25, 35),
+(278, 25, 37),
+(279, 26, 17),
+(280, 26, 20),
+(281, 26, 22),
+(282, 26, 27),
+(283, 26, 30),
+(284, 26, 33),
+(285, 26, 35),
+(286, 26, 38),
+(287, 27, 17),
+(288, 27, 20),
+(289, 27, 22),
+(290, 27, 25),
+(291, 27, 30),
+(292, 27, 33),
+(293, 27, 35),
+(294, 27, 38);
 
 -- --------------------------------------------------------
 
@@ -116,21 +272,30 @@ CREATE TABLE `sub_kriteria` (
 --
 
 INSERT INTO `sub_kriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `nilai`) VALUES
-(1, 'Kualitas sangat buruk jika ditanam lebih dari 1 kali', 1, 1),
-(2, 'Kualitas kurang jika ditanam\r\nlebih dari 1 kali\r\n', 1, 2),
-(3, 'Kualitas tetap jika ditanam lebih dari 1 kali\r\n', 1, 3),
-(4, '<20%\r\n', 2, 1),
-(5, '21% - 45%\r\n', 2, 2),
-(6, '>45%\r\n', 2, 3),
-(7, '90 - 110 cm\r\n', 3, 1),
-(8, '110 - 120 cm\r\n', 3, 2),
-(9, '>121cm\r\n', 3, 3),
-(10, 'Sulit (<6%)\r\n', 4, 1),
-(11, 'Sedang (6%-50%)\r\n', 4, 2),
-(12, 'Mudah (51% - 100%)\r\n', 4, 3),
-(13, '>=60 rb/kg\r\n', 5, 1),
-(14, '<60rb/kg dan >=30 rb/kg\r\n', 5, 2),
-(15, '<30 rb/kg\r\n', 5, 3);
+(16, '90 - 109 cm', 6, 1),
+(17, '110 - 120 cm', 6, 2),
+(18, '>121cm', 6, 3),
+(19, 'Tahan/Sulit (<6%)', 7, 1),
+(20, 'Sedang (6%-50%)', 7, 2),
+(21, 'Mudah (51% - 100%)', 7, 3),
+(22, '>=100 rb/kg', 8, 1),
+(23, '>=81rb/kg & <=99 rb/kg', 8, 2),
+(24, '<=80 rb/kg', 8, 3),
+(25, '116 - 125 hari', 9, 1),
+(26, '105 - 115 hari', 9, 2),
+(27, '80 - 104 hari', 9, 3),
+(28, 'Tunduk', 10, 1),
+(29, 'Agak Tegak', 10, 2),
+(30, 'Tegak', 10, 3),
+(31, 'Ramping', 11, 1),
+(32, 'Sedang', 11, 2),
+(33, 'Panjang ramping', 11, 3),
+(34, '9 - 19% (rendah)', 12, 1),
+(35, '20 - 24% (sedang)', 12, 2),
+(36, '25 - 33% (tinggi)', 12, 3),
+(37, 'toleran', 13, 1),
+(38, 'sedang', 13, 2),
+(39, 'tahan', 13, 3);
 
 -- --------------------------------------------------------
 
@@ -198,25 +363,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `users`

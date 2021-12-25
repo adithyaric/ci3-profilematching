@@ -3,10 +3,17 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman Sub kriteria</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
+			<div class="alert alert-light alert-has-icon">
+				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+				<div class="alert-body">
+					<div class="alert-title">Penjelasan : </div>
+					Sub kriteria adalah ...
+				</div>
+			</div>
 			<form action="<?php echo base_url() . $aksi . '/tambah_aksi'; ?>" method="post">
 				<div class="table-responsive">
 					<table id="emptbl" class="table table-hover table-striped table-bordered">
@@ -28,7 +35,7 @@
 								<textarea name="nama[]" id="" required></textarea>
 							</td>
 							<td id="col2">
-								<input type="range" name="nilai[]" value="1" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+								<input type="range" name="nilai[]" value="1" min="1" max="3" oninput="this.nextElementSibling.value = this.value">
 								<output>1</output>
 							</td>
 						</tr>
@@ -109,7 +116,7 @@
 						</div>
 						<div class="form-group">
 							<label for="">Nilai</label>
-							<input type="range" name="nilai" class="nilai" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+							<input type="range" name="nilai" class="nilai" min="1" max="3" oninput="this.nextElementSibling.value = this.value">
 							<output class="nilai"></output>
 						</div>
 					</div>

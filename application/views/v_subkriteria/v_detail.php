@@ -3,10 +3,17 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman detail Sub kriteria</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
+			<div class="alert alert-light alert-has-icon">
+				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+				<div class="alert-body">
+					<div class="alert-title">Penjelasan : </div>
+					adalah ...
+				</div>
+			</div>
 			<a href="<?php echo base_url()  . 'admin/subkriteria'; ?>"><button type="button" class="btn btn-primary">Tambah</button></a>
 			<a href="<?php echo base_url()  . 'admin/kriteria'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
 			<div class="table-responsive">

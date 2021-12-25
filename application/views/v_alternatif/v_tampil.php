@@ -3,17 +3,24 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman alternatif</h1>
 		</div>
 		<!-- End Header -->
 		<!-- Body -->
 		<div class="section-body">
 			<div class="card">
-				<?= $this->session->flashdata('pesan'); ?>
-				<div class="card-header">
+				<div class="card-body">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
 				</div>
 				<div class="card-body">
+					<?= $this->session->flashdata('pesan'); ?>
+					<div class="alert alert-light alert-has-icon">
+						<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+						<div class="alert-body">
+							<div class="alert-title">Penjelasan : </div>
+							alternatif adalah ...
+						</div>
+					</div>
 					<div class="table-responsive">
 						<table class="table table-hover table-striped table-bordered">
 							<tr>
@@ -64,7 +71,7 @@
 						</div>
 						<div class="form-group">
 							<label>Detail</label>
-							<textarea name="detail" class="form-control" ><?= set_value('detail'); ?></textarea>
+							<textarea name="detail" class="form-control"><?= set_value('detail'); ?></textarea>
 							<?= form_error('detail', '<div class="text-danger small">', '</div>'); ?>
 						</div>
 					</div>

@@ -3,7 +3,7 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Hasil Perhitungan SPK</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
@@ -170,7 +170,6 @@
 									<th>Nilai Profile Matching</th>
 								</tr>
 								<?php
-								$count = 1;
 								// arsort($hasil->total_aspek);
 								// arsort($hasil->cf_aspek);
 								// echo '$array1 : <pre>' . print_r($hasil->total_aspek, true) . '</pre>';
@@ -178,38 +177,27 @@
 								foreach ($hasil->total_aspek as $key => $value) {
 									$combine[$key] = $hasil->cf_aspek[$key];
 									array_push($combine[$key], $hasil->total_aspek[$key]);
-									// array_push($hasil->cf_aspek[$key], $hasil->total_aspek[$key]);									
-									// echo '
-									// <tr>
-									// <td>' . $count . '</td>
-									// <td>' . $nama[$key]->nama_alternatif . '</td>
-									// <td>' . $key . ' - ' . number_format($value, 2) . '</td>
-									// </tr>
-									// ';
-									$count++;
 								}
-								$count2 = 1;
-								$keys = array_keys($combine);
-								$sort = array();
-								foreach ($combine as $key2 => $value2) {
-									$sort['0'][$key2] = $value2['0'];
-									$sort['1'][$key2] = $value2['1'];
-									$sort['2'][$key2] = $value2['2'];
-									$sort['3'][$key2] = $value2['3'];
-								}
-								array_multisort($sort['3'], SORT_DESC, $sort['2'], SORT_DESC, $sort['0'], SORT_DESC, $sort['1'], SORT_DESC, $combine, $keys);
+								$count = 1;
+								// echo '$combine : <pre>' . print_r($combine, true) . '</pre>';
+								$keys 			= array_keys($combine);
+								$nilai 			= array_column($combine, 3);
+								$kadaramilosa 	= array_column($combine, 2);
+								$harga 			= array_column($combine, 1);
+								$tinggi 		= array_column($combine, 0);
+								array_multisort($nilai, SORT_DESC, $kadaramilosa, SORT_DESC, $harga, SORT_DESC, $tinggi, SORT_DESC, $combine, $keys);
 								$hasilakhir = array_combine($keys, $combine);
 								// echo '$hasilakhir : <pre>' . print_r($hasilakhir, true) . '</pre>';
 								// die();
 								foreach ($hasilakhir as $key3 => $value3) {
 									echo '									
 									<tr>
-									<td>' . $count2 . '</td>
+									<td>' . $count . '</td>
 									<td>' . $nama[$key3]->nama_alternatif . '</td>
 									<td>' . number_format($hasil->total_aspek[$key3], 2) . '</td>
 									</tr>
 									';
-									$count2++;
+									$count++;
 								}
 								?>
 							</table>

@@ -3,9 +3,16 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Judul Halaman</h1>
+			<h1>Halaman Perhitungan</h1>
 		</div>
 		<!-- End Header -->
+		<div class="alert alert-light alert-has-icon">
+			<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+			<div class="alert-body">
+				<div class="alert-title">Penjelasan : </div>
+				adalah ...
+			</div>
+		</div>
 		<?= $this->session->flashdata('pesan'); ?>
 		<div class="section-body">
 			<div class="card">
