@@ -7,18 +7,16 @@ class Auth extends CI_Controller
     public function index()
     {
         $this->load->view('template/header');
-        $this->load->view('v_users/v_login.php');
+        $this->load->view('v_login.php');
         $this->load->view('template/footer');
     }
     function aksi_login()
     {
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $level = $this->input->post('level');
+        $password = $this->input->post('password');        
         $where = array(
             'username' => $username,
-            'password' => md5($password),
-            'level' => $level,
+            'password' => md5($password),            
         );
         $cek = $this->m_data->edit_data($where, "users")->num_rows();
         if ($cek > 0) {

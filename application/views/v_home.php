@@ -10,7 +10,7 @@
 		<div class="section-body">
 			<div class="hero align-items-center bg-success text-white">
 				<div class="hero-inner text-center">
-					<h3>Hai, <b><?php echo $this->session->userdata("nama"); ?></b></h3>
+					<h3>Hai, <?php echo $this->session->userdata("nama"); ?></h3>
 					<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium iste.</p>
 					<div class="mt-4">
 						<a href="<?php echo base_url('auth/logout'); ?>" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<h2 class="section-title">Judul Skripsi</h2>
-			<p class="section-lead">This page is just an example for you to create your own page.</p>
+			<p class="section-lead">Sistem Pendukung Keputusan Menentukan Bibit Padi Terbaik Menggunakan Metode Gap Pada Kelompok Tani Desa Soropadan</p>
 			<!-- End Body -->
 			<div class="card">
 				<div class="card-header">

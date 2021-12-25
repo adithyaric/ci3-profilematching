@@ -2,8 +2,6 @@
 
 class Kriteria extends CI_Controller
 {
-
-    // "global" items
     var $data;
     protected $view = 'v_kriteria/'; //Nama Folder view
     protected $table = 'kriteria'; //Nama Table
@@ -53,8 +51,7 @@ class Kriteria extends CI_Controller
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
+        $this->load->view('template/footer');        
     }
 
     //Hapus Data

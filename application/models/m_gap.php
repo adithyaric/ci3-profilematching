@@ -15,11 +15,6 @@ class M_Gap extends CI_Model
 
 	public function hitung($hitungid, $data)
 	{
-		// echo ' <pre> hitung($data) :' . print_r($hitungid, true) . '</pre>';		
-		// echo ' <pre> sub_kriteria_list :' . print_r($data['sub_kriteria_list'], true) . '</pre>';
-		// echo ' <pre> jenis_list :' . print_r($data['jenis_list'], true) . '</pre>';
-		// echo ' <pre> cf :' . print_r($data['cf'], true) . '</pre>';
-		// echo ' <pre> sf :' . print_r($data['sf'], true) . '</pre>';
 		// $users =  $hitungid;
 		$alt_aspek = [];
 		foreach ($hitungid as $user) {
@@ -27,7 +22,6 @@ class M_Gap extends CI_Model
 			$nilai = explode(',', $nilai);
 			array_push($alt_aspek, $nilai);
 		}
-		// echo '<pre> $alt_aspek :' . print_r($alt_aspek, true) . '</pre>';
 		$hasil = $this->gap($alt_aspek, $data);
 		return $hasil;
 	}
@@ -47,12 +41,8 @@ class M_Gap extends CI_Model
 			'cf' => $data['cf'] / 100, //60%
 			'sf' => $data['sf'] / 100, //40%
 		];
-		//echo '<pre> aspek_nilai = ' . print_r($aspek, true) . '</pre>';
-		$aspek_nilai = $data['sub_kriteria_list']; //Nilai Target 
-		//echo '<pre> aspek_nilai = ' . print_r($aspek_nilai, true) . '</pre>';
+		$aspek_nilai = $data['sub_kriteria_list']; //Nilai Target 		
 		$aspek_tipe = $data['jenis_list']; //Jenis Kriteria 
-		//echo '<pre> aspek_tipe =' . print_r($aspek_tipe, true) . '</pre>';				
-		// echo '<pre> alt_aspek =' . print_r($alt_aspek, true) . '</pre>';		
 		$gap_aspek = [];
 		$bobot_aspek = [];
 
@@ -63,27 +53,32 @@ class M_Gap extends CI_Model
 			foreach ($value as $key2 => $value2) {
 				$gap_aspek[$key][$key2] = $alt_aspek[$key][$key2] - $aspek_nilai[$key2]; //Selisih
 				$bobot_aspek[$key][$key2] = $this->hitung_bobot($gap_aspek[$key][$key2]);
-				// echo '$cf_aspek[$key]: <pre>' . print_r($cf_aspek[$key], true) . '</pre>';				
 				if ($aspek_tipe[$key2] == 'core')
 					array_push($cf_aspek[$key], $bobot_aspek[$key][$key2]);
 				else
 					array_push($sf_aspek[$key], $bobot_aspek[$key][$key2]);
 			}
 		}
-		// arsort($cf_aspek);
-		// echo '<pre> cf_aspek =' . print_r($cf_aspek, true) . '</pre>';	
 		// Menghitung Nilai Total aspek
 		foreach ($alt_aspek as $key => $value) {
-			// echo '$cf_aspek[$key]: <pre>' . print_r($cf_aspek[$key], true) . '</pre>';
-			// echo '$sf_aspek[$key]: <pre>' . print_r($sf_aspek[$key], true) . '</pre>';
 			$ncf_aspek[$key] = array_sum($cf_aspek[$key]) / count($cf_aspek[$key]);
 			$nsf_aspek[$key] = array_sum($sf_aspek[$key]) / count($sf_aspek[$key]);
-			//echo '$ncf_aspek[$key]: <pre>' . print_r($ncf_aspek[$key], true) . '</pre>';
-			//echo '$nsf_aspek[$key]: <pre>' . print_r($nsf_aspek[$key], true) . '</pre>';
 			$total_aspek[$key] = $aspek->cf * $ncf_aspek[$key] + $aspek->sf * $nsf_aspek[$key];
-			//echo '$total_aspek[$key]: <pre>' . print_r($total_aspek[$key], true) . '</pre>';
 		}
-						
+
+		foreach ($total_aspek as $key => $value) {
+			$combine[$key] = $cf_aspek[$key];
+			array_push($combine[$key], $total_aspek[$key]);
+		}
+		$keys 			= array_keys($combine); //Ambil index per-baris
+		//Ambil index per-kolom
+		$nilai 			= array_column($combine, 3); 
+		$kadaramilosa 	= array_column($combine, 2);
+		$harga 			= array_column($combine, 1);
+		$tinggi 		= array_column($combine, 0);
+		array_multisort($nilai, SORT_DESC, $kadaramilosa, SORT_DESC, $harga, SORT_DESC, $tinggi, SORT_DESC, $combine, $keys);
+		$hasilakhir = array_combine($keys, $combine); //array multidimensional [baris, kolom]
+
 		$hasil = (object)[
 			'gap_aspek' 			=> $gap_aspek,		//Selisih (Gap)
 			'bobot_aspek' 			=> $bobot_aspek, 	//Nilai Gap (Bobot Gap)
@@ -97,18 +92,9 @@ class M_Gap extends CI_Model
 			'bobot_nilai'			=> $this->bobot_nilai,
 			'keterangan'			=> $this->keterangan,
 			'cf'					=> $aspek->cf,
-			'sf'					=> $aspek->sf,			
+			'sf'					=> $aspek->sf,
+			'hasilakhir'			=> $hasilakhir,
 		];
-		// echo '<hr> Hasil alt_aspek 	: <pre>' . print_r($hasil->alt_aspek, true) . '</pre>';
-		// echo '<hr> Hasil aspek_nilai : <pre>' . print_r($hasil->aspek_nilai, true) . '</pre>';
-		// echo '<hr> Hasil gap_aspek 	: <pre>' . print_r($hasil->gap_aspek, true) . '</pre>';
-		// echo '<hr> Hasil bobot_aspek : <pre>' . print_r($hasil->bobot_aspek, true) . '</pre>';
-		// echo '<hr> Hasil ncf_aspek 	: <pre>' . print_r($hasil->ncf_aspek, true) . '</pre>';
-		// echo '<hr> Hasil nsf_aspek 	: <pre>' . print_r($hasil->nsf_aspek, true) . '</pre>';
-		//echo '<hr> Hasil total_aspek 	: <pre>' . print_r($hasil->total_aspek, true) . '</pre>';
-		// echo '<hr> CF 				: <pre>' . print_r($hasil->cf, true) . '</pre>';
-		// echo '<hr> SF 				: <pre>' . print_r($hasil->sf, true) . '</pre>';
-
 		return $hasil;
 	}
 }

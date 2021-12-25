@@ -2,8 +2,6 @@
 
 class Nilai extends CI_Controller
 {
-
-    // "global" items
     var $data;
     protected $view = 'v_nilai/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
@@ -29,12 +27,10 @@ class Nilai extends CI_Controller
             );
             redirect(base_url('auth'));
         }
-        $id_alternatif = $this->input->post('id_alternatif');
-        $id_subkriteria = $this->input->post('id_subkriteria');
 
+        $nama = $this->input->post('nama');
         $this->data = array(
-            'id_alternatif' => $id_alternatif,
-            'id_subkriteria' => $id_subkriteria
+            'nama_alternatif' => $nama
         );
     }
 
@@ -67,7 +63,19 @@ class Nilai extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';        
+    }
+
+    //Tampil Data
+    function tambah()
+    {
+        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
+        $getdata['aksi'] = $this->home;
+
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view($this->view . 'v_input', $getdata);
+        $this->load->view('template/footer');
     }
 
     //Hapus Data
@@ -75,6 +83,7 @@ class Nilai extends CI_Controller
     {
         $this->setWhere($id);
         $this->m_data->hapus_data($this->where, $this->table);
+        $this->m_data->hapus_data($this->where, 'alternatif');
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-danger alert-dismissible show fade">
@@ -92,7 +101,7 @@ class Nilai extends CI_Controller
     //Input Data  
     function tambah_aksi()
     {
-        $cek = $this->db->get_where('nilai_alternatif', array('id_alternatif' => $this->input->post('id_alternatif')));
+        $cek = $this->db->get_where('alternatif', array('nama_alternatif' => $this->input->post('nama')));
         if ($cek->num_rows() != 0) {
             $this->session->set_flashdata(
                 'pesan',
@@ -106,15 +115,19 @@ class Nilai extends CI_Controller
                 </div>'
             );
             redirect($this->home);
-        }             
+        }
+        $dataalter = $this->data;
+        $this->m_data->input_data(
+            $dataalter,
+            'alternatif'
+        );
+        $newUserID = $this->db->insert_id();
         $sub_kriteria_list = $this->input->post('sub_kriteria');
-        echo 'sub_kriteria_list : <pre>' . print_r($sub_kriteria_list, true) . '</pre>';
         foreach ($sub_kriteria_list as $id_subkriteria) {
             $data = array(
-                'id_alternatif' => $this->input->post('id_alternatif'),
+                'id_alternatif' => $newUserID,
                 'id_subkriteria' => $id_subkriteria
             );
-            //echo '<pre>' . print_r($data, true) . '</pre>';
             $this->m_data->input_data($data, $this->table);
         }
         $this->session->set_flashdata(
@@ -131,22 +144,6 @@ class Nilai extends CI_Controller
         redirect($this->home);
     }
 
-    //Detail Data
-    function detail($id)
-    {
-        $this->setWhere($id);
-        $getdata[$this->table] = $this->m_data->edit_data($this->where, $this->table)->result();
-        $getdata['alternatif'] = $this->m_data->edit_data($this->where, 'alternatif')->result();
-        $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
-        $getdata['aksi'] = $this->home;
-
-        $this->load->view('template/header');
-        $this->load->view('template/navbar');
-        $this->load->view('template/sidebar');
-        $this->load->view($this->view . 'v_detail', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
-    }
     //Edit Data
     function edit($id)
     {
@@ -161,23 +158,24 @@ class Nilai extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_edit', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
     }
 
     function edit_aksi()
     {
         //Update data attribut
+        $id_alternatif = $this->input->post('id');
+        $this->setWhere($id_alternatif);
+        $data = $this->data;
+        $this->m_data->update_data($this->where, $data, 'alternatif');
         $id_nilai = $this->input->post('id_nilai');
-
         $result = array();
         foreach ($id_nilai as $key => $val) {
             $result[] = array(
-                "id_nilai" => $id_nilai[$key],
-                "id_alternatif"  => $_POST['id_alternatif'][$key],
-                "id_subkriteria"  => $_POST['sub_kriteria'][$key]
+                "id_nilai"          => $id_nilai[$key],
+                "id_alternatif"     => $_POST['id_alternatif'][$key],
+                "id_subkriteria"    => $_POST['sub_kriteria'][$key]
             );
         }
-        //echo ' <pre> getdata = ' . print_r($result, true) . '</pre>';        
         $this->db->update_batch('nilai_alternatif', $result, 'id_nilai');
         $this->session->set_flashdata(
             'pesan',

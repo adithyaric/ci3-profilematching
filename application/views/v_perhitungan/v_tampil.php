@@ -170,26 +170,8 @@
 									<th>Nilai Profile Matching</th>
 								</tr>
 								<?php
-								// arsort($hasil->total_aspek);
-								// arsort($hasil->cf_aspek);
-								// echo '$array1 : <pre>' . print_r($hasil->total_aspek, true) . '</pre>';
-								// echo '$array2 : <pre>' . print_r($hasil->cf_aspek, true) . '</pre>';
-								foreach ($hasil->total_aspek as $key => $value) {
-									$combine[$key] = $hasil->cf_aspek[$key];
-									array_push($combine[$key], $hasil->total_aspek[$key]);
-								}
 								$count = 1;
-								// echo '$combine : <pre>' . print_r($combine, true) . '</pre>';
-								$keys 			= array_keys($combine);
-								$nilai 			= array_column($combine, 3);
-								$kadaramilosa 	= array_column($combine, 2);
-								$harga 			= array_column($combine, 1);
-								$tinggi 		= array_column($combine, 0);
-								array_multisort($nilai, SORT_DESC, $kadaramilosa, SORT_DESC, $harga, SORT_DESC, $tinggi, SORT_DESC, $combine, $keys);
-								$hasilakhir = array_combine($keys, $combine);
-								// echo '$hasilakhir : <pre>' . print_r($hasilakhir, true) . '</pre>';
-								// die();
-								foreach ($hasilakhir as $key3 => $value3) {
+								foreach ($hasil->hasilakhir as $key3 => $value3) {
 									echo '									
 									<tr>
 									<td>' . $count . '</td>

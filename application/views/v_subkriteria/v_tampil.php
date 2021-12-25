@@ -44,9 +44,9 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
-							<td><input type="button" class="btn btn-warning" value="Add Row" onclick="addRows()" /></td>
-							<td><input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRows()" /></td>
-							<td><input type="submit" class="btn btn-primary" value="Submit" /></td>
+							<td><input type="button" class="btn btn-warning" value="Tambah baris" onclick="addRows()" /></td>
+							<td><input type="button" class="btn btn-danger" value="Hapus baris" onclick="deleteRows()" /></td>
+							<td><input type="submit" class="btn btn-primary" value="Tambah" /></td>
 						</tr>
 					</table>
 				</div>

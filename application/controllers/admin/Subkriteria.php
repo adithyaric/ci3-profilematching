@@ -2,8 +2,6 @@
 
 class Subkriteria extends CI_Controller
 {
-
-    // "global" items
     var $data;
     protected $view = 'v_subkriteria/'; //Nama Folder view
     protected $table = 'sub_kriteria'; //Nama Table
@@ -67,8 +65,7 @@ class Subkriteria extends CI_Controller
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
+        $this->load->view('template/footer');        
     }
     //Tampil Data
     function detail($id)
@@ -82,8 +79,7 @@ class Subkriteria extends CI_Controller
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_detail', $getdata);
-        $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
+        $this->load->view('template/footer');        
     }
 
     //Hapus Data

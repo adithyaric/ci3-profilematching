@@ -17,9 +17,10 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
-							<th>Alternatif</th>
+							<th>Nama Alternatif</th>
 							<td colspan="2">
-								<?= $x->nama_alternatif; ?>
+								<input type="hidden" name="id" value="<?= $x->id_alternatif; ?>">
+								<input type="text" class="form-control" name="nama" value="<?= $x->nama_alternatif; ?>" placeholder="Nama Alternatif" required>
 							</td>
 						</tr>
 						<tr>

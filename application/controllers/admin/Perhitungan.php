@@ -2,8 +2,6 @@
 
 class Perhitungan extends CI_Controller
 {
-
-    // "global" items
     var $data;
     protected $view = 'v_perhitungan/'; //Nama Folder view
     protected $table = 'nilai_alternatif'; //Nama Table
@@ -64,7 +62,6 @@ class Perhitungan extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_input', $getdata);
         $this->load->view('template/footer');
-        //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
     }
 
     function hasil()
@@ -75,7 +72,6 @@ class Perhitungan extends CI_Controller
         $data['sf'] = $this->input->post('sf');
         $maxPercentage = 100;
         $totalPercentage = $data['cf'] + $data['sf'];
-        //echo ' <pre> data = ' . print_r($data, true) . '</pre>';
 
         if ($totalPercentage == NULL) {
             $this->session->set_flashdata(
@@ -120,7 +116,7 @@ class Perhitungan extends CI_Controller
             redirect(base_url('admin/perhitungan'));
         } else {
             $hitungnilai = $this->m_data->hitungid();
-            if($hitungnilai == NULL){
+            if ($hitungnilai == NULL) {
                 $this->session->set_flashdata(
                     'pesan',
                     '<div class="alert alert-danger alert-dismissible show fade">
@@ -136,8 +132,6 @@ class Perhitungan extends CI_Controller
                 redirect(base_url('admin/perhitungan'));
             }
             $getdata['hasil'] = $this->m_gap->hitung($hitungnilai, $data);
-            //echo ' <pre> hitungid = ' . print_r($hitungnilai, true) . '</pre>';
-
             $getdata['nama'] = $this->m_data->joinGroupNamaNilai();
             $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
             $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif', 'id_alternatif', 'asc');
@@ -147,7 +141,6 @@ class Perhitungan extends CI_Controller
             $this->load->view('template/sidebar');
             $this->load->view($this->view . 'v_tampil', $getdata);
             $this->load->view('template/footer');
-            //echo ' <pre> getdata = ' . print_r($getdata, true) . '</pre>';
         }
     }
 }

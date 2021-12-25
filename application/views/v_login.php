@@ -14,7 +14,7 @@
                                     <label for="username">Username</label>
                                     <input id="username" type="username" class="form-control" name="username" tabindex="1" required autofocus>
                                     <div class="invalid-feedback">
-                                        Please fill in your Username
+                                        Tolong isi Username
                                     </div>
                                 </div>
 
@@ -24,16 +24,8 @@
                                     </div>
                                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                                     <div class="invalid-feedback">
-                                        please fill in your password
+                                        Tolong isi password
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="level">Level</label>
-                                    <select name="level" id="" class="form-control" tabindex="3">
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                    </select>
                                 </div>
 
                                 <div class="form-group">
