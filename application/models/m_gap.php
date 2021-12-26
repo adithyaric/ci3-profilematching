@@ -14,8 +14,7 @@ class M_Gap extends CI_Model
 	];
 
 	public function hitung($hitungid, $data)
-	{
-		// $users =  $hitungid;
+	{		
 		$alt_aspek = [];
 		foreach ($hitungid as $user) {
 			$nilai = $user->nilai;
@@ -70,6 +69,7 @@ class M_Gap extends CI_Model
 			$combine[$key] = $cf_aspek[$key];
 			array_push($combine[$key], $total_aspek[$key]);
 		}
+				
 		$keys 			= array_keys($combine); //Ambil index per-baris
 		//Ambil index per-kolom
 		$nilai 			= array_column($combine, 3); 

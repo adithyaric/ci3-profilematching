@@ -37,7 +37,7 @@
 									<td><?php echo $k->nama_kriteria ?></td>
 									<td><?php echo $k->jenis_kriteria ?></td>
 									<td>
-										<a href="<?php echo base_url()  . 'admin/subkriteria/detail/' . $k->id_kriteria; ?>" class="btn btn-sm btn-primary">Detail <i class="fa fa-info"></i></a>
+										<a href="<?php echo base_url()  . 'admin/bobotkriteria/detail/' . $k->id_kriteria; ?>" class="btn btn-sm btn-primary">Detail <i class="fa fa-info"></i></a>
 										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $k->id_kriteria; ?>" data-name="<?= $k->nama_kriteria; ?>" data-jenis="<?= $k->jenis_kriteria; ?>">Edit <i class="fa fa-edit"></i></a>
 										<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $k->id_kriteria) ?>')" href="#" class="btn btn-sm btn-danger">Hapus <i class="fa fa-trash"></i></a>
 									</td>

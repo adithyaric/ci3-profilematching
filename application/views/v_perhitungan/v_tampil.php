@@ -10,7 +10,7 @@
 			<div class="card">
 				<div class="card-body">
 					<?php if (isset($hasil)) : ?>
-						<!--  -->
+						<!-- Detail -->
 						<details>
 							<summary class="btn btn-primary">Perhitungan <i class="fa fa-calculator"></i></summary>
 							<div class="table-responsive">
@@ -35,10 +35,10 @@
 										<td>' . $count . '</td>
 										<td>' . $value->nama_alternatif . '</td>';
 											foreach ($nilai_alternatif as $key => $value) {
-												$where2 = array('id_subkriteria ' => $value->id_subkriteria);
-												$sub_kriteria  = $this->m_data->edit_data($where2, 'sub_kriteria')->result();
-												foreach ($sub_kriteria as $s) :
-													echo '<td>' . $s->nama_subkriteria . '</td>';
+												$where2 = array('id_bobotkriteria ' => $value->id_bobotkriteria);
+												$bobot_kriteria  = $this->m_data->edit_data($where2, 'bobot_kriteria')->result();
+												foreach ($bobot_kriteria as $s) :
+													echo '<td>' . $s->nama_bobotkriteria . '</td>';
 												endforeach;
 											}
 											echo '</tr>';
@@ -134,9 +134,6 @@
 													?>
 												</td>
 											<?php endforeach; ?>
-											<th>CF <?php echo $hasil->cf * 100; ?>%</th>
-											<th>SF <?php echo $hasil->sf * 100; ?>%</th>
-											<th>Hasil Akhir</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -150,6 +147,31 @@
 												echo '<td>' . $value[$i] . '</td>';
 											}
 											echo '
+									</tr>';
+											$count++;
+										endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-hover table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>No</td>
+											<td>Nama</td>
+											<th>CF <?php echo $hasil->cf * 100; ?>%</th>
+											<th>SF <?php echo $hasil->sf * 100; ?>%</th>
+											<th>Hasil Akhir</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $count = 1;
+										foreach ($hasil->bobot_aspek as $key => $value) :
+											echo '
+									<tr>
+										<td>' . $count . '</td>
+										<td>' . $nama[$key]->nama_alternatif . '</td>';
+											echo '
 										<td>' . number_format($hasil->ncf_aspek[$key], 2) . '</td>
 										<td>' . number_format($hasil->nsf_aspek[$key], 2) . '</td>
 										<td>' . number_format($hasil->total_aspek[$key], 2) . '</td>
@@ -160,23 +182,23 @@
 								</table>
 							</div>
 						</details>
-						<!--  -->
+						<!-- End of Detail -->
 						<center>Hasil Analisa Menggunakan Sistem Pendukung Keputusan (SPK) Metode Profile Matching</center>
 						<div class="table-responsive">
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
-									<th>Rangking</th>
 									<th>Nama</th>
 									<th>Nilai Profile Matching</th>
+									<th>Rangking</th>
 								</tr>
 								<?php
 								$count = 1;
 								foreach ($hasil->hasilakhir as $key3 => $value3) {
 									echo '									
 									<tr>
-									<td>' . $count . '</td>
 									<td>' . $nama[$key3]->nama_alternatif . '</td>
 									<td>' . number_format($hasil->total_aspek[$key3], 2) . '</td>
+									<td>' . $count . '</td>
 									</tr>
 									';
 									$count++;

@@ -12,7 +12,7 @@
             <!-- Main Menu -->
             <li class=""><a class="nav-link" href="<?= base_url() . 'home'; ?>"> <i class="fas fa-home"></i> <span>Home</span></a></li>
             <li class=""><a class="nav-link" href="<?= base_url() . 'kriteria'; ?>"> <i class="fas fa-tag"></i> <span>Kriteria</span></a></li>
-            <li class=""><a class="nav-link" href="<?= base_url() . 'subkriteria'; ?>"> <i class="fas fa-tags"></i> <span>Sub Kriteria</span></a></li>
+            <li class=""><a class="nav-link" href="<?= base_url() . 'bobotkriteria'; ?>"> <i class="fas fa-tags"></i> <span>Bobot Kriteria</span></a></li>
             <li class=""><a class="nav-link" href="<?= base_url() . 'nilai'; ?>"> <i class="fas fa-leaf"></i> <span>Nilai Profil Alternatif</span></a></li>
             <li class=""><a class="nav-link" href="<?= base_url() . 'perhitungan'; ?>"> <i class="fas fa-clipboard-list"></i> <span>Perhitungan</span></a></li>
             <!-- End Main Menu -->

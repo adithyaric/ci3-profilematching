@@ -3,7 +3,7 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Halaman Sub kriteria</h1>
+			<h1>Halaman Bobot kriteria</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
@@ -11,7 +11,7 @@
 				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 				<div class="alert-body">
 					<div class="alert-title">Penjelasan : </div>
-					Sub kriteria adalah ...
+					Bobot kriteria adalah ...
 				</div>
 			</div>
 			<form action="<?php echo base_url() . $aksi . '/tambah_aksi'; ?>" method="post">
@@ -19,7 +19,7 @@
 					<table id="emptbl" class="table table-hover table-striped table-bordered">
 						<tr>
 							<th>Kriteria</th>
-							<th>Nama Sub kriteria</th>
+							<th>Nama Bobot kriteria</th>
 							<th>Nilai</th>
 						</tr>
 						<tr>
@@ -60,13 +60,13 @@
 							<tr>
 								<th>No</th>
 								<th>Kriteria</th>
-								<th>Nama Sub Kriteria</th>
+								<th>Nama Bobot Kriteria</th>
 								<th>Nilai</th>
 								<th>Action</th>
 							</tr>
 							<?php
 							$no = 1;
-							foreach ($sub_kriteria as $s) {
+							foreach ($bobot_kriteria as $s) {
 							?>
 								<tr>
 									<td><?= $no++ ?></td>
@@ -74,13 +74,13 @@
 										<?= $s->nama_kriteria ?>
 									</td>
 									<td>
-										<input type="text" class="form-control" value="<?= $s->nama_subkriteria ?>" disabled>
+										<input type="text" class="form-control" value="<?= $s->nama_bobotkriteria ?>" disabled>
 									</td>
 									<td><?= $s->nilai ?></td>
 									<td>
-										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $s->id_subkriteria; ?>" data-name="<?= $s->nama_subkriteria; ?>" data-nilai="<?= $s->nilai; ?>" data-kriteria="<?= $s->id_kriteria ?>">
+										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $s->id_bobotkriteria; ?>" data-name="<?= $s->nama_bobotkriteria; ?>" data-nilai="<?= $s->nilai; ?>" data-kriteria="<?= $s->id_kriteria ?>">
 											Edit <i class="fa fa-edit"></i></a>
-										<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $s->id_subkriteria) ?>')" href="#" class="btn btn-sm btn-danger">Hapus <i class="fa fa-trash"></i></a>
+										<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $s->id_bobotkriteria) ?>')" href="#" class="btn btn-sm btn-danger">Hapus <i class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -96,7 +96,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Sub Kriteria</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Edit Bobot Kriteria</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -111,7 +111,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Nama Sub Kriteria</label>
+							<label>Nama Bobot Kriteria</label>
 							<input type="text" class="form-control nama" name="nama" required>
 						</div>
 						<div class="form-group">

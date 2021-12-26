@@ -51,7 +51,7 @@ class Nilai extends CI_Controller
     function index()
     {
         $getdata['setJoinKriteria'] = array(
-            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
+            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = bobot_kriteria.id_kriteria')
         );
         $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
@@ -122,11 +122,11 @@ class Nilai extends CI_Controller
             'alternatif'
         );
         $newUserID = $this->db->insert_id();
-        $sub_kriteria_list = $this->input->post('sub_kriteria');
-        foreach ($sub_kriteria_list as $id_subkriteria) {
+        $sub_kriteria_list = $this->input->post('bobot_kriteria');
+        foreach ($sub_kriteria_list as $id_bobotkriteria) {
             $data = array(
                 'id_alternatif' => $newUserID,
-                'id_subkriteria' => $id_subkriteria
+                'id_bobotkriteria' => $id_bobotkriteria
             );
             $this->m_data->input_data($data, $this->table);
         }
@@ -173,7 +173,7 @@ class Nilai extends CI_Controller
             $result[] = array(
                 "id_nilai"          => $id_nilai[$key],
                 "id_alternatif"     => $_POST['id_alternatif'][$key],
-                "id_subkriteria"    => $_POST['sub_kriteria'][$key]
+                "id_bobotkriteria"    => $_POST['bobot_kriteria'][$key]
             );
         }
         $this->db->update_batch('nilai_alternatif', $result, 'id_nilai');

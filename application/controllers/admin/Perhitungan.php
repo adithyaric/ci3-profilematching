@@ -29,11 +29,11 @@ class Perhitungan extends CI_Controller
         }
         $this->load->model('m_gap');
         $id_alternatif = $this->input->post('id_alternatif');
-        $id_subkriteria = $this->input->post('id_subkriteria');
+        $id_bobotkriteria = $this->input->post('id_bobotkriteria');
 
         $this->data = array(
             'id_alternatif' => $id_alternatif,
-            'id_subkriteria' => $id_subkriteria
+            'id_bobotkriteria' => $id_bobotkriteria
         );
     }
 
@@ -66,7 +66,7 @@ class Perhitungan extends CI_Controller
 
     function hasil()
     {
-        $data['sub_kriteria_list'] = $this->input->post('sub_kriteria');
+        $data['sub_kriteria_list'] = $this->input->post('bobot_kriteria');
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
         $data['cf'] = $this->input->post('cf');
         $data['sf'] = $this->input->post('sf');

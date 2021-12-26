@@ -13,29 +13,29 @@
                         <tr>
                             <th>Nama Alternatif</th>
                             <td>
-                                <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>" placeholder="Nama Alternatif" required>                                
+                                <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>" placeholder="Nama Alternatif" required>
                             </td>
                         </tr>
                         <tr>
                             <th>Kriteria</th>
-                            <th>Nama Subkriteria</th>
+                            <th>Nama bobotkriteria</th>
                         </tr>
                         <?php foreach ($kriteria as $key) :
                             $where = array('id_kriteria' => $key->id_kriteria);
-                            $sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
-                            if ($sub_kriteria != NULL) : ?>
+                            $bobot_kriteria = $this->m_data->edit_data($where, 'bobot_kriteria')->result();
+                            if ($bobot_kriteria != NULL) : ?>
                                 <input type="text" name="id_kriteria[]" value="<?= $key->id_kriteria ?>" hidden>
                                 <tr>
                                     <td>
                                         <label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
                                     </td>
                                     <td>
-                                        <select name="sub_kriteria[]" id="" class=" form-control" required>
+                                        <select name="bobot_kriteria[]" id="" class=" form-control" required>
                                             <option value=""> --- Pilih --- </option>
-                                            <?php foreach ($sub_kriteria as $s) : ?>
-                                                <option value="<?= $s->id_subkriteria ?>">
+                                            <?php foreach ($bobot_kriteria as $s) : ?>
+                                                <option value="<?= $s->id_bobotkriteria ?>">
                                                     <?= ' | Nilai : ' . $s->nilai . ' | '; ?>
-                                                    <?= $s->nama_subkriteria; ?>
+                                                    <?= $s->nama_bobotkriteria; ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>

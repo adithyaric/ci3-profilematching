@@ -6,9 +6,9 @@
 
 - [x] Rules wajib di-isi
 - [x] Rules Data duplikasi
-- [ ] Data Tables
-- [ ] Tampilan textarea
-- [ ] Subkriteria belum ada di Nilai profil alternatif
+- [x] Data Tables
+- [x] Tampilan textarea
+- [x] Subkriteria belum ada di Nilai profil alternatif
 - [x] Alternatif
 - [x] Kriteria
 - [x] Sub Kriteria

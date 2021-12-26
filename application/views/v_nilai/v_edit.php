@@ -25,24 +25,24 @@
 						</tr>
 						<tr>
 							<th>Kriteria</th>
-							<th>Nama Subkriteria</th>
+							<th>Nama bobotkriteria</th>
 						</tr>
 						<?php
 						foreach ($nilai_alternatif as $index => $value) :
-							$where1 = array('id_subkriteria ' => $value->id_subkriteria);
-							$sub_kriteria1  = $this->m_data->edit_data($where1, 'sub_kriteria')->result();
+							$where1 = array('id_bobotkriteria ' => $value->id_bobotkriteria);
+							$sub_kriteria1  = $this->m_data->edit_data($where1, 'bobot_kriteria')->result();
 							$where2 = array('id_kriteria' => $kriteria[$index]->id_kriteria);
-							$sub_kriteria2 = $this->m_data->edit_data($where2, 'sub_kriteria')->result();
+							$sub_kriteria2 = $this->m_data->edit_data($where2, 'bobot_kriteria')->result();
 							foreach ($sub_kriteria1 as $s1) :
 						?>
 								<tr>
 									<td><?php echo $kriteria[$index]->nama_kriteria; ?></td>
 									<td>
-										<select name="sub_kriteria[]" class="form-control" id="" required>
+										<select name="bobot_kriteria[]" class="form-control" id="" required>
 											<?php foreach ($sub_kriteria2 as $s2) : ?>
-												<option <?php if ($s1->id_subkriteria == $s2->id_subkriteria) echo "selected"; ?> value="<?php echo $s2->id_subkriteria; ?>">
+												<option <?php if ($s1->id_bobotkriteria == $s2->id_bobotkriteria) echo "selected"; ?> value="<?php echo $s2->id_bobotkriteria; ?>">
 													<?= ' | Nilai : ' . $s2->nilai . ' | '; ?>
-													<?= $s2->nama_subkriteria . ' | '; ?>
+													<?= $s2->nama_bobotkriteria . ' | '; ?>
 												</option>
 											<?php endforeach; ?>
 										</select>

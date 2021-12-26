@@ -1,13 +1,13 @@
 <?php
 
-class Subkriteria extends CI_Controller
+class Bobotkriteria extends CI_Controller
 {
     var $data;
-    protected $view = 'v_subkriteria/'; //Nama Folder view
-    protected $table = 'sub_kriteria'; //Nama Table
-    protected $pk = 'id_subkriteria'; //Primary Key Table
-    protected $home = 'admin/subkriteria'; //Redirect
-    protected $orderby = 'sub_kriteria.id_kriteria, sub_kriteria.nilai';
+    protected $view = 'v_bobotkriteria/'; //Nama Folder view
+    protected $table = 'bobot_kriteria'; //Nama Table
+    protected $pk = 'id_bobotkriteria'; //Primary Key Table
+    protected $home = 'admin/bobotkriteria'; //Redirect
+    protected $orderby = 'bobot_kriteria.id_kriteria, bobot_kriteria.nilai';
     protected $sort = 'asc';
 
     function __construct()
@@ -32,7 +32,7 @@ class Subkriteria extends CI_Controller
         $nilai = $this->input->post('nilai');
 
         $this->data = array(
-            'nama_subkriteria' => $nama,
+            'nama_bobotkriteria' => $nama,
             'id_kriteria' => $id_kriteria,
             'nilai' => $nilai
         );
@@ -55,7 +55,7 @@ class Subkriteria extends CI_Controller
     function index()
     {
         $data = array(
-            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = sub_kriteria.id_kriteria')
+            $this->setDataJoin('kriteria', 'kriteria.id_kriteria = bobot_kriteria.id_kriteria')
         );
         $getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
         $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
@@ -107,10 +107,10 @@ class Subkriteria extends CI_Controller
         $nama = $this->input->post('nama');
         foreach ($nama as $key => $namaSub) {
             $data = array(
-                'nama_subkriteria' => $namaSub,                
+                'nama_bobotkriteria' => $namaSub,                
             );
             echo '<pre>' . print_r($data, true) . '</pre>';            
-            $cek = $this->db->get_where('sub_kriteria', array('nama_subkriteria' => $namaSub));
+            $cek = $this->db->get_where('bobot_kriteria', array('nama_bobotkriteria' => $namaSub));
             if ($cek->num_rows() != 0) {
                 $this->session->set_flashdata(
                     'pesan',
@@ -129,7 +129,7 @@ class Subkriteria extends CI_Controller
         foreach ($nama as $key => $id_kriteriax) {
             $data = array(
                 'id_kriteria' => $this->input->post('id_kriteria'),
-                'nama_subkriteria' => $id_kriteriax,
+                'nama_bobotkriteria' => $id_kriteriax,
                 'nilai' => $this->input->post('nilai')[$key],
             );
             echo '<pre>' . print_r($data, true) . '</pre>';

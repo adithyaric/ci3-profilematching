@@ -73,10 +73,10 @@ class M_data extends CI_Model
     function hitungid()
     {
         $this->db->select("nilai_alternatif.id_alternatif, 
-        GROUP_CONCAT(sub_kriteria.nilai) as nilai 
+        GROUP_CONCAT(bobot_kriteria.nilai) as nilai 
         FROM nilai_alternatif 
-        LEFT JOIN sub_kriteria 
-        ON nilai_alternatif.id_subkriteria = sub_kriteria.id_subkriteria 
+        LEFT JOIN bobot_kriteria 
+        ON nilai_alternatif.id_bobotkriteria = bobot_kriteria.id_bobotkriteria 
         GROUP BY nilai_alternatif.id_alternatif");
         return $this->db->get()->result();
     }

@@ -22,25 +22,31 @@
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
 									<th>Kriteria</th>
-									<th>Sub kriteria</th>
+									<th>Bobot kriteria</th>
 								</tr>
 								<?php foreach ($kriteria as $index => $key) :
 									$where = array('id_kriteria' => $key->id_kriteria);
-									$sub_kriteria = $this->m_data->edit_data($where, 'sub_kriteria')->result();
-									if ($sub_kriteria != NULL) : ?>
+									$bobot_kriteria = $this->m_data->edit_data($where, 'bobot_kriteria')->result();
+									if ($bobot_kriteria != NULL) : ?>
 										<input type="text" name="jenis_kriteria[]" value="<?= $key->jenis_kriteria ?>" hidden>
 										<tr>
 											<td>
 												<label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
 											</td>
 											<td>
-												<select name="sub_kriteria[]" id="" class=" form-control" required>
+												<select name="bobot_kriteria[]" id="" class=" form-control" required>
 													<?php
 													$input = array(1, 2, 2, 1, 3, 2, 3, 3);
-													foreach ($sub_kriteria as $s) : ?>
-														<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
+													foreach ($bobot_kriteria as $s) : ?>
+														<?php if (count($s->nilai) == 8) { ?>
+															<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
+																<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
+																<?= $s->nama_bobotkriteria; ?>
+															</option>
+														<?php } ?>
+														<option value="<?php echo $s->nilai; ?>">
 															<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
-															<?= $s->nama_subkriteria; ?>
+															<?= $s->nama_bobotkriteria; ?>
 														</option>
 													<?php endforeach; ?>
 												</select>

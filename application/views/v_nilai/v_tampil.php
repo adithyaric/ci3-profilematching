@@ -32,7 +32,7 @@
 									<tr>
 										<td rowspan="<?php echo count($nilai_alternatif) + 1 ?>"><label for="<?= $key->id_alternatif ?>"><?= $key->nama_alternatif ?></label></td>
 										<th>Kriteria</th>
-										<th>Nama Subkriteria</th>
+										<th>Nama bobotkriteria</th>
 										<th>Nilai</th>
 										<td rowspan="<?php echo count($nilai_alternatif) + 1 ?>">
 											<center>
@@ -43,13 +43,13 @@
 									</tr>
 									<?php
 									foreach ($nilai_alternatif as $index => $value) :
-										$where = array('id_subkriteria ' => $value->id_subkriteria);
-										$subkriteria  = $this->m_data->ambil_id($where, 'sub_kriteria', $setJoinKriteria);
+										$where = array('id_bobotkriteria ' => $value->id_bobotkriteria);
+										$bobotkriteria  = $this->m_data->ambil_id($where, 'bobot_kriteria', $setJoinKriteria);
 									?>
 										<tr>
-											<td><?= $subkriteria->nama_kriteria; ?></td>
-											<td><?= $subkriteria->nama_subkriteria; ?></td>
-											<td><?= $subkriteria->nilai; ?></td>
+											<td><?= $bobotkriteria->nama_kriteria; ?></td>
+											<td><?= $bobotkriteria->nama_bobotkriteria; ?></td>
+											<td><?= $bobotkriteria->nilai; ?></td>
 										</tr>
 									<?php endforeach; ?>
 								<?php endif; ?>

@@ -3,7 +3,7 @@
 	<section class="section">
 		<!-- Header -->
 		<div class="section-header">
-			<h1>Halaman detail Sub kriteria</h1>
+			<h1>Halaman detail Bobot kriteria</h1>
 		</div>
 		<!-- End Header -->
 		<div class="section-body">
@@ -14,19 +14,19 @@
 					adalah ...
 				</div>
 			</div>
-			<a href="<?php echo base_url()  . 'admin/subkriteria'; ?>"><button type="button" class="btn btn-primary">Tambah</button></a>
+			<a href="<?php echo base_url()  . 'admin/bobotkriteria'; ?>"><button type="button" class="btn btn-primary">Tambah</button></a>
 			<a href="<?php echo base_url()  . 'admin/kriteria'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
 			<div class="table-responsive">
 				<table class="table table-hover table-striped table-bordered">
 					<tr>
 						<th>No</th>
 						<th>Kriteria</th>
-						<th>Nama Sub Kriteria</th>
+						<th>Nama Bobot Kriteria</th>
 						<th>Nilai</th>
 					</tr>
 					<?php
 					$no = 1;
-					foreach ($sub_kriteria as $key => $s) {
+					foreach ($bobot_kriteria as $key => $s) {
 					?>
 						<tr>
 							<td><?= $no++ ?></td>
@@ -40,7 +40,7 @@
 								endforeach; ?>
 							</td>
 							<td>
-								<input type="text" class="form-control" value="<?= $s->nama_subkriteria ?>" disabled>
+								<input type="text" class="form-control" value="<?= $s->nama_bobotkriteria ?>" disabled>
 							</td>
 							<td><?= $s->nilai ?></td>
 						</tr>
