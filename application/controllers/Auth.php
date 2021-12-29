@@ -13,25 +13,30 @@ class Auth extends CI_Controller
     function aksi_login()
     {
         $username = $this->input->post('username');
-        $password = $this->input->post('password');        
+        $password = $this->input->post('password');
+        $level = $this->input->post('level');
         $where = array(
             'username' => $username,
-            'password' => md5($password),            
+            'password' => md5($password),
+            'level' => $level,
         );
         $cek = $this->m_data->edit_data($where, "users")->num_rows();
-        if ($cek > 0) {
-            $data_session = array(
-                'nama' => $username,
-                'status' => "login"
-            );
+        if ($level == 'admin') {
+            if ($cek > 0) {
 
-            $this->session->set_userdata($data_session);
+                $data_session = array(
+                    'nama' => $username,
+                    'status' => "login",
+                    'akses' => "admin"
+                );
 
-            redirect(base_url("home"));
-        } else {
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-warning alert-dismissible show fade">
+                $this->session->set_userdata($data_session);
+
+                redirect(base_url("home"));
+            } else {
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-warning alert-dismissible show fade">
                       <div class="alert-body">
                         <button class="close" data-dismiss="alert">
                           <span>&times;</span>
@@ -39,8 +44,35 @@ class Auth extends CI_Controller
                         Username atau Password Salah!!!
                     </div>
                 </div>'
-            );
-            redirect(base_url('auth'));
+                );
+                redirect(base_url('auth'));
+            }
+        } elseif ($level == 'user') {
+            if ($cek > 0) {
+
+                $data_session = array(
+                    'nama' => $username,
+                    'status' => "login",
+                    'akses' => "user"
+                );
+
+                $this->session->set_userdata($data_session);
+
+                redirect(base_url("home"));
+            } else {
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-warning alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        Username atau Password Salah!!!
+                    </div>
+                </div>'
+                );
+                redirect(base_url('auth'));
+            }
         }
     }
 

@@ -38,15 +38,9 @@
 													<?php
 													$input = array(1, 2, 2, 1, 3, 2, 3, 3);
 													foreach ($bobot_kriteria as $s) : ?>
-														<?php if (count($s->nilai) == 8) { ?>
-															<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
-																<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
-																<?= $s->nama_bobotkriteria; ?>
-															</option>
-														<?php } ?>
-														<option value="<?php echo $s->nilai; ?>">
+														<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
 															<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
-															<?= $s->nama_bobotkriteria; ?>
+															<?= $s->nama_bobotkriteria; ?>															
 														</option>
 													<?php endforeach; ?>
 												</select>

@@ -26,6 +26,19 @@ class Perhitungan extends CI_Controller
                 </div>'
             );
             redirect(base_url('auth'));
+        } else if ($this->session->userdata('akses') != 'user') {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+                </button>
+                Anda tidak bisa akses halaman ini!!!
+                </div>
+                </div>'
+            );
+            redirect(base_url('auth'));
         }
         $this->load->model('m_gap');
         $id_alternatif = $this->input->post('id_alternatif');

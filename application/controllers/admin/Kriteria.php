@@ -26,6 +26,19 @@ class Kriteria extends CI_Controller
                 </div>'
             );
             redirect(base_url('auth'));
+        } else if ($this->session->userdata('akses') != 'admin') {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+                </button>
+                Anda tidak bisa akses halaman ini!!!
+                </div>
+                </div>'
+            );
+            redirect(base_url('auth'));
         }
         $nama = $this->input->post('nama');
         $jenis = $this->input->post('jenis');
@@ -51,7 +64,7 @@ class Kriteria extends CI_Controller
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
         $this->load->view($this->view . 'v_tampil', $getdata);
-        $this->load->view('template/footer');        
+        $this->load->view('template/footer');
     }
 
     //Hapus Data
@@ -90,7 +103,7 @@ class Kriteria extends CI_Controller
                 </div>'
             );
             redirect($this->home);
-        }        
+        }
         $data = $this->data;
         $this->m_data->input_data($data, $this->table);
         $this->session->set_flashdata(

@@ -27,7 +27,13 @@
                                         Tolong isi password
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="level">Level</label>
+                                    <select name="level" id="" class="form-control" tabindex="3">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                         Login
