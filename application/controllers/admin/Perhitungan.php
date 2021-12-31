@@ -81,8 +81,6 @@ class Perhitungan extends CI_Controller
     {
         $data['sub_kriteria_list'] = $this->input->post('bobot_kriteria');
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
-        $data['nama_kriteria'] = $this->input->post('nama_kriteria');
-        $data['nama_bobotkriteria'] = $this->input->post('nama_bobotkriteria');        
         $data['cf'] = $this->input->post('cf');
         $data['sf'] = $this->input->post('sf');        
         $maxPercentage = 100;
@@ -150,6 +148,12 @@ class Perhitungan extends CI_Controller
             $getdata['nama'] = $this->m_data->joinGroupNamaNilai();
             $getdata['kriteria'] = $this->m_data->tampil_data('kriteria', 'id_kriteria', 'asc');
             $getdata['nilai_alternatif'] = $this->m_data->tampil_data('nilai_alternatif', 'id_alternatif', 'asc');
+            
+            $getdata['nama_kriteria'] = $this->input->post('nama_kriteria');
+            $getdata['jenis_kriteria'] = $this->input->post('jenis_kriteria');
+            $getdata['nama_bobotkriteria'] = $this->input->post('nama_bobotkriteria');
+            $getdata['cf'] = $this->input->post('cf');
+            $getdata['sf'] = $this->input->post('sf');       
 
             $this->load->view('template/header');
             $this->load->view('template/navbar');

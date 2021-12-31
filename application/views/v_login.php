@@ -30,8 +30,8 @@
                                 <div class="form-group">
                                     <label for="level">Level</label>
                                     <select name="level" id="" class="form-control" tabindex="3">
+                                        <option value="user">Petani</option>
                                         <option value="admin">Admin</option>
-                                        <option value="user">User</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

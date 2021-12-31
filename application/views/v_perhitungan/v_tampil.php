@@ -218,7 +218,15 @@
 										<tr>
 											<td colspan="3" align="right">
 												<button type="submit" class="btn btn-success">Simpan <i class="fas fa-save"></i></button>
-												<label class="btn btn-sm btn-info "><i class="fas fa-calendar"></i> <?php echo date('Y-m-d'); ?></label>
+												<label class="btn btn-sm btn-info "><i class="fas fa-calendar"></i> <?php echo date('d-m-Y'); ?></label>
+												<textarea name="keterangan" hidden>
+													<?php
+													foreach ($nama_kriteria as $index => $nilainya) {
+														echo $nilainya . " (" . $jenis_kriteria[$index] . ") : " . $nama_bobotkriteria[$index] . ", <br>";
+													}
+													?>
+													Core Factor : <?= $cf; ?>, Secondary Factor : <?= $sf; ?>
+												</textarea>
 											</td>
 										</tr>
 									</tbody>
