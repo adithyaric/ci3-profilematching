@@ -25,6 +25,7 @@
 							<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 							<div class="alert-body">
 								<div class="alert-title">Penjelasan : </div>
+								<h4>Target ideal : </h4>
 								<p for=""><?php echo $rwt->detail; ?></p>
 							</div>
 						</div>

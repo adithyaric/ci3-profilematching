@@ -21,10 +21,7 @@ class Auth extends CI_Controller
             'level' => $level,
         );
         $cek = $this->m_data->edit_data($where, "users")->num_rows();
-        $petani = $this->m_data->edit_data($where, "users")->result();
-        foreach ($petani as $p){
-            $user_id = $p->id;
-        }
+        $petani = $this->m_data->edit_data($where, "users")->row();
         if ($level == 'admin') {
             if ($cek > 0) {
 
@@ -58,7 +55,7 @@ class Auth extends CI_Controller
                     'nama' => $username,
                     'status' => "login",
                     'akses' => "user",
-                    'user_id' => $user_id
+                    'user_id' => $petani->id
                 );
 
                 $this->session->set_userdata($data_session);

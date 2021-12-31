@@ -57,30 +57,32 @@ class Riwayat extends CI_Controller
     //Tampil Data
     function index()
     {
-        if (isset($_GET['tanggal'])) {
+        if (isset($_GET['tanggal']) && !empty($_GET['tanggal'])) {
             $tgl = $_GET['tanggal'];
             $where = array(
                 'tanggal ' => $tgl,
                 'id_user ' => $this->session->userdata("user_id")
             );
-            // $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
-            // $getdata['keterangan']  = $this->m_data->edit_data($where, 'keterangan')->result();
             $data = array(
                 $this->setDataJoin('keterangan', 'keterangan.id_keterangan = riwayat.id_keterangan')
             );
-            // $getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
             $getdata[$this->table]  = $this->m_data->getjoin_byid($where, 'riwayat', $data);
         } else {
-            $tgl = date('Y-m-d');
+            $where = array(
+                'id_user ' => $this->session->userdata("user_id")
+            );
+            $ket = $this->m_data->edit_data($where, "keterangan")->last_row();
+            $cek = $this->m_data->edit_data($where, "keterangan")->num_rows();
+            if ($cek > 0) {
+                $tgl = $ket->tanggal;
+            } else {
+                $tgl = date('Y-m-d');
+            }
             $where = array('tanggal ' => $tgl, 'id_user ' => $this->session->userdata("user_id"));
-            // $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
             $data = array(
                 $this->setDataJoin('keterangan', 'keterangan.id_keterangan = riwayat.id_keterangan')
             );
             $getdata[$this->table]  = $this->m_data->getjoin_byid($where, 'riwayat', $data);
-            // $getdata['keterangan'] = $this->m_data->tampil_data('keterangan', $this->orderby, $this->sort);
-            // $getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
-
         }
         $getdata['aksi'] = $this->home;
 
@@ -137,10 +139,8 @@ class Riwayat extends CI_Controller
                 'id_user'   => $_POST['user_id'],
                 'detail'    => $_POST['keterangan']
             );
-        // echo json_encode($dataket); die();
         $this->m_data->input_data($dataket, "keterangan");
         $newUserID = $this->db->insert_id();
-        //nama, nilai, rangking, tanggal
         $rangking    = $this->input->post('rangking');
         foreach ($rangking as $key => $value) {
             $data = array(
@@ -148,7 +148,6 @@ class Riwayat extends CI_Controller
                 'id_keterangan'     => $newUserID,
                 "nama_alternatif"   => $_POST['nama_alternatif'][$key],
                 "nilai"             => $_POST['nilai'][$key],
-                // "tanggal"           => $tanggal[$key],
             );
             $this->m_data->input_data($data, $this->table);
         }
