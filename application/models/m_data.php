@@ -43,7 +43,20 @@ class M_data extends CI_Model
         $this->db->order_by($order, $sort);
         return $this->db->get()->result();
     }
+    public function getjoin_byid($where, $table, $data)
+    {
+        $this->db->from($table);
+        $this->setjoin($data);
+        $this->db->where($where);
 
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
     //Menampilkan Seluruh Table where
     public function ambil_id($where, $table, $data)
     {

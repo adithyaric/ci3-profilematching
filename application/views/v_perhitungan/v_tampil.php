@@ -210,10 +210,9 @@
 													<input type="text" name="nama_alternatif[]" value="<?php echo $nama[$key3]->nama_alternatif; ?>" hidden>
 													<input type="text" name="nilai[]" value="<?php echo number_format($hasil->total_aspek[$key3], 2); ?>" hidden>
 													<input type="text" name="rangking[]" value="<?php echo $count; ?>" hidden>
-													<input type="text" name="tanggal[]" value="<?php echo date('Y-m-d'); ?>" hidden>
 												</td>
 											</tr>
-										<?php $count++;
+											<?php $count++;
 										} ?>
 										<tr>
 											<td colspan="3" align="right">
@@ -227,6 +226,8 @@
 													?>
 													Core Factor : <?= $cf; ?>, Secondary Factor : <?= $sf; ?>
 												</textarea>
+												<input type="text" name="tanggal" value="<?php echo date('Y-m-d'); ?>" hidden>
+												<input type="text" name="user_id" value="<?php echo $this->session->userdata("user_id"); ?>" hidden>
 											</td>
 										</tr>
 									</tbody>

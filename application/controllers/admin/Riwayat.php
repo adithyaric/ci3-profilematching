@@ -5,7 +5,7 @@ class Riwayat extends CI_Controller
     var $data;
     protected $view = 'v_riwayat/'; //Nama Folder view
     protected $table = 'riwayat'; //Nama Table
-    protected $pk = 'tanggal'; //Primary Key Table
+    protected $pk = 'id_keterangan'; //Primary Key Table
     protected $home = 'admin/riwayat'; //Redirect
     protected $orderby = 'id_riwayat';
     protected $sort = 'asc';
@@ -47,20 +47,40 @@ class Riwayat extends CI_Controller
         return $this->where = array($this->pk => $id);
     }
 
+    function setDataJoin($namaTable, $namaColumn)
+    {
+        return array(
+            "hasilTable" => $namaTable,
+            "hasilColumn" => $namaColumn
+        );
+    }
     //Tampil Data
     function index()
     {
         if (isset($_GET['tanggal'])) {
             $tgl = $_GET['tanggal'];
-            $where = array('tanggal ' => $tgl);
-            $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
-            $getdata['keterangan']  = $this->m_data->edit_data($where, 'keterangan')->result();
+            $where = array(
+                'tanggal ' => $tgl,
+                'id_user ' => $this->session->userdata("user_id")
+            );
+            // $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
+            // $getdata['keterangan']  = $this->m_data->edit_data($where, 'keterangan')->result();
+            $data = array(
+                $this->setDataJoin('keterangan', 'keterangan.id_keterangan = riwayat.id_keterangan')
+            );
+            // $getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
+            $getdata[$this->table]  = $this->m_data->getjoin_byid($where, 'riwayat', $data);
         } else {
             $tgl = date('Y-m-d');
-            $where = array('tanggal ' => $tgl);
-            $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
-            $getdata['keterangan']  = $this->m_data->edit_data($where, 'keterangan')->result();
-            // $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
+            $where = array('tanggal ' => $tgl, 'id_user ' => $this->session->userdata("user_id"));
+            // $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
+            $data = array(
+                $this->setDataJoin('keterangan', 'keterangan.id_keterangan = riwayat.id_keterangan')
+            );
+            $getdata[$this->table]  = $this->m_data->getjoin_byid($where, 'riwayat', $data);
+            // $getdata['keterangan'] = $this->m_data->tampil_data('keterangan', $this->orderby, $this->sort);
+            // $getdata[$this->table] = $this->m_data->getjoin($this->table, $data, $this->orderby, $this->sort);
+
         }
         $getdata['aksi'] = $this->home;
 
@@ -95,8 +115,9 @@ class Riwayat extends CI_Controller
     function tambah_aksi()
     {
         $tanggal    = $this->input->post('tanggal');
-        $cek = $this->db->get_where('riwayat', array('tanggal' => $tanggal[0]));
-        if ($cek->num_rows() != 0) {
+        $cek1 = $this->db->get_where('keterangan', array('tanggal' => $tanggal));
+        $cek2 = $this->db->get_where('keterangan', array('id_user ' => $this->session->userdata("user_id")));
+        if ($cek1->num_rows() && $cek2->num_rows() != 0) {
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible show fade">
@@ -110,21 +131,24 @@ class Riwayat extends CI_Controller
             );
             redirect($this->home);
         }
-        $keterangan    = $this->input->post('keterangan');
         $dataket =
             array(
-                'tanggal' => $tanggal[0],
-                'detail' => $keterangan
+                'tanggal'   => $tanggal,
+                'id_user'   => $_POST['user_id'],
+                'detail'    => $_POST['keterangan']
             );
+        // echo json_encode($dataket); die();
         $this->m_data->input_data($dataket, "keterangan");
+        $newUserID = $this->db->insert_id();
         //nama, nilai, rangking, tanggal
         $rangking    = $this->input->post('rangking');
         foreach ($rangking as $key => $value) {
             $data = array(
                 "rangking"          => $rangking[$key],
+                'id_keterangan'     => $newUserID,
                 "nama_alternatif"   => $_POST['nama_alternatif'][$key],
                 "nilai"             => $_POST['nilai'][$key],
-                "tanggal"           => $tanggal[$key],
+                // "tanggal"           => $tanggal[$key],
             );
             $this->m_data->input_data($data, $this->table);
         }
