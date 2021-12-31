@@ -9,5 +9,6 @@ $route['kriteria']              = 'admin/kriteria';
 $route['bobotkriteria']         = 'admin/bobotkriteria';
 $route['nilai']                 = 'admin/nilai';
 $route['perhitungan']           = 'admin/perhitungan';
+$route['riwayat']               = 'admin/riwayat';
 $route['404_override']          = '';
 $route['translate_uri_dashes']  = FALSE;

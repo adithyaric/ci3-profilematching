@@ -19,6 +19,7 @@
             <?php } ?>
             <?php if ($this->session->userdata('akses') == 'user') { ?>
                 <li class=""><a class="nav-link" href="<?= base_url() . 'perhitungan'; ?>"> <i class="fas fa-clipboard-list"></i> <span>Perhitungan</span></a></li>
+                <li class=""><a class="nav-link" href="<?= base_url() . 'riwayat'; ?>"> <i class="fas fa-history"></i> <span>Riwayat</span></a></li>
             <?php } ?>
             <!-- End Main Menu -->
         </ul>

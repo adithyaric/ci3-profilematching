@@ -81,8 +81,10 @@ class Perhitungan extends CI_Controller
     {
         $data['sub_kriteria_list'] = $this->input->post('bobot_kriteria');
         $data['jenis_list'] = $this->input->post('jenis_kriteria');
+        $data['nama_kriteria'] = $this->input->post('nama_kriteria');
+        $data['nama_bobotkriteria'] = $this->input->post('nama_bobotkriteria');        
         $data['cf'] = $this->input->post('cf');
-        $data['sf'] = $this->input->post('sf');
+        $data['sf'] = $this->input->post('sf');        
         $maxPercentage = 100;
         $totalPercentage = $data['cf'] + $data['sf'];
 

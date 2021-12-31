@@ -1,13 +1,13 @@
 <?php
 
-class User extends CI_Controller
+class Riwayat extends CI_Controller
 {
     var $data;
-    protected $view = 'v_user/'; //Nama Folder view
-    protected $table = 'users'; //Nama Table
-    protected $pk = 'id'; //Primary Key Table
-    protected $home = 'admin/user'; //Redirect
-    protected $orderby = 'id';
+    protected $view = 'v_riwayat/'; //Nama Folder view
+    protected $table = 'riwayat'; //Nama Table
+    protected $pk = 'id_riwayat'; //Primary Key Table
+    protected $home = 'admin/riwayat'; //Redirect
+    protected $orderby = 'id_riwayat';
     protected $sort = 'asc';
 
     function __construct()
@@ -26,7 +26,7 @@ class User extends CI_Controller
                 </div>'
             );
             redirect(base_url('auth'));
-        } else if ($this->session->userdata('akses') != 'admin') {
+        } else if ($this->session->userdata('akses') != 'user') {
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-warning alert-dismissible show fade">
@@ -40,13 +40,6 @@ class User extends CI_Controller
             );
             redirect(base_url('auth'));
         }
-        $nama = $this->input->post('nama');
-        $password = md5($this->input->post('password'));
-
-        $this->data = array(
-            'username' => $nama,
-            'password' => $password
-        );
     }
 
     function setWhere($id)
@@ -57,8 +50,17 @@ class User extends CI_Controller
     //Tampil Data
     function index()
     {
-        $where = array('level ' => 'user');
-        $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
+        if (isset($_GET['tanggal'])) {
+            $tgl = $_GET['tanggal'];
+            $where = array('tanggal ' => $tgl);
+            $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
+        } else {       
+            $tgl = date('Y-m-d');
+            $where = array('tanggal ' => $tgl);
+            $getdata[$this->table]  = $this->m_data->edit_data($where, $this->table)->result();
+            // $getdata[$this->table] = $this->m_data->tampil_data($this->table, $this->orderby, $this->sort);
+        }
+        $getdata['tanggal'] = $tgl;
         $getdata['aksi'] = $this->home;
 
         $this->load->view('template/header');
@@ -90,7 +92,8 @@ class User extends CI_Controller
     //Input Data
     function tambah_aksi()
     {
-        $cek = $this->db->get_where('users', array('username' => $this->input->post('nama')));
+        $tanggal    = $this->input->post('tanggal');        
+        $cek = $this->db->get_where('riwayat', array('tanggal' => $tanggal[0]));
         if ($cek->num_rows() != 0) {
             $this->session->set_flashdata(
                 'pesan',
@@ -105,8 +108,18 @@ class User extends CI_Controller
             );
             redirect($this->home);
         }
-        $data = $this->data;
-        $this->m_data->input_data($data, $this->table);
+        //nama, nilai, rangking, tanggal
+        $rangking    = $this->input->post('rangking');
+        foreach ($rangking as $key => $value) {
+            $data = array(
+                "rangking"          => $rangking[$key],
+                "nama_alternatif"   => $_POST['nama_alternatif'][$key],
+                "nilai"             => $_POST['nilai'][$key],
+                "tanggal"           => $tanggal[$key],
+            );
+            echo "<pre>" . json_encode($data);
+            $this->m_data->input_data($data, $this->table);
+        }        
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-dismissible show fade">
@@ -115,27 +128,6 @@ class User extends CI_Controller
                           <span>&times;</span>
                         </button>
                         Data berhasil di tambahkan!
-                    </div>
-                </div>'
-        );
-        redirect($this->home);
-    }
-
-    //Edit Data
-    function edit_aksi()
-    {
-        $id = $this->input->post('id');
-        $this->setWhere($id);
-        $data = $this->data;
-        $this->m_data->update_data($this->where, $data, $this->table);
-        $this->session->set_flashdata(
-            'pesan',
-            '<div class="alert alert-warning alert-dismissible show fade">
-                      <div class="alert-body">
-                        <button class="close" data-dismiss="alert">
-                          <span>&times;</span>
-                        </button>
-                        Data berhasil di ubah!
                     </div>
                 </div>'
         );

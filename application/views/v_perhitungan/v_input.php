@@ -29,6 +29,7 @@
 									$bobot_kriteria = $this->m_data->edit_data($where, 'bobot_kriteria')->result();
 									if ($bobot_kriteria != NULL) : ?>
 										<input type="text" name="jenis_kriteria[]" value="<?= $key->jenis_kriteria ?>" hidden>
+										<input type="text" name="nama_kriteria[]" value="<?= $key->nama_kriteria ?>" hidden>
 										<tr>
 											<td>
 												<label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
@@ -40,10 +41,11 @@
 													foreach ($bobot_kriteria as $s) : ?>
 														<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
 															<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
-															<?= $s->nama_bobotkriteria; ?>															
+															<?= $s->nama_bobotkriteria; ?>
 														</option>
 													<?php endforeach; ?>
 												</select>
+												<input type="text" name="nama_bobotkriteria[]" value="<?= $s->nama_bobotkriteria ?>" hidden>
 											</td>
 										</tr>
 									<?php endif; ?>

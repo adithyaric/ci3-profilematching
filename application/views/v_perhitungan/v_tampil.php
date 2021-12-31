@@ -183,29 +183,48 @@
 							</div>
 						</details>
 						<!-- End of Detail -->
-						<center>Hasil Analisa Menggunakan Sistem Pendukung Keputusan (SPK) Metode Profile Matching</center>
-						<div class="table-responsive">
-							<table class="table table-hover table-striped table-bordered">
-								<tr>
-									<th>Nama</th>
-									<th>Nilai Profile Matching</th>
-									<th>Rangking</th>
-								</tr>
-								<?php
-								$count = 1;
-								foreach ($hasil->hasilakhir as $key3 => $value3) {
-									echo '									
-									<tr>
-									<td>' . $nama[$key3]->nama_alternatif . '</td>
-									<td>' . number_format($hasil->total_aspek[$key3], 2) . '</td>
-									<td>' . $count . '</td>
-									</tr>
-									';
-									$count++;
-								}
-								?>
-							</table>
-						</div>
+						<form action="<?php echo base_url('admin/riwayat/tambah_aksi') ?>" method="POST" enctype="multipart/form-data">
+							<center>Hasil Analisa Menggunakan Sistem Pendukung Keputusan (SPK) Metode Profile Matching</center>
+							<div class="table-responsive">
+								<table class="table table-hover table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>Nama</th>
+											<th>Nilai Total</th>
+											<th>Rangking</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$count = 1;
+										foreach ($hasil->hasilakhir as $key3 => $value3) { ?>
+											<tr>
+												<td>
+													<?php echo $nama[$key3]->nama_alternatif; ?>
+												</td>
+												<td>
+													<?php echo number_format($hasil->total_aspek[$key3], 2); ?>
+												</td>
+												<td>
+													<?php echo $count; ?>
+													<input type="text" name="nama_alternatif[]" value="<?php echo $nama[$key3]->nama_alternatif; ?>" hidden>
+													<input type="text" name="nilai[]" value="<?php echo number_format($hasil->total_aspek[$key3], 2); ?>" hidden>
+													<input type="text" name="rangking[]" value="<?php echo $count; ?>" hidden>
+													<input type="text" name="tanggal[]" value="<?php echo date('Y-m-d'); ?>" hidden>
+												</td>
+											</tr>
+										<?php $count++;
+										} ?>
+										<tr>
+											<td colspan="3" align="right">
+												<button type="submit" class="btn btn-success">Simpan <i class="fas fa-save"></i></button>
+												<label class="btn btn-sm btn-info "><i class="fas fa-calendar"></i> <?php echo date('Y-m-d'); ?></label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</form>
 					<?php endif; ?>
 				</div>
 			</div>

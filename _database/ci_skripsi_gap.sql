@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 26, 2021 at 05:51 PM
+-- Generation Time: Dec 31, 2021 at 05:48 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -81,6 +81,18 @@ INSERT INTO `bobot_kriteria` (`id_bobotkriteria`, `nama_bobotkriteria`, `id_krit
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keterangan`
+--
+
+CREATE TABLE `keterangan` (
+  `id_keterangan` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `detail` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kriteria`
 --
 
@@ -133,6 +145,32 @@ INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_bobotkriteria`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `riwayat`
+--
+
+CREATE TABLE `riwayat` (
+  `id_riwayat` int(11) NOT NULL,
+  `rangking` int(11) NOT NULL,
+  `nama_alternatif` varchar(200) NOT NULL,
+  `nilai` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `riwayat`
+--
+
+INSERT INTO `riwayat` (`id_riwayat`, `rangking`, `nama_alternatif`, `nilai`, `tanggal`) VALUES
+(4, 1, 'Budi', '2.00', '2021-12-30'),
+(5, 2, 'Andi', '1.90', '2021-12-30'),
+(6, 3, 'Citra', '1.70', '2021-12-30'),
+(7, 1, 'Budi', '2.60', '2021-12-31'),
+(8, 2, 'Citra', '1.80', '2021-12-31'),
+(9, 3, 'Andi', '1.60', '2021-12-31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -140,7 +178,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `level` enum('admin','user') NOT NULL
+  `level` enum('user','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -148,7 +186,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'admin', '0192023a7bbd73250516f069df18b500', 'admin');
+(1, 'admin', '0192023a7bbd73250516f069df18b500', 'admin'),
+(2, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user');
 
 --
 -- Indexes for dumped tables
@@ -168,6 +207,12 @@ ALTER TABLE `bobot_kriteria`
   ADD KEY `id_kriteria` (`id_kriteria`);
 
 --
+-- Indexes for table `keterangan`
+--
+ALTER TABLE `keterangan`
+  ADD PRIMARY KEY (`id_keterangan`);
+
+--
 -- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -180,6 +225,12 @@ ALTER TABLE `nilai_alternatif`
   ADD PRIMARY KEY (`id_nilai`),
   ADD KEY `id_alternatif` (`id_alternatif`),
   ADD KEY `id_subkriteria` (`id_bobotkriteria`);
+
+--
+-- Indexes for table `riwayat`
+--
+ALTER TABLE `riwayat`
+  ADD PRIMARY KEY (`id_riwayat`);
 
 --
 -- Indexes for table `users`
@@ -201,7 +252,13 @@ ALTER TABLE `alternatif`
 -- AUTO_INCREMENT for table `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
-  MODIFY `id_bobotkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_bobotkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `keterangan`
+--
+ALTER TABLE `keterangan`
+  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
@@ -216,10 +273,16 @@ ALTER TABLE `nilai_alternatif`
   MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
+-- AUTO_INCREMENT for table `riwayat`
+--
+ALTER TABLE `riwayat`
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
