@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 31, 2021 at 05:48 PM
+-- Generation Time: Jan 01, 2022 at 01:23 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -86,9 +86,18 @@ INSERT INTO `bobot_kriteria` (`id_bobotkriteria`, `nama_bobotkriteria`, `id_krit
 
 CREATE TABLE `keterangan` (
   `id_keterangan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `detail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keterangan`
+--
+
+INSERT INTO `keterangan` (`id_keterangan`, `id_user`, `tanggal`, `detail`) VALUES
+(13, 3, '2021-12-15', '													IPK  (core) : < 2.5, <br>Penghasilan Orang Tua (core) : >= 5,000,000, <br>Jumlah Tanggunan (secondary) : Jumlah > 3, <br>Semester (core) : Semester 7 dan 8, <br>													Core Factor : 60, Secondary Factor : 40												'),
+(16, 3, '2021-12-25', '													IPK  (core) : < 2.5, <br>Penghasilan Orang Tua (core) : >= 5,000,000, <br>Jumlah Tanggunan (secondary) : Jumlah > 3, <br>Semester (core) : Semester 7 dan 8, <br>													Core Factor : 60, Secondary Factor : 40												');
 
 -- --------------------------------------------------------
 
@@ -150,23 +159,26 @@ INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_bobotkriteria`)
 
 CREATE TABLE `riwayat` (
   `id_riwayat` int(11) NOT NULL,
+  `id_keterangan` int(11) NOT NULL,
   `rangking` int(11) NOT NULL,
   `nama_alternatif` varchar(200) NOT NULL,
-  `nilai` varchar(50) NOT NULL,
-  `tanggal` date NOT NULL
+  `nilai` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `riwayat`
 --
 
-INSERT INTO `riwayat` (`id_riwayat`, `rangking`, `nama_alternatif`, `nilai`, `tanggal`) VALUES
-(4, 1, 'Budi', '2.00', '2021-12-30'),
-(5, 2, 'Andi', '1.90', '2021-12-30'),
-(6, 3, 'Citra', '1.70', '2021-12-30'),
-(7, 1, 'Budi', '2.60', '2021-12-31'),
-(8, 2, 'Citra', '1.80', '2021-12-31'),
-(9, 3, 'Andi', '1.60', '2021-12-31');
+INSERT INTO `riwayat` (`id_riwayat`, `id_keterangan`, `rangking`, `nama_alternatif`, `nilai`) VALUES
+(40, 13, 1, 'Budi', '2.00'),
+(41, 13, 2, 'Andi', '1.90'),
+(42, 13, 3, 'Citra', '1.70'),
+(43, 14, 1, 'Budi', '2.00'),
+(44, 14, 2, 'Andi', '1.90'),
+(45, 14, 3, 'Citra', '1.70'),
+(49, 16, 1, 'Citra', '2.40'),
+(50, 16, 2, 'Andi', '2.20'),
+(51, 16, 3, 'Budi', '2.00');
 
 -- --------------------------------------------------------
 
@@ -187,7 +199,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
 (1, 'admin', '0192023a7bbd73250516f069df18b500', 'admin'),
-(2, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user');
+(2, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user'),
+(3, 'adit', '486b6c6b267bc61677367eb6b6458764', 'user');
 
 --
 -- Indexes for dumped tables
@@ -252,19 +265,19 @@ ALTER TABLE `alternatif`
 -- AUTO_INCREMENT for table `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
-  MODIFY `id_bobotkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_bobotkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `keterangan`
 --
 ALTER TABLE `keterangan`
-  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `nilai_alternatif`
@@ -276,13 +289,13 @@ ALTER TABLE `nilai_alternatif`
 -- AUTO_INCREMENT for table `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

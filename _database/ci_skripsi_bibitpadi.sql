@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 26, 2021 at 05:51 PM
+-- Generation Time: Jan 01, 2022 at 01:23 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -101,6 +101,27 @@ INSERT INTO `bobot_kriteria` (`id_bobotkriteria`, `nama_bobotkriteria`, `id_krit
 (37, 'toleran', 13, 1),
 (38, 'sedang', 13, 2),
 (39, 'tahan', 13, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keterangan`
+--
+
+CREATE TABLE `keterangan` (
+  `id_keterangan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `detail` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keterangan`
+--
+
+INSERT INTO `keterangan` (`id_keterangan`, `id_user`, `tanggal`, `detail`) VALUES
+(13, 1, '2021-12-30', '													Tinggi tanaman (core) : >121cm, <br>Kerontokan (secondary) : Mudah (51% - 100%), <br>Harga bibit (core) : <=80 rb/kg, <br>Umur tanaman (secondary) : 80 - 104 hari, <br>bentuk tanaman (secondary) : Tegak, <br>bentuk gabah (secondary) : Panjang ramping, <br>kadar amilosa (core) : 25 - 33% (tinggi), <br>Kerebahan (secondary) : tahan, <br>													Core Factor : 60, Secondary Factor : 40												'),
+(14, 1, '2021-12-31', '													Tinggi tanaman (core) : >121cm, <br>Kerontokan (secondary) : Mudah (51% - 100%), <br>Harga bibit (core) : <=80 rb/kg, <br>Umur tanaman (secondary) : 80 - 104 hari, <br>bentuk tanaman (secondary) : Tegak, <br>bentuk gabah (secondary) : Panjang ramping, <br>kadar amilosa (core) : 25 - 33% (tinggi), <br>Kerebahan (secondary) : tahan, <br>													Core Factor : 60, Secondary Factor : 40												');
 
 -- --------------------------------------------------------
 
@@ -301,6 +322,64 @@ INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_bobotkriteria`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `riwayat`
+--
+
+CREATE TABLE `riwayat` (
+  `id_riwayat` int(11) NOT NULL,
+  `id_keterangan` int(11) NOT NULL,
+  `rangking` int(11) NOT NULL,
+  `nama_alternatif` varchar(200) NOT NULL,
+  `nilai` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `riwayat`
+--
+
+INSERT INTO `riwayat` (`id_riwayat`, `id_keterangan`, `rangking`, `nama_alternatif`, `nilai`) VALUES
+(40, 13, 1, 'IR 64', '2.74'),
+(41, 13, 2, 'Inpari 32', '2.68'),
+(42, 13, 3, 'Sidenuk', '2.60'),
+(43, 13, 4, 'Pepe', '2.58'),
+(44, 13, 5, 'Mekonga', '2.50'),
+(45, 13, 6, 'Inpari 43', '2.48'),
+(46, 13, 7, 'Inpari 24', '2.48'),
+(47, 13, 8, 'Mapan P-05', '2.44'),
+(48, 13, 9, 'Inpari 42', '2.44'),
+(49, 13, 10, 'Sunggal', '2.38'),
+(50, 13, 11, 'M70D', '2.36'),
+(51, 13, 12, 'Ciherang Janger', '2.34'),
+(52, 13, 13, 'Cimelati', '2.34'),
+(53, 13, 14, 'Raja Lele', '2.30'),
+(54, 13, 15, 'Kabir 05', '2.26'),
+(55, 13, 16, 'Sintanur', '2.22'),
+(56, 13, 17, 'Ciherang', '2.18'),
+(57, 13, 18, 'Padjadjaran Agritan', '2.16'),
+(58, 13, 19, 'Inpari 45 Dirgahayu', '2.14'),
+(59, 14, 1, 'Ciherang Janger', '2.68'),
+(60, 14, 2, 'Raja Lele', '2.64'),
+(61, 14, 3, 'Sintanur', '2.44'),
+(62, 14, 4, 'Pepe', '2.40'),
+(63, 14, 5, 'Ciherang', '2.40'),
+(64, 14, 6, 'IR 64', '2.38'),
+(65, 14, 7, 'Mekonga', '2.32'),
+(66, 14, 8, 'Sidenuk', '2.28'),
+(67, 14, 9, 'Kabir 05', '2.24'),
+(68, 14, 10, 'Inpari 32', '2.20'),
+(69, 14, 11, 'Sunggal', '2.20'),
+(70, 14, 12, 'Cimelati', '2.16'),
+(71, 14, 13, 'Inpari 43', '2.12'),
+(72, 14, 14, 'Inpari 24', '2.12'),
+(73, 14, 15, 'Mapan P-05', '2.08'),
+(74, 14, 16, 'Inpari 42', '2.08'),
+(75, 14, 17, 'M70D', '2.04'),
+(76, 14, 18, 'Inpari 45 Dirgahayu', '1.96'),
+(77, 14, 19, 'Padjadjaran Agritan', '1.84');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -308,7 +387,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `level` enum('admin','user') NOT NULL
+  `level` enum('user','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -316,7 +395,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'user', '6ad14ba9986e3615423dfca256d04e3f', 'user'),
+(1, 'adit', '486b6c6b267bc61677367eb6b6458764', 'user'),
 (2, 'admin', '0192023a7bbd73250516f069df18b500', 'admin');
 
 --
@@ -337,6 +416,13 @@ ALTER TABLE `bobot_kriteria`
   ADD KEY `id_kriteria` (`id_kriteria`);
 
 --
+-- Indexes for table `keterangan`
+--
+ALTER TABLE `keterangan`
+  ADD PRIMARY KEY (`id_keterangan`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -349,6 +435,13 @@ ALTER TABLE `nilai_alternatif`
   ADD PRIMARY KEY (`id_nilai`),
   ADD KEY `id_alternatif` (`id_alternatif`),
   ADD KEY `id_subkriteria` (`id_bobotkriteria`);
+
+--
+-- Indexes for table `riwayat`
+--
+ALTER TABLE `riwayat`
+  ADD PRIMARY KEY (`id_riwayat`),
+  ADD KEY `id_keterangan` (`id_keterangan`);
 
 --
 -- Indexes for table `users`
@@ -373,6 +466,12 @@ ALTER TABLE `bobot_kriteria`
   MODIFY `id_bobotkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
+-- AUTO_INCREMENT for table `keterangan`
+--
+ALTER TABLE `keterangan`
+  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -383,6 +482,12 @@ ALTER TABLE `kriteria`
 --
 ALTER TABLE `nilai_alternatif`
   MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
+
+--
+-- AUTO_INCREMENT for table `riwayat`
+--
+ALTER TABLE `riwayat`
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -401,11 +506,23 @@ ALTER TABLE `bobot_kriteria`
   ADD CONSTRAINT `bobot_kriteria_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `keterangan`
+--
+ALTER TABLE `keterangan`
+  ADD CONSTRAINT `keterangan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
   ADD CONSTRAINT `nilai_alternatif_ibfk_1` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id_alternatif`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `nilai_alternatif_ibfk_2` FOREIGN KEY (`id_bobotkriteria`) REFERENCES `bobot_kriteria` (`id_bobotkriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `riwayat`
+--
+ALTER TABLE `riwayat`
+  ADD CONSTRAINT `riwayat_ibfk_1` FOREIGN KEY (`id_keterangan`) REFERENCES `keterangan` (`id_keterangan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
