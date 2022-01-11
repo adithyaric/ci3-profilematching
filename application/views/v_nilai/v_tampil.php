@@ -11,11 +11,17 @@
 				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 				<div class="alert-body">
 					<div class="alert-title">Penjelasan : </div>
-					adalah ...
+					Ini merupakan halaman yang digunakan untuk mengelola Data Bibit padi
+					<ul>
+						<li>Untuk Menambahkan Bibit padi Klik Tombol Tambah <i class="fa fa-plus-square"></i></li>
+						<li>Untuk Merubah Data bibit padi Klik Tombol Edit <i class="fa fa-edit"></i></li>
+						<li>Untuk Menghapus Data bibit padi Klik Tombol Hapus <i class="fa fa-trash"></i></li>
+					</ul>
+					<p>Jika anda menggunakan Smartphone (<i class="fa fa-mobile"></i>) geser tabel ke-kiri untuk melihat data secara keseluruhan</p>
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-body"><a href="<?php echo base_url()  . 'admin/nilai/tambah'; ?>"><button type="button" class="btn btn-primary">Tambah</button></a></div>
+				<div class="card-body"><a href="<?php echo base_url()  . 'admin/nilai/tambah'; ?>"><button type="button" class="btn btn-primary">Tambah <i class="fa fa-plus-square"></i></button></a></div>
 				<div class="card-body">
 					<?= $this->session->flashdata('pesan'); ?>
 					<div class="table-responsive">

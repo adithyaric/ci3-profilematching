@@ -9,7 +9,7 @@
 		<div class="section-body">
 			<div class="card">
 				<div class="card-body">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah <i class="fa fa-plus-square"></i></button>
 				</div>
 				<div class="card-body">
 					<?= $this->session->flashdata('pesan'); ?>
@@ -17,7 +17,13 @@
 						<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 						<div class="alert-body">
 							<div class="alert-title">Penjelasan : </div>
-							...
+							Ini merupakan halaman yang digunakan untuk mengelola Data Petani
+							<ul>
+								<li>Untuk Menambahkan Anggota petani Klik Tombol Tambah <i class="fa fa-plus-square"></i></li>
+								<li>Untuk Merubah Data petani Klik Tombol Edit <i class="fa fa-edit"></i></li>
+								<li>Untuk Menghapus Data petani Klik Tombol Hapus <i class="fa fa-trash"></i></li>
+							</ul>
+							<p>Jika anda menggunakan Smartphone (<i class="fa fa-mobile"></i>) geser tabel ke-kiri untuk melihat data secara keseluruhan</p>
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -64,13 +70,13 @@
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-							<input type="password" class="form-control password" name="password" placeholder="Nama Petani" required>
+							<input type="password" class="form-control password" name="password" placeholder="Password" required>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Tambah</button>
 					</div>
 				</div>
 			</div>
@@ -100,8 +106,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
 					</div>
 				</div>
 			</div>

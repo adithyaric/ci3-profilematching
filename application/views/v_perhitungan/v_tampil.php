@@ -6,13 +6,24 @@
 			<h1>Hasil Perhitungan SPK</h1>
 		</div>
 		<!-- End Header -->
+		<div class="alert alert-light alert-has-icon">
+			<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+			<div class="alert-body">
+				<div class="alert-title">Penjelasan : </div>
+				<p>Ini merupakan bagian hasil perhitungan menggunakan metode GAP</p>
+				<ol>
+					<li>Untuk melihat perhitungan menggunakan SPK metode GAP klik tombol "Perhitungan SPK <i class="fa fa-calculator"></i>"</li>
+					<li>Tekan tombol Simpan <i class="fas fa-save"></i> untuk menyimpan hasil perangkingan berdasarkan tanggal</li>
+				</ol>
+			</div>
+		</div>
 		<div class="section-body">
 			<div class="card">
 				<div class="card-body">
 					<?php if (isset($hasil)) : ?>
 						<!-- Detail -->
 						<details>
-							<summary class="btn btn-primary">Perhitungan <i class="fa fa-calculator"></i></summary>
+							<summary class="btn btn-primary">Perhitungan SPK <i class="fa fa-calculator"></i></summary>
 							<div class="table-responsive">
 								<table class="table table-hover table-striped table-bordered">
 									<thead>
@@ -212,7 +223,7 @@
 													<input type="text" name="rangking[]" value="<?php echo $count; ?>" hidden>
 												</td>
 											</tr>
-											<?php $count++;
+										<?php $count++;
 										} ?>
 										<tr>
 											<td colspan="3" align="right">
@@ -221,10 +232,25 @@
 												<textarea name="keterangan" hidden>
 													<?php
 													foreach ($nama_kriteria as $index => $nilainya) {
-														echo $nilainya . " (" . $jenis_kriteria[$index] . ") : " . $nama_bobotkriteria[$index] . ", <br>";
+														// echo $nilainya . " (" . $jenis_kriteria[$index] . ") : " . $nama_bobotkriteria[$index] . ", <br>";
+														echo "<tr>";
+														echo "<td>" . $nilainya . "</td>";
+														echo "<td>" . $jenis_kriteria[$index] . "</td>";
+														echo "<td>" . $nama_bobotkriteria[$index] . "</td>";
+														echo "</tr>";
 													}
 													?>
-													Core Factor : <?= $cf; ?>, Secondary Factor : <?= $sf; ?>
+													<tr>
+														<td>
+															<b>Bobot Core & Secondary Factor :</b>
+														</td>
+														<td>
+															Core Factor : <?= $cf; ?>%
+														</td>
+														<td>
+															Secondary Factor : <?= $sf; ?>%
+														</td>
+													</tr>
 												</textarea>
 												<input type="text" name="tanggal" value="<?php echo date('Y-m-d'); ?>" hidden>
 												<input type="text" name="user_id" value="<?php echo $this->session->userdata("user_id"); ?>" hidden>

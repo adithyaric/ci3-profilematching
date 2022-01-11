@@ -10,7 +10,10 @@
 			<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 			<div class="alert-body">
 				<div class="alert-title">Penjelasan : </div>
-				adalah ...
+				<ol>
+					<li>Langkah pertama pilih kriteria sesuai kebutuhan (target ideal anda)</li>					
+					<li>Tekan tombol Hitung <i class="fa fa-calculator"></i></li>					
+				</ol>
 			</div>
 		</div>
 		<?= $this->session->flashdata('pesan'); ?>
@@ -22,7 +25,7 @@
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
 									<th>Kriteria</th>
-									<th>Bobot kriteria</th>
+									<th>Keterangan</th>
 								</tr>
 								<?php foreach ($kriteria as $index => $key) :
 									$where = array('id_kriteria' => $key->id_kriteria);
@@ -40,7 +43,6 @@
 													$input = array(1, 2, 2, 1, 3, 2, 3, 3);
 													foreach ($bobot_kriteria as $s) : ?>
 														<option <?php if ($s->nilai == $input[$index]) echo "selected"; ?> value="<?php echo $s->nilai; ?>">
-															<?= ' | Nilai : ' . $s->nilai . ' | '; ?>
 															<?= $s->nama_bobotkriteria; ?>
 														</option>
 													<?php endforeach; ?>
@@ -53,19 +55,21 @@
 								<tr>
 									<th><label for="">Core Factor : </label></th>
 									<td>
-										<input type="range" name="cf" value="60" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+										<input type="range" name="cf" value="60" min="50" max="100" oninput="this.nextElementSibling.value = this.value">
 										<output>60</output>%
 									</td>
 								</tr>
 								<tr>
 									<th><label for="">Secondary Factor : </label></th>
 									<td>
-										<input type="range" name="sf" value="40" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+										<input type="range" name="sf" value="40" min="1" max="50" oninput="this.nextElementSibling.value = this.value">
 										<output>40</output>%
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2"><input type="submit" class="btn btn-primary" value="Hitung"></td>
+									<td colspan="2">
+										<button type="submit" class="btn btn-primary">Hitung <i class="fa fa-calculator"></i></button>
+									</td>
 								</tr>
 							</table>
 						</div>

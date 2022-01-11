@@ -11,14 +11,14 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-bordered">
                         <tr>
-                            <th>Nama Alternatif</th>
+                            <th>Nama Bibit padi</th>
                             <td>
-                                <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>" placeholder="Nama Alternatif" required>
+                                <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>" placeholder="Nama Bibit padi" required>
                             </td>
                         </tr>
                         <tr>
                             <th>Kriteria</th>
-                            <th>Nama bobotkriteria</th>
+                            <th>Keterangan</th>
                         </tr>
                         <?php foreach ($kriteria as $key) :
                             $where = array('id_kriteria' => $key->id_kriteria);
@@ -34,7 +34,6 @@
                                             <option value=""> --- Pilih --- </option>
                                             <?php foreach ($bobot_kriteria as $s) : ?>
                                                 <option value="<?= $s->id_bobotkriteria ?>">
-                                                    <?= ' | Nilai : ' . $s->nilai . ' | '; ?>
                                                     <?= $s->nama_bobotkriteria; ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -44,7 +43,9 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn btn-primary" value="Tambah"></td>
+                            <td colspan="2"><input type="submit" class="btn btn-primary" value="Tambah">
+                                <a href="<?php echo base_url()  . 'admin/nilai'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
+                            </td>
                         </tr>
                     </table>
                 </div>

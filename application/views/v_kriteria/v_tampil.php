@@ -17,7 +17,15 @@
 						<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 						<div class="alert-body">
 							<div class="alert-title">Penjelasan : </div>
-							kriteria adalah ...
+							Ini merupakan halaman yang digunakan untuk mengelola Data kriteria.<br>
+							Kriteria adalah ukuran yang menjadi dasar penilaian atau penetapan sesuatu (kbbi)
+							<ul>
+								<li>Untuk Menambahkan Anggota kriteria Klik Tombol Tambah <i class="fa fa-plus-square"></i></li>
+								<li>Untuk Melihat Detail Data kriteria Klik Tombol Detail <i class="fa fa-info"></i></li>
+								<li>Untuk Merubah Data kriteria Klik Tombol Edit <i class="fa fa-edit"></i></li>
+								<li>Untuk Menghapus Data kriteria Klik Tombol Hapus <i class="fa fa-trash"></i></li>
+							</ul>
+							<p>Jika anda menggunakan Smartphone (<i class="fa fa-mobile"></i>) geser tabel ke-kiri untuk melihat data secara keseluruhan</p>
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -75,8 +83,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id_kriteria">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Tambah</button>
 					</div>
 				</div>
 			</div>
@@ -109,8 +117,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id_kriteria">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
 					</div>
 				</div>
 			</div>

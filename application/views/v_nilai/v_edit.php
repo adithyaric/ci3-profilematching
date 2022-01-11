@@ -17,15 +17,15 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
-							<th>Nama Alternatif</th>
+							<th>Nama Bibit padi</th>
 							<td colspan="2">
 								<input type="hidden" name="id" value="<?= $x->id_alternatif; ?>">
-								<input type="text" class="form-control" name="nama" value="<?= $x->nama_alternatif; ?>" placeholder="Nama Alternatif" required>
+								<input type="text" class="form-control" name="nama" value="<?= $x->nama_alternatif; ?>" placeholder="Nama Bibit padi" required>
 							</td>
 						</tr>
 						<tr>
 							<th>Kriteria</th>
-							<th>Nama bobotkriteria</th>
+							<th>Keterangan</th>
 						</tr>
 						<?php
 						foreach ($nilai_alternatif as $index => $value) :
@@ -40,8 +40,7 @@
 									<td>
 										<select name="bobot_kriteria[]" class="form-control" id="" required>
 											<?php foreach ($sub_kriteria2 as $s2) : ?>
-												<option <?php if ($s1->id_bobotkriteria == $s2->id_bobotkriteria) echo "selected"; ?> value="<?php echo $s2->id_bobotkriteria; ?>">
-													<?= ' | Nilai : ' . $s2->nilai . ' | '; ?>
+												<option <?php if ($s1->id_bobotkriteria == $s2->id_bobotkriteria) echo "selected"; ?> value="<?php echo $s2->id_bobotkriteria; ?>">													
 													<?= $s2->nama_bobotkriteria . ' | '; ?>
 												</option>
 											<?php endforeach; ?>
@@ -52,7 +51,7 @@
 						endforeach; ?>
 						<tr>
 							<td colspan="2">
-								<button type="submit" class="btn btn-primary">Save</button>
+								<button type="submit" class="btn btn-primary">Simpan</button>
 								<a href="<?php echo base_url()  . 'admin/nilai'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
 							</td>
 						</tr>

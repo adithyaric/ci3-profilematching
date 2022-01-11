@@ -11,7 +11,17 @@
 				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 				<div class="alert-body">
 					<div class="alert-title">Penjelasan : </div>
-					Bobot kriteria adalah ...
+					Bobot kriteria adalah nilai pada tiap kriteria sesuai dengan sekala nilai yang sudah ditentukan
+					<ul>
+						<li>
+							Untuk Menambahkan Data Bobot kriteria Pertama pilih Kriteria, isi Nama Bobot kriteria dan Sekala nilai lalu klil tombol +,
+							<br>
+							Bisa mengisi secara banyak dengan menambah baris lalu klik simpan
+						</li>
+						<li>Untuk Merubah Data Bobot kriteria Klik Tombol Edit <i class="fa fa-edit"></i></li>
+						<li>Untuk Menghapus Data Bobot kriteria Klik Tombol Hapus <i class="fa fa-trash"></i></li>
+					</ul>
+					<p>Jika anda menggunakan Smartphone (<i class="fa fa-mobile"></i>) geser tabel ke-kiri untuk melihat data secara keseluruhan</p>
 				</div>
 			</div>
 			<form action="<?php echo base_url() . $aksi . '/tambah_aksi'; ?>" method="post">
@@ -44,9 +54,9 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
-							<td><input type="button" class="btn btn-warning" value="Tambah baris" onclick="addRows()" /></td>
+							<td><input type="button" class="btn btn-primary" value="Tambah baris" onclick="addRows()" /></td>
 							<td><input type="button" class="btn btn-danger" value="Hapus baris" onclick="deleteRows()" /></td>
-							<td><input type="submit" class="btn btn-primary" value="Tambah" /></td>
+							<td><input type="submit" class="btn btn-primary" value="Simpan" /></td>
 						</tr>
 					</table>
 				</div>
@@ -122,8 +132,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
 					</div>
 				</div>
 			</div>

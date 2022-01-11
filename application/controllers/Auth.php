@@ -28,7 +28,27 @@ class Auth extends CI_Controller
                 $data_session = array(
                     'nama' => $username,
                     'status' => "login",
-                    'akses' => "admin"
+                    'akses' => "admin",
+                    'keterangan' => "                     
+                        <ol>
+                            <li>
+                                Langkah pertama yang dilakukan yaitu mengelola data anggota Petani pada Halaman Data Petani.                                
+                            </li>
+                            <li>
+                                Langkah kedua yang dilakukan yaitu mengelola data Kriteria bibit padi pada Halaman Data Kriteria.                                
+                            </li>
+                            <li>
+                                Langkah kedua yang dilakukan yaitu mengelola data Bobot Kriteria bibit padi pada Halaman Data Bobot Kriteria.                                
+                            </li>
+                            <li>
+                                Langkah kedua yang dilakukan yaitu mengelola data Bibit padi bibit padi pada Halaman Data Nilai Profile Alternatif.                                
+                            </li>
+                        </ol>
+						<p>
+                            Jika anda menggunakan Smartphone (<i class='fa fa-mobile'></i>) untuk melihat menu yang ada klik tombol 
+                            <i class='fa fa-bars'></i>.                          
+                        </p>                        
+                    "
                 );
 
                 $this->session->set_userdata($data_session);
@@ -55,7 +75,21 @@ class Auth extends CI_Controller
                     'nama' => $username,
                     'status' => "login",
                     'akses' => "user",
-                    'user_id' => $petani->id
+                    'user_id' => $petani->id,
+                    'keterangan' => "
+                        <ol>
+                            <li>
+                                Langkah pertama yang dilakukan yaitu masuk ke halaman perhitungan
+                            </li>
+                            <li>
+                                Langkah kedua yang dilakukan yaitu masuk ke halaman riwayat untuk melihat hasil perangkingan yang sudah dilakukan                         
+                            </li>
+                        </ol>
+						<p>
+                            Jika anda menggunakan Smartphone (<i class='fa fa-mobile'></i>) untuk melihat menu yang ada klik tombol 
+                            <i class='fa fa-bars'></i>.                          
+                        </p>                         
+                    "
                 );
 
                 $this->session->set_userdata($data_session);

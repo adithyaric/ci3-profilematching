@@ -18,23 +18,42 @@
 				</div>
 				<div class="card-body">
 					<?= $this->session->flashdata('pesan'); ?>
-					<?php if ($riwayat) {
-						foreach ($riwayat as $rwt) : ?>
-						<?php endforeach; ?>
-						<div class="alert alert-light alert-has-icon">
-							<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-							<div class="alert-body">
-								<div class="alert-title">Penjelasan : </div>
-								<h4>Target ideal : </h4>
-								<p for=""><?php echo $rwt->detail; ?></p>
-							</div>
+					<div class="alert alert-light alert-has-icon">
+						<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+						<div class="alert-body">
+							<div class="alert-title">Penjelasan : </div>
+							Halaman Riwayat digunakan untuk melihat hasil perangkingan yang sudah dilakukan
+							<ol>
+								<li>Pilih tanggal lalu klik tombol Pilih</li>
+								<li>lalu muncul hasil perangkingan</li>
+							</ol>
 						</div>
+					</div>
+					<?php if ($riwayat) {
+						foreach ($riwayat as $rwt) {
+						} ?>
 						<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $rwt->id_keterangan) ?>')" href="#" class="btn btn-sm btn-danger">Hapus Riwayat <?php echo $rwt->tanggal; ?> <i class="fa fa-trash"></i></a>
-						<br><br>
+						<hr>
+						<h5>Target Ideal :</h5>
+						<div class="table-responsive">
+							<table class="table table-hover table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Kriteria</th>
+										<th>Jenis Kriteria</th>
+										<th>Keterangan</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php echo $rwt->detail; ?>
+								</tbody>
+							</table>
+						</div>
+						<h5>Hasil rekomendasi bibit padi terbaik :</h5>
 						<div class="table-responsive">
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
-									<th>Nama Alternatif</th>
+									<th>Nama Bibit padi</th>
 									<th>Nilai total</th>
 									<th>Rangking</th>
 								</tr>

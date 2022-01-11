@@ -11,10 +11,10 @@
                         <div class="card-body">
                             <form method="POST" action="<?php echo base_url('auth/aksi_login'); ?>" class="needs-validation" novalidate="">
                                 <div class="form-group">
-                                    <label for="username">Username</label>
+                                    <label for="username">Nama</label>
                                     <input id="username" type="username" class="form-control" name="username" tabindex="1" required autofocus>
                                     <div class="invalid-feedback">
-                                        Tolong isi Username
+                                        Tolong isi Nama
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="level">Level</label>
+                                    <label for="level">Login Sebagai : </label>
                                     <select name="level" id="" class="form-control" tabindex="3">
                                         <option value="user">Petani</option>
                                         <option value="admin">Admin</option>
@@ -41,9 +41,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; Stisla 2018
                     </div>
                 </div>
             </div>
