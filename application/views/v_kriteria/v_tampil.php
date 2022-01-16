@@ -9,7 +9,7 @@
 		<div class="section-body">
 			<div class="card">
 				<div class="card-body">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah <i class="fa fa-plus-square"></i></button>
 				</div>
 				<div class="card-body">
 					<?= $this->session->flashdata('pesan'); ?>

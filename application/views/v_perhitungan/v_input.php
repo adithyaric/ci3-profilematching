@@ -11,8 +11,9 @@
 			<div class="alert-body">
 				<div class="alert-title">Penjelasan : </div>
 				<ol>
-					<li>Langkah pertama pilih kriteria sesuai kebutuhan (target ideal anda)</li>					
-					<li>Tekan tombol Hitung <i class="fa fa-calculator"></i></li>					
+					<li>Langkah pertama pilih kriteria sesuai kebutuhan (target ideal anda)</li>
+					<li>Tekan tombol Hitung <i class="fa fa-calculator"></i></li>
+					<li>Untuk mengisi nilainya pada tampilan mobile perlu digeser ke kiri</li>
 				</ol>
 			</div>
 		</div>
@@ -24,8 +25,7 @@
 						<div class="table-responsive">
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
-									<th>Kriteria</th>
-									<th>Keterangan</th>
+									<th>Kriteria</th>									
 								</tr>
 								<?php foreach ($kriteria as $index => $key) :
 									$where = array('id_kriteria' => $key->id_kriteria);
@@ -36,8 +36,6 @@
 										<tr>
 											<td>
 												<label for="<?= $key->id_kriteria ?>"><?= $key->nama_kriteria ?></label>
-											</td>
-											<td>
 												<select name="bobot_kriteria[]" id="" class=" form-control" required>
 													<?php
 													$input = array(1, 2, 2, 1, 3, 2, 3, 3);
@@ -53,21 +51,21 @@
 									<?php endif; ?>
 								<?php endforeach; ?>
 								<tr>
-									<th><label for="">Core Factor : </label></th>
 									<td>
+										<label for="">Core Factor : </label>
 										<input type="range" name="cf" value="60" min="50" max="100" oninput="this.nextElementSibling.value = this.value">
 										<output>60</output>%
 									</td>
 								</tr>
 								<tr>
-									<th><label for="">Secondary Factor : </label></th>
 									<td>
+										<label for="">Secondary Factor : </label>
 										<input type="range" name="sf" value="40" min="1" max="50" oninput="this.nextElementSibling.value = this.value">
 										<output>40</output>%
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td>
 										<button type="submit" class="btn btn-primary">Hitung <i class="fa fa-calculator"></i></button>
 									</td>
 								</tr>

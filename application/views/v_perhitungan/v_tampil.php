@@ -194,15 +194,24 @@
 							</div>
 						</details>
 						<!-- End of Detail -->
+						<br>
 						<form action="<?php echo base_url('admin/riwayat/tambah_aksi') ?>" method="POST" enctype="multipart/form-data">
+							<div class="alert alert-warning alert-dismissible show fade">
+								<div class="alert-body">
+									<button class="close" data-dismiss="alert">
+										<span>&times;</span>
+									</button>
+									<i class="fa fa-exclamation-triangle"></i> Perlu diingat, keputusan dari sistem hanya bersifat rekomendasi terbaik, keputusan kembali kepada petani
+								</div>
+							</div>
 							<center>Hasil Analisa Menggunakan Sistem Pendukung Keputusan (SPK) Metode Profile Matching</center>
 							<div class="table-responsive">
 								<table class="table table-hover table-striped table-bordered">
 									<thead>
 										<tr>
+											<th>Rangking</th>
 											<th>Nama</th>
 											<th>Nilai Total</th>
-											<th>Rangking</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -211,13 +220,13 @@
 										foreach ($hasil->hasilakhir as $key3 => $value3) { ?>
 											<tr>
 												<td>
+													<?php echo $count; ?>
+												</td>
+												<td>
 													<?php echo $nama[$key3]->nama_alternatif; ?>
 												</td>
 												<td>
 													<?php echo number_format($hasil->total_aspek[$key3], 2); ?>
-												</td>
-												<td>
-													<?php echo $count; ?>
 													<input type="text" name="nama_alternatif[]" value="<?php echo $nama[$key3]->nama_alternatif; ?>" hidden>
 													<input type="text" name="nilai[]" value="<?php echo number_format($hasil->total_aspek[$key3], 2); ?>" hidden>
 													<input type="text" name="rangking[]" value="<?php echo $count; ?>" hidden>
