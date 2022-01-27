@@ -11,10 +11,10 @@
 				<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
 				<div class="alert-body">
 					<div class="alert-title">Penjelasan : </div>
-					adalah ...
+					Bobot kriteria/ Nilai kriteria merupakan parameter berdasarkan kriterianya yang diberi sekala nilai
 				</div>
 			</div>
-			<a href="<?php echo base_url()  . 'admin/bobotkriteria'; ?>"><button type="button" class="btn btn-primary">Tambah</button></a>
+			<a href="<?php echo base_url()  . 'admin/bobotkriteria'; ?>"><button type="button" class="btn btn-primary">Tambah <i class="fa fa-plus-square"></i></button></a>
 			<a href="<?php echo base_url()  . 'admin/kriteria'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
 			<div class="table-responsive">
 				<table class="table table-hover table-striped table-bordered">

@@ -40,7 +40,7 @@
 									<td>
 										<select name="bobot_kriteria[]" class="form-control" id="" required>
 											<?php foreach ($sub_kriteria2 as $s2) : ?>
-												<option <?php if ($s1->id_bobotkriteria == $s2->id_bobotkriteria) echo "selected"; ?> value="<?php echo $s2->id_bobotkriteria; ?>">													
+												<option <?php if ($s1->id_bobotkriteria == $s2->id_bobotkriteria) echo "selected"; ?> value="<?php echo $s2->id_bobotkriteria; ?>">
 													<?= $s2->nama_bobotkriteria . ' | '; ?>
 												</option>
 											<?php endforeach; ?>
@@ -51,7 +51,7 @@
 						endforeach; ?>
 						<tr>
 							<td colspan="2">
-								<button type="submit" class="btn btn-primary">Simpan</button>
+								<button type="submit" class="btn btn-primary" value="Simpan">Simpan <i class="fas fa-save"></i></button>
 								<a href="<?php echo base_url()  . 'admin/nilai'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
 							</td>
 						</tr>

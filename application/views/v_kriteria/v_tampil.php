@@ -24,6 +24,7 @@
 								<li>Untuk Melihat Detail Data kriteria Klik Tombol Detail <i class="fa fa-info"></i></li>
 								<li>Untuk Merubah Data kriteria Klik Tombol Edit <i class="fa fa-edit"></i></li>
 								<li>Untuk Menghapus Data kriteria Klik Tombol Hapus <i class="fa fa-trash"></i></li>
+								<li>Untuk Menghapus Data kriteria yang bersifat Core factor, ubahlah dahulu Kriteria menjadi secondary factor <i class="fa fa-trash"></i></li>
 							</ul>
 							<p>Jika anda menggunakan Smartphone (<i class="fa fa-mobile"></i>) geser tabel ke-kiri untuk melihat data secara keseluruhan</p>
 						</div>
@@ -47,7 +48,9 @@
 									<td>
 										<a href="<?php echo base_url()  . 'admin/bobotkriteria/detail/' . $k->id_kriteria; ?>" class="btn btn-sm btn-primary">Detail <i class="fa fa-info"></i></a>
 										<a href="#" class="btn btn-info btn-sm btn-edit" data-id="<?= $k->id_kriteria; ?>" data-name="<?= $k->nama_kriteria; ?>" data-jenis="<?= $k->jenis_kriteria; ?>">Edit <i class="fa fa-edit"></i></a>
+										<?php if($k->jenis_kriteria == "secondary"): ?>
 										<a onclick="deleteConfirm('<?php echo site_url($aksi . '/hapus/' . $k->id_kriteria) ?>')" href="#" class="btn btn-sm btn-danger">Hapus <i class="fa fa-trash"></i></a>
+										<?php endif; ?>
 									</td>
 								</tr>
 							<?php } ?>
@@ -84,7 +87,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id_kriteria">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-						<button type="submit" class="btn btn-primary">Tambah</button>
+						<button type="submit" class="btn btn-primary">Simpan <i class="fas fa-save"></i></button>
 					</div>
 				</div>
 			</div>
@@ -118,7 +121,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id_kriteria">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-						<button type="submit" class="btn btn-primary">Edit</button>
+						<button type="submit" class="btn btn-primary">Simpan <i class="fas fa-save"></i></button>
 					</div>
 				</div>
 			</div>

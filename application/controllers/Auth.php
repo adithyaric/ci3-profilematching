@@ -77,6 +77,9 @@ class Auth extends CI_Controller
                     'akses' => "user",
                     'user_id' => $petani->id,
                     'keterangan' => "
+                        <p>
+                            Ini merupakan program untuk membantu anda dalam menentukan Bibit padi terbaik.
+                        </p>
                         <ol>
                             <li>
                                 Langkah pertama yang dilakukan yaitu masuk ke halaman perhitungan

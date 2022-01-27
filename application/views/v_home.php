@@ -15,8 +15,7 @@
 						Hallo selamat datang <?php echo $this->session->userdata("nama"); ?> !
 					</h3>
 				</div>
-				<div class="card-body">
-					<p class="section-lead">Ini merupakan program untuk membantu anda dalam menentukan Bibit padi terbaik</p>
+				<div class="card-body">					
 					<b>Langkah - langkah menggunakan program :</b>
 					<p><?php echo $this->session->userdata("keterangan"); ?></p>
 				</div>

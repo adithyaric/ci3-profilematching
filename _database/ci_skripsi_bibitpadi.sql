@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 01, 2022 at 01:23 PM
+-- Generation Time: Jan 18, 2022 at 05:10 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.24
 
@@ -56,8 +56,7 @@ INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `detail`) VALUES
 (24, 'Pepe', 'padi'),
 (25, 'Padjadjaran Agritan', 'padi'),
 (26, 'Kabir 05', 'padi'),
-(27, 'Sunggal', 'padi'),
-(28, 'a', 'a');
+(27, 'Sunggal', 'padi');
 
 -- --------------------------------------------------------
 
@@ -77,8 +76,8 @@ CREATE TABLE `bobot_kriteria` (
 --
 
 INSERT INTO `bobot_kriteria` (`id_bobotkriteria`, `nama_bobotkriteria`, `id_kriteria`, `nilai`) VALUES
-(16, '80 - 109 cm', 6, 1),
-(17, '110 - 120 cm', 6, 2),
+(16, '80 - 100 cm', 6, 1),
+(17, '101 - 120 cm', 6, 2),
 (18, '>121cm', 6, 3),
 (19, 'Tahan/Sulit (<6%)', 7, 1),
 (20, 'Sedang (6%-50%)', 7, 2),
@@ -120,8 +119,11 @@ CREATE TABLE `keterangan` (
 --
 
 INSERT INTO `keterangan` (`id_keterangan`, `id_user`, `tanggal`, `detail`) VALUES
-(13, 1, '2021-12-30', '													Tinggi tanaman (core) : >121cm, <br>Kerontokan (secondary) : Mudah (51% - 100%), <br>Harga bibit (core) : <=80 rb/kg, <br>Umur tanaman (secondary) : 80 - 104 hari, <br>bentuk tanaman (secondary) : Tegak, <br>bentuk gabah (secondary) : Panjang ramping, <br>kadar amilosa (core) : 25 - 33% (tinggi), <br>Kerebahan (secondary) : tahan, <br>													Core Factor : 60, Secondary Factor : 40												'),
-(14, 1, '2021-12-31', '													Tinggi tanaman (core) : >121cm, <br>Kerontokan (secondary) : Mudah (51% - 100%), <br>Harga bibit (core) : <=80 rb/kg, <br>Umur tanaman (secondary) : 80 - 104 hari, <br>bentuk tanaman (secondary) : Tegak, <br>bentuk gabah (secondary) : Panjang ramping, <br>kadar amilosa (core) : 25 - 33% (tinggi), <br>Kerebahan (secondary) : tahan, <br>													Core Factor : 60, Secondary Factor : 40												');
+(16, 3, '2022-01-02', '													Tinggi tanaman (core) : >121cm, <br>Kerontokan (secondary) : Mudah (51% - 100%), <br>Harga bibit (core) : <=80 rb/kg, <br>Umur tanaman (secondary) : 80 - 104 hari, <br>bentuk tanaman (secondary) : Tegak, <br>bentuk gabah (secondary) : Panjang ramping, <br>kadar amilosa (core) : 25 - 33% (tinggi), <br>Kerebahan (secondary) : tahan, <br>													Core Factor : 60, Secondary Factor : 40												'),
+(23, 1, '2022-01-10', '													<tr><td>Tinggi tanaman</td><td>core</td><td>>121cm</td></tr><tr><td>Kerontokan</td><td>secondary</td><td>Mudah (51% - 100%)</td></tr><tr><td>Harga bibit</td><td>core</td><td><=80 rb/kg</td></tr><tr><td>Umur tanaman</td><td>secondary</td><td>80 - 104 hari</td></tr><tr><td>bentuk tanaman</td><td>secondary</td><td>Tegak</td></tr><tr><td>bentuk gabah</td><td>secondary</td><td>Panjang ramping</td></tr><tr><td>kadar amilosa</td><td>core</td><td>25 - 33% (tinggi)</td></tr><tr><td>Kerebahan</td><td>secondary</td><td>tahan</td></tr>													<tr>\r\n														<td>\r\n															<b>Bobot Core & Secondary Factor :</b>\r\n														</td>\r\n														<td>\r\n															Core Factor : 60%\r\n														</td>\r\n														<td>\r\n															Secondary Factor : 40%\r\n														</td>\r\n													</tr>\r\n												'),
+(24, 1, '2022-01-11', '													<tr><td>Tinggi tanaman</td><td>core</td><td>>121cm</td></tr><tr><td>Kerontokan</td><td>secondary</td><td>Mudah (51% - 100%)</td></tr><tr><td>Harga bibit</td><td>core</td><td><=80 rb/kg</td></tr><tr><td>Umur tanaman</td><td>secondary</td><td>80 - 104 hari</td></tr><tr><td>bentuk tanaman</td><td>secondary</td><td>Tegak</td></tr><tr><td>bentuk gabah</td><td>secondary</td><td>Panjang ramping</td></tr><tr><td>kadar amilosa</td><td>core</td><td>25 - 33% (tinggi)</td></tr><tr><td>Kerebahan</td><td>secondary</td><td>tahan</td></tr>													<tr>\r\n														<td>\r\n															<b>Bobot Core & Secondary Factor :</b>\r\n														</td>\r\n														<td>\r\n															Core Factor : 60%\r\n														</td>\r\n														<td>\r\n															Secondary Factor : 40%\r\n														</td>\r\n													</tr>\r\n												'),
+(25, 3, '2022-01-16', '													<tr><td>Tinggi tanaman</td><td>core</td><td>>121cm</td></tr><tr><td>Kerontokan</td><td>secondary</td><td>Mudah (51% - 100%)</td></tr><tr><td>Harga bibit</td><td>core</td><td><=80 rb/kg</td></tr><tr><td>Umur tanaman</td><td>secondary</td><td>80 - 104 hari</td></tr><tr><td>bentuk tanaman</td><td>secondary</td><td>Tegak</td></tr><tr><td>bentuk gabah</td><td>secondary</td><td>Panjang ramping</td></tr><tr><td>kadar amilosa</td><td>core</td><td>25 - 33% (tinggi)</td></tr><tr><td>Kerebahan</td><td>secondary</td><td>tahan</td></tr>													<tr>\r\n														<td>\r\n															<b>Bobot Core & Secondary Factor :</b>\r\n														</td>\r\n														<td>\r\n															Core Factor : 60%\r\n														</td>\r\n														<td>\r\n															Secondary Factor : 40%\r\n														</td>\r\n													</tr>\r\n												'),
+(26, 1, '2022-01-17', '													<tr><td>Tinggi tanaman</td><td>core</td><td>>121cm</td></tr><tr><td>Kerontokan</td><td>secondary</td><td>Mudah (51% - 100%)</td></tr><tr><td>Harga bibit</td><td>core</td><td><=80 rb/kg</td></tr><tr><td>Umur tanaman</td><td>secondary</td><td>80 - 104 hari</td></tr><tr><td>bentuk tanaman</td><td>secondary</td><td>Tegak</td></tr><tr><td>bentuk gabah</td><td>secondary</td><td>Panjang ramping</td></tr><tr><td>kadar amilosa</td><td>core</td><td>25 - 33% (tinggi)</td></tr><tr><td>Kerebahan</td><td>secondary</td><td>tahan</td></tr>													<tr>\r\n														<td>\r\n															<b>Bobot Core & Secondary Factor :</b>\r\n														</td>\r\n														<td>\r\n															Core Factor : 60%\r\n														</td>\r\n														<td>\r\n															Secondary Factor : 40%\r\n														</td>\r\n													</tr>\r\n												');
 
 -- --------------------------------------------------------
 
@@ -144,9 +146,9 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `jenis_kriteria`) VALUES
 (7, 'Kerontokan', 'secondary'),
 (8, 'Harga bibit', 'core'),
 (9, 'Umur tanaman', 'secondary'),
-(10, 'bentuk tanaman', 'secondary'),
-(11, 'bentuk gabah', 'secondary'),
-(12, 'kadar amilosa', 'core'),
+(10, 'Bentuk tanaman', 'secondary'),
+(11, 'Bentuk gabah', 'secondary'),
+(12, 'Kadar amilosa', 'core'),
 (13, 'Kerebahan', 'secondary');
 
 -- --------------------------------------------------------
@@ -238,7 +240,7 @@ INSERT INTO `nilai_alternatif` (`id_nilai`, `id_alternatif`, `id_bobotkriteria`)
 (212, 17, 33),
 (213, 17, 36),
 (214, 17, 39),
-(215, 18, 17),
+(215, 18, 16),
 (216, 18, 20),
 (217, 18, 23),
 (218, 18, 25),
@@ -338,44 +340,101 @@ CREATE TABLE `riwayat` (
 --
 
 INSERT INTO `riwayat` (`id_riwayat`, `id_keterangan`, `rangking`, `nama_alternatif`, `nilai`) VALUES
-(40, 13, 1, 'IR 64', '2.74'),
-(41, 13, 2, 'Inpari 32', '2.68'),
-(42, 13, 3, 'Sidenuk', '2.60'),
-(43, 13, 4, 'Pepe', '2.58'),
-(44, 13, 5, 'Mekonga', '2.50'),
-(45, 13, 6, 'Inpari 43', '2.48'),
-(46, 13, 7, 'Inpari 24', '2.48'),
-(47, 13, 8, 'Mapan P-05', '2.44'),
-(48, 13, 9, 'Inpari 42', '2.44'),
-(49, 13, 10, 'Sunggal', '2.38'),
-(50, 13, 11, 'M70D', '2.36'),
-(51, 13, 12, 'Ciherang Janger', '2.34'),
-(52, 13, 13, 'Cimelati', '2.34'),
-(53, 13, 14, 'Raja Lele', '2.30'),
-(54, 13, 15, 'Kabir 05', '2.26'),
-(55, 13, 16, 'Sintanur', '2.22'),
-(56, 13, 17, 'Ciherang', '2.18'),
-(57, 13, 18, 'Padjadjaran Agritan', '2.16'),
-(58, 13, 19, 'Inpari 45 Dirgahayu', '2.14'),
-(59, 14, 1, 'Ciherang Janger', '2.68'),
-(60, 14, 2, 'Raja Lele', '2.64'),
-(61, 14, 3, 'Sintanur', '2.44'),
-(62, 14, 4, 'Pepe', '2.40'),
-(63, 14, 5, 'Ciherang', '2.40'),
-(64, 14, 6, 'IR 64', '2.38'),
-(65, 14, 7, 'Mekonga', '2.32'),
-(66, 14, 8, 'Sidenuk', '2.28'),
-(67, 14, 9, 'Kabir 05', '2.24'),
-(68, 14, 10, 'Inpari 32', '2.20'),
-(69, 14, 11, 'Sunggal', '2.20'),
-(70, 14, 12, 'Cimelati', '2.16'),
-(71, 14, 13, 'Inpari 43', '2.12'),
-(72, 14, 14, 'Inpari 24', '2.12'),
-(73, 14, 15, 'Mapan P-05', '2.08'),
-(74, 14, 16, 'Inpari 42', '2.08'),
-(75, 14, 17, 'M70D', '2.04'),
-(76, 14, 18, 'Inpari 45 Dirgahayu', '1.96'),
-(77, 14, 19, 'Padjadjaran Agritan', '1.84');
+(97, 16, 1, 'IR 64', '4.74'),
+(98, 16, 2, 'Inpari 32', '4.68'),
+(99, 16, 3, 'Mekonga', '4.60'),
+(100, 16, 4, 'Sidenuk', '4.60'),
+(101, 16, 5, 'Pepe', '4.58'),
+(102, 16, 6, 'Inpari 43', '4.48'),
+(103, 16, 7, 'Inpari 24', '4.48'),
+(104, 16, 8, 'Mapan P-05', '4.44'),
+(105, 16, 9, 'Inpari 42', '4.44'),
+(106, 16, 10, 'Sunggal', '4.38'),
+(107, 16, 11, 'M70D', '4.36'),
+(108, 16, 12, 'Ciherang Janger', '4.34'),
+(109, 16, 13, 'Cimelati', '4.34'),
+(110, 16, 14, 'Raja Lele', '4.30'),
+(111, 16, 15, 'Kabir 05', '4.26'),
+(112, 16, 16, 'Sintanur', '4.22'),
+(113, 16, 17, 'Ciherang', '4.18'),
+(114, 16, 18, 'Padjadjaran Agritan', '4.16'),
+(115, 16, 19, 'Inpari 45 Dirgahayu', '4.14'),
+(230, 23, 1, 'IR 64', '4.74'),
+(231, 23, 2, 'Inpari 32', '4.68'),
+(232, 23, 3, 'Mekonga', '4.60'),
+(233, 23, 4, 'Sidenuk', '4.60'),
+(234, 23, 5, 'Pepe', '4.58'),
+(235, 23, 6, 'Inpari 43', '4.48'),
+(236, 23, 7, 'Inpari 24', '4.48'),
+(237, 23, 8, 'Mapan P-05', '4.44'),
+(238, 23, 9, 'Inpari 42', '4.44'),
+(239, 23, 10, 'Sunggal', '4.38'),
+(240, 23, 11, 'M70D', '4.36'),
+(241, 23, 12, 'Ciherang Janger', '4.34'),
+(242, 23, 13, 'Cimelati', '4.34'),
+(243, 23, 14, 'Raja Lele', '4.30'),
+(244, 23, 15, 'Kabir 05', '4.26'),
+(245, 23, 16, 'Sintanur', '4.22'),
+(246, 23, 17, 'Ciherang', '4.18'),
+(247, 23, 18, 'Padjadjaran Agritan', '4.16'),
+(248, 23, 19, 'Inpari 45 Dirgahayu', '4.14'),
+(249, 24, 1, 'IR 64', '4.74'),
+(250, 24, 2, 'Inpari 32', '4.68'),
+(251, 24, 3, 'Mekonga', '4.60'),
+(252, 24, 4, 'Sidenuk', '4.60'),
+(253, 24, 5, 'Pepe', '4.58'),
+(254, 24, 6, 'Inpari 43', '4.48'),
+(255, 24, 7, 'Inpari 24', '4.48'),
+(256, 24, 8, 'Mapan P-05', '4.44'),
+(257, 24, 9, 'Inpari 42', '4.44'),
+(258, 24, 10, 'Sunggal', '4.38'),
+(259, 24, 11, 'M70D', '4.36'),
+(260, 24, 12, 'Ciherang Janger', '4.34'),
+(261, 24, 13, 'Cimelati', '4.34'),
+(262, 24, 14, 'Raja Lele', '4.30'),
+(263, 24, 15, 'Kabir 05', '4.26'),
+(264, 24, 16, 'Sintanur', '4.22'),
+(265, 24, 17, 'Ciherang', '4.18'),
+(266, 24, 18, 'Padjadjaran Agritan', '4.16'),
+(267, 24, 19, 'Inpari 45 Dirgahayu', '4.14'),
+(268, 25, 1, 'IR 64', '4.74'),
+(269, 25, 2, 'Inpari 32', '4.68'),
+(270, 25, 3, 'Mekonga', '4.60'),
+(271, 25, 4, 'Sidenuk', '4.60'),
+(272, 25, 5, 'Pepe', '4.58'),
+(273, 25, 6, 'Inpari 43', '4.48'),
+(274, 25, 7, 'Inpari 24', '4.48'),
+(275, 25, 8, 'Mapan P-05', '4.44'),
+(276, 25, 9, 'Inpari 42', '4.44'),
+(277, 25, 10, 'Sunggal', '4.38'),
+(278, 25, 11, 'M70D', '4.36'),
+(279, 25, 12, 'Ciherang Janger', '4.34'),
+(280, 25, 13, 'Cimelati', '4.34'),
+(281, 25, 14, 'Raja Lele', '4.30'),
+(282, 25, 15, 'Kabir 05', '4.26'),
+(283, 25, 16, 'Sintanur', '4.22'),
+(284, 25, 17, 'Ciherang', '4.18'),
+(285, 25, 18, 'Padjadjaran Agritan', '4.16'),
+(286, 25, 19, 'Inpari 45 Dirgahayu', '4.14'),
+(287, 26, 1, 'IR 64', '4.74'),
+(288, 26, 2, 'Inpari 32', '4.68'),
+(289, 26, 3, 'Mekonga', '4.60'),
+(290, 26, 4, 'Sidenuk', '4.60'),
+(291, 26, 5, 'Pepe', '4.58'),
+(292, 26, 6, 'Inpari 43', '4.48'),
+(293, 26, 7, 'Inpari 24', '4.48'),
+(294, 26, 8, 'Mapan P-05', '4.44'),
+(295, 26, 9, 'Inpari 42', '4.44'),
+(296, 26, 10, 'Sunggal', '4.38'),
+(297, 26, 11, 'M70D', '4.36'),
+(298, 26, 12, 'Ciherang Janger', '4.34'),
+(299, 26, 13, 'Cimelati', '4.34'),
+(300, 26, 14, 'Raja Lele', '4.30'),
+(301, 26, 15, 'Kabir 05', '4.26'),
+(302, 26, 16, 'Sintanur', '4.22'),
+(303, 26, 17, 'Ciherang', '4.18'),
+(304, 26, 18, 'Padjadjaran Agritan', '4.16'),
+(305, 26, 19, 'Inpari 45 Dirgahayu', '4.14');
 
 -- --------------------------------------------------------
 
@@ -396,7 +455,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
 (1, 'adit', '486b6c6b267bc61677367eb6b6458764', 'user'),
-(2, 'admin', '0192023a7bbd73250516f069df18b500', 'admin');
+(2, 'admin', '0192023a7bbd73250516f069df18b500', 'admin'),
+(3, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user');
 
 --
 -- Indexes for dumped tables
@@ -457,7 +517,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `bobot_kriteria`
@@ -469,7 +529,7 @@ ALTER TABLE `bobot_kriteria`
 -- AUTO_INCREMENT for table `keterangan`
 --
 ALTER TABLE `keterangan`
-  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_keterangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
@@ -487,13 +547,13 @@ ALTER TABLE `nilai_alternatif`
 -- AUTO_INCREMENT for table `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

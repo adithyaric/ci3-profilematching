@@ -11,6 +11,7 @@ $db['default'] = array(
 	'password' => '',
 	// 'database' => 'ci_skripsi_gap',
 	'database' => 'ci_skripsi_bibitpadi',
+	// 'database' => 'ci_skripsi_bibit',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

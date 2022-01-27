@@ -16,7 +16,7 @@
       <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-        <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
+        <a id="btn-delete" class="btn btn-danger" href="#">Hapus <i class="fas fa-trash"></i></a>
       </div>
     </div>
   </div>
@@ -24,10 +24,10 @@
 <!-- Footer -->
 <footer class="main-footer">
   <div class="footer-left">
-    
+
   </div>
   <div class="footer-right">
-    
+
   </div>
 </footer>
 <!-- End Footer -->

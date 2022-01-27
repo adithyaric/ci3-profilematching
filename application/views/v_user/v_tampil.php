@@ -76,7 +76,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-						<button type="submit" class="btn btn-primary">Tambah</button>
+						<button type="submit" class="btn btn-primary">Simpan <i class="fas fa-save"></i></button>
 					</div>
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-						<button type="submit" class="btn btn-primary">Edit</button>
+						<button type="submit" class="btn btn-primary">Simpan <i class="fas fa-save"></i></button>
 					</div>
 				</div>
 			</div>

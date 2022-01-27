@@ -12,9 +12,12 @@
 				<div class="alert-title">Penjelasan : </div>
 				<ol>
 					<li>Langkah pertama pilih kriteria sesuai kebutuhan (target ideal anda)</li>
-					<li>Tekan tombol Hitung <i class="fa fa-calculator"></i></li>
-					<li>Untuk mengisi nilainya pada tampilan mobile perlu digeser ke kiri</li>
+					<li>Tekan tombol Hitung <i class="fa fa-calculator"></i></li>					
 				</ol>
+				<p>
+					Jika anda menggunakan Smartphone (<i class='fa fa-mobile'></i>) untuk melihat menu yang ada klik tombol
+					<i class='fa fa-bars'></i>.
+				</p>
 			</div>
 		</div>
 		<?= $this->session->flashdata('pesan'); ?>
@@ -25,7 +28,7 @@
 						<div class="table-responsive">
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
-									<th>Kriteria</th>									
+									<th>Kriteria</th>
 								</tr>
 								<?php foreach ($kriteria as $index => $key) :
 									$where = array('id_kriteria' => $key->id_kriteria);
@@ -52,20 +55,8 @@
 								<?php endforeach; ?>
 								<tr>
 									<td>
-										<label for="">Core Factor : </label>
-										<input type="range" name="cf" value="60" min="50" max="100" oninput="this.nextElementSibling.value = this.value">
-										<output>60</output>%
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="">Secondary Factor : </label>
-										<input type="range" name="sf" value="40" min="1" max="50" oninput="this.nextElementSibling.value = this.value">
-										<output>40</output>%
-									</td>
-								</tr>
-								<tr>
-									<td>
+										<input type="number" name="sf" id="" value="40" hidden>
+										<input type="number" name="cf" id="" value="60" hidden>
 										<button type="submit" class="btn btn-primary">Hitung <i class="fa fa-calculator"></i></button>
 									</td>
 								</tr>

@@ -54,9 +54,9 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
-							<td><input type="button" class="btn btn-primary" value="Tambah baris" onclick="addRows()" /></td>
-							<td><input type="button" class="btn btn-danger" value="Hapus baris" onclick="deleteRows()" /></td>
-							<td><input type="submit" class="btn btn-primary" value="Simpan" /></td>
+							<td><button type="button" class="btn btn-primary" value="Tambah baris" onclick="addRows()" />Tambah baris <i class="fa fa-plus-square"></i></button></td>
+							<td><button type="button" class="btn btn-danger" value="Hapus baris" onclick="deleteRows()" />Hapus baris <i class="fa fa-trash"></i></button></td>
+							<td><button type="submit" class="btn btn-primary" value="Simpan" />Simpan <i class="fa fa-save"></i></button></td>
 						</tr>
 					</table>
 				</div>
@@ -133,7 +133,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="id" class="id">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-						<button type="submit" class="btn btn-primary">Edit</button>
+						<button type="submit" class="btn btn-primary">Simpan <i class="fas fa-save"></i></button>
 					</div>
 				</div>
 			</div>

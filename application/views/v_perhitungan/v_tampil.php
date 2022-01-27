@@ -15,6 +15,10 @@
 					<li>Untuk melihat perhitungan menggunakan SPK metode GAP klik tombol "Perhitungan SPK <i class="fa fa-calculator"></i>"</li>
 					<li>Tekan tombol Simpan <i class="fas fa-save"></i> untuk menyimpan hasil perangkingan berdasarkan tanggal</li>
 				</ol>
+				<p>
+					Jika anda menggunakan Smartphone (<i class='fa fa-mobile'></i>) untuk melihat menu yang ada klik tombol
+					<i class='fa fa-bars'></i>.
+				</p>
 			</div>
 		</div>
 		<div class="section-body">

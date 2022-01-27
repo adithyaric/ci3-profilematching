@@ -43,7 +43,8 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn btn-primary" value="Tambah">
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary" value="Simpan">Simpan <i class="fas fa-save"></i></button>
                                 <a href="<?php echo base_url()  . 'admin/nilai'; ?>"><button type="button" class="btn btn-info">Kembali</button></a>
                             </td>
                         </tr>

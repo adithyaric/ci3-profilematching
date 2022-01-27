@@ -38,7 +38,7 @@
 									<tr>
 										<td rowspan="<?php echo count($nilai_alternatif) + 1 ?>"><label for="<?= $key->id_alternatif ?>"><?= $key->nama_alternatif ?></label></td>
 										<th>Kriteria</th>
-										<th>Nama bobotkriteria</th>
+										<th>Keterangan</th>
 										<th>Nilai</th>
 										<td rowspan="<?php echo count($nilai_alternatif) + 1 ?>">
 											<center>
